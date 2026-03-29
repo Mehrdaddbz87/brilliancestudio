@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+admin/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -16,6 +17,8 @@
 # next.js
 /.next/
 /out/
+admin/dist/
+admin/.sanity/
 
 # production
 /build
@@ -39,3 +42,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

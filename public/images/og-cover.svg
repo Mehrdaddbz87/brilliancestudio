@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#000000"/>
+  <rect x="48" y="48" width="1104" height="534" rx="32" fill="url(#paint0_linear)" stroke="#B99A45" stroke-opacity="0.35"/>
+  <path d="M884 124C965.739 124 1032 190.261 1032 272C1032 353.739 965.739 420 884 420C802.261 420 736 353.739 736 272C736 190.261 802.261 124 884 124Z" fill="url(#paint1_radial)" fill-opacity="0.34"/>
+  <path d="M168 197H459" stroke="#B99A45" stroke-width="2" stroke-linecap="round" stroke-opacity="0.8"/>
+  <path d="M168 432H635" stroke="#B99A45" stroke-width="2" stroke-linecap="round" stroke-opacity="0.35"/>
+  <text x="168" y="178" fill="#B99A45" font-family="Georgia, Times New Roman, serif" font-size="28" letter-spacing="8">BRILLIANCE STUDIO</text>
+  <text x="168" y="300" fill="#FFFFFF" font-family="Georgia, Times New Roman, serif" font-size="74" font-weight="700">Home Design</text>
+  <text x="168" y="380" fill="#FFFFFF" font-family="Georgia, Times New Roman, serif" font-size="74" font-weight="700">&amp; Renovation</text>
+  <text x="168" y="478" fill="#D6D6D6" font-family="Arial, Helvetica, sans-serif" font-size="30">Premium design direction for refined spaces across Canada.</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="48" y1="48" x2="1152" y2="582" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#171717"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(884 272) rotate(90) scale(148)">
+      <stop stop-color="#B99A45"/>
+      <stop offset="1" stop-color="#B99A45" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,45 @@
+export const servicesPage = {
+  name: "servicesPage",
+  title: "Services Page",
+  type: "document",
+  fields: [
+    { name: "eyebrow", title: "Eyebrow", type: "string" },
+    {
+      name: "title",
+      title: "Title",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "text",
+      rows: 5,
+      validation: (Rule) => Rule.required(),
+    },
+    { name: "seoTitle", title: "SEO Title", type: "string" },
+    { name: "seoDescription", title: "SEO Description", type: "text", rows: 4 },
+    { name: "primaryCtaLabel", title: "Primary CTA Label", type: "string" },
+    { name: "primaryCtaHref", title: "Primary CTA Link", type: "string" },
+    { name: "secondaryCtaLabel", title: "Secondary CTA Label", type: "string" },
+    { name: "secondaryCtaHref", title: "Secondary CTA Link", type: "string" },
+    {
+      name: "items",
+      title: "Service Cards",
+      type: "array",
+      of: [{ type: "serviceCard" }],
+      validation: (Rule) => Rule.min(1),
+    },
+    {
+      name: "sections",
+      title: "Page Sections",
+      type: "array",
+      of: [
+        { type: "textSection" },
+        { type: "featureListSection" },
+        { type: "ctaSection" },
+        { type: "gallerySection" },
+      ],
+    },
+  ],
+};
