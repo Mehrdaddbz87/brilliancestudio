@@ -1,6 +1,6 @@
 const { chromium } = require("playwright");
 
-const pages = ["/", "/services", "/references", "/contact", "/booking", "/about"];
+const pages = ["/", "/services", "/references", "/contact", "/about"];
 const viewports = [
   { name: "mobile", width: 390, height: 844, isMobile: true },
   { name: "tablet", width: 768, height: 1024, isMobile: false },

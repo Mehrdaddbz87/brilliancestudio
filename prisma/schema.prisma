@@ -107,6 +107,7 @@ model ContactRequest {
   id        Int              @id @default(autoincrement())
   name      String
   email     String
+  service   String           @default("General Inquiry")
   company   String?
   message   String
   status    SubmissionStatus @default(NEW)
@@ -116,19 +117,3 @@ model ContactRequest {
   @@index([status, createdAt])
 }
 
-/// Persists booking inquiries submitted through the site.
-model BookingRequest {
-  id            Int              @id @default(autoincrement())
-  name          String
-  email         String
-  preferredDate DateTime?
-  preferredTime String?
-  budgetRange   String?
-  projectType   String?
-  notes         String?
-  status        SubmissionStatus @default(NEW)
-  createdAt     DateTime         @default(now())
-  updatedAt     DateTime         @updatedAt
-
-  @@index([status, createdAt])
-}

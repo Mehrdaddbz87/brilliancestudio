@@ -3,7 +3,7 @@
 Brilliance Studio is a premium Next.js website for a design and renovation brand with:
 
 - marketing pages and legal pages
-- contact and booking forms
+- a central contact inquiry form with service selection
 - PostgreSQL + Prisma persistence
 - Sanity-ready CMS content for services, references, terms, and imprint
 - protected admin access via NextAuth
@@ -48,7 +48,6 @@ SMTP_PORT="587"
 SMTP_USER=""
 SMTP_PASSWORD=""
 CONTACT_RECEIVER_EMAIL=""
-BOOKING_RECEIVER_EMAIL=""
 
 NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=""
 NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=""
@@ -119,7 +118,7 @@ app/                  App Router files kept for modern Next.js compatibility
 components/           Shared UI, SEO, analytics, consent, and page components
 lib/                  Auth, CMS, Prisma, Sanity, utilities, and consent logic
 pages/                Main site routes and API routes
-pages/api/            Contact, booking, auth, and health endpoints
+pages/api/            Contact, auth, and health endpoints
 prisma/               Prisma schema, migrations, and seed script
 public/               Static assets and placeholder images
 styles/               Global Tailwind/CSS files
@@ -134,8 +133,7 @@ next.config.ts        Next.js runtime and image configuration
 - `/` - homepage
 - `/services` - CMS-driven services page
 - `/references` - CMS-driven references page
-- `/contact` - contact form + embedded booking form
-- `/booking` - dedicated booking form
+- `/contact` - central inquiry form with required service selection
 - `/about` - studio overview
 - `/terms` - legal / privacy commitments page
 - `/impressum` - imprint / legal company information page
@@ -162,6 +160,7 @@ Accepts:
 {
   "name": "Jane Doe",
   "email": "jane@example.com",
+  "service": "Custom Home Design & Build",
   "message": "Project inquiry message"
 }
 ```
@@ -170,25 +169,6 @@ Behavior:
 
 - validates required fields
 - saves the contact request to PostgreSQL
-- sends an email notification through SMTP
-
-#### `POST /api/booking`
-
-Accepts:
-
-```json
-{
-  "name": "Jane Doe",
-  "email": "jane@example.com",
-  "service": "Home design consultation",
-  "preferredDate": "2026-04-15"
-}
-```
-
-Behavior:
-
-- validates required fields
-- saves the booking request to PostgreSQL
 - sends an email notification through SMTP
 
 #### `GET|POST /api/auth/[...nextauth]`
@@ -280,7 +260,6 @@ At minimum, configure these in Vercel:
 - `SMTP_USER`
 - `SMTP_PASSWORD`
 - `CONTACT_RECEIVER_EMAIL`
-- `BOOKING_RECEIVER_EMAIL`
 - `SANITY_PROJECT_ID`
 - `SANITY_DATASET`
 - `SANITY_API_VERSION`
@@ -306,13 +285,13 @@ If you are running this against a managed production database, make sure the con
 - open the live homepage
 - verify `/api/health`
 - verify `/terms` and `/impressum`
-- test `/contact` and `/booking`
+- test `/contact`
 - confirm SMTP works with real credentials
 - confirm analytics and GTM only load after cookie consent
 - verify `/admin` login and Sanity embedding
 
 ## Notes
 
-- The current project contains helper scripts such as `responsive-audit.js`, `interaction-form-audit.js`, `check-meta.js`, and Lighthouse summaries used during development/testing.
+- The current project contains helper scripts such as `responsive-audit.js`, `check-meta.js`, and Lighthouse summaries used during development/testing.
 - Cookie consent categories currently include `functional`, `analytics`, and `marketing`.
 - Legal content is written to support Canadian operations and PIPEDA-oriented privacy handling, but should still be reviewed with qualified legal counsel before launch.

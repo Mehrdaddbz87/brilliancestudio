@@ -9,14 +9,14 @@ async function seedCms() {
       eyebrow: "Database CMS",
       title: "Services",
       description:
-        "Premium web strategy, design systems, and modern development services managed through Prisma and PostgreSQL.",
+        "High-end renovation and design services managed through Prisma and PostgreSQL.",
       seoTitle: "Services | Brilliance Studio",
       seoDescription:
-        "Database-backed sample services content for Brilliance Studio.",
+        "Database-backed renovation and design service content for Brilliance Studio in Canada.",
       primaryCtaLabel: "Send inquiry",
       primaryCtaHref: "/contact",
-      secondaryCtaLabel: "Request booking",
-      secondaryCtaHref: "/booking",
+      secondaryCtaLabel: "Contact us",
+      secondaryCtaHref: "/contact",
       sections: [
         {
           _key: "db-services-1",
@@ -30,34 +30,74 @@ async function seedCms() {
         deleteMany: {},
         create: [
           {
-            slug: "positioning-concept",
-            eyebrow: "Strategy",
-            title: "Positioning & Concept",
+            slug: "custom-home-design-build",
+            eyebrow: "Design + Build",
+            title: "Custom Home Design & Build",
             description:
-              "Clear digital positioning and audience-focused structure before design and development begin.",
+              "End-to-end planning and execution for clients seeking a refined, custom-built home.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Strategy placeholder",
+            imageAlt: "Custom home design and build placeholder",
             sortOrder: 1,
           },
           {
-            slug: "luxury-ui-systems",
-            eyebrow: "Design",
-            title: "Luxury UI Systems",
+            slug: "home-additions",
+            eyebrow: "Expansion",
+            title: "Home Additions",
             description:
-              "Elegant interface systems with premium typography, spacing, and restrained high-end styling.",
+              "Integrated home additions designed to expand space and preserve architectural continuity.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Design placeholder",
+            imageAlt: "Home additions placeholder",
             sortOrder: 2,
           },
           {
-            slug: "modern-development",
-            eyebrow: "Build",
-            title: "Modern Development",
+            slug: "kitchen-remodeling",
+            eyebrow: "Remodeling",
+            title: "Kitchen Remodeling",
             description:
-              "Fast, maintainable implementation for ambitious brand websites built with modern tooling.",
+              "Kitchen renovations focused on flow, material quality, and polished everyday performance.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Development placeholder",
+            imageAlt: "Kitchen remodeling placeholder",
             sortOrder: 3,
+          },
+          {
+            slug: "bathroom-remodeling",
+            eyebrow: "Remodeling",
+            title: "Bathroom Remodeling",
+            description:
+              "High-end bathroom upgrades shaped around comfort, durability, and elegant detailing.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Bathroom remodeling placeholder",
+            sortOrder: 4,
+          },
+          {
+            slug: "interior-exterior-design",
+            eyebrow: "Design",
+            title: "Interior & Exterior Design",
+            description:
+              "Unified design direction for interior and exterior spaces with premium visual clarity.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Interior and exterior design placeholder",
+            sortOrder: 5,
+          },
+          {
+            slug: "structural-modifications-framing",
+            eyebrow: "Structure",
+            title: "Structural Modifications & Framing",
+            description:
+              "Precise structural and framing work that supports safe, design-led renovation.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Structural modifications and framing placeholder",
+            sortOrder: 6,
+          },
+          {
+            slug: "basement-finishing",
+            eyebrow: "Lower Level",
+            title: "Basement Finishing",
+            description:
+              "Finished basement spaces designed for comfort, function, and long-term value.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Basement finishing placeholder",
+            sortOrder: 7,
           },
         ],
       },
@@ -67,14 +107,14 @@ async function seedCms() {
       eyebrow: "Database CMS",
       title: "Services",
       description:
-        "Premium web strategy, design systems, and modern development services managed through Prisma and PostgreSQL.",
+        "High-end renovation and design services managed through Prisma and PostgreSQL.",
       seoTitle: "Services | Brilliance Studio",
       seoDescription:
-        "Database-backed sample services content for Brilliance Studio.",
+        "Database-backed renovation and design service content for Brilliance Studio in Canada.",
       primaryCtaLabel: "Send inquiry",
       primaryCtaHref: "/contact",
-      secondaryCtaLabel: "Request booking",
-      secondaryCtaHref: "/booking",
+      secondaryCtaLabel: "Contact us",
+      secondaryCtaHref: "/contact",
       sections: [
         {
           _key: "db-services-1",
@@ -87,34 +127,74 @@ async function seedCms() {
       items: {
         create: [
           {
-            slug: "positioning-concept",
-            eyebrow: "Strategy",
-            title: "Positioning & Concept",
+            slug: "custom-home-design-build",
+            eyebrow: "Design + Build",
+            title: "Custom Home Design & Build",
             description:
-              "Clear digital positioning and audience-focused structure before design and development begin.",
+              "End-to-end planning and execution for clients seeking a refined, custom-built home.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Strategy placeholder",
+            imageAlt: "Custom home design and build placeholder",
             sortOrder: 1,
           },
           {
-            slug: "luxury-ui-systems",
-            eyebrow: "Design",
-            title: "Luxury UI Systems",
+            slug: "home-additions",
+            eyebrow: "Expansion",
+            title: "Home Additions",
             description:
-              "Elegant interface systems with premium typography, spacing, and restrained high-end styling.",
+              "Integrated home additions designed to expand space and preserve architectural continuity.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Design placeholder",
+            imageAlt: "Home additions placeholder",
             sortOrder: 2,
           },
           {
-            slug: "modern-development",
-            eyebrow: "Build",
-            title: "Modern Development",
+            slug: "kitchen-remodeling",
+            eyebrow: "Remodeling",
+            title: "Kitchen Remodeling",
             description:
-              "Fast, maintainable implementation for ambitious brand websites built with modern tooling.",
+              "Kitchen renovations focused on flow, material quality, and polished everyday performance.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Development placeholder",
+            imageAlt: "Kitchen remodeling placeholder",
             sortOrder: 3,
+          },
+          {
+            slug: "bathroom-remodeling",
+            eyebrow: "Remodeling",
+            title: "Bathroom Remodeling",
+            description:
+              "High-end bathroom upgrades shaped around comfort, durability, and elegant detailing.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Bathroom remodeling placeholder",
+            sortOrder: 4,
+          },
+          {
+            slug: "interior-exterior-design",
+            eyebrow: "Design",
+            title: "Interior & Exterior Design",
+            description:
+              "Unified design direction for interior and exterior spaces with premium visual clarity.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Interior and exterior design placeholder",
+            sortOrder: 5,
+          },
+          {
+            slug: "structural-modifications-framing",
+            eyebrow: "Structure",
+            title: "Structural Modifications & Framing",
+            description:
+              "Precise structural and framing work that supports safe, design-led renovation.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Structural modifications and framing placeholder",
+            sortOrder: 6,
+          },
+          {
+            slug: "basement-finishing",
+            eyebrow: "Lower Level",
+            title: "Basement Finishing",
+            description:
+              "Finished basement spaces designed for comfort, function, and long-term value.",
+            imageUrl: "/images/placeholders/service.svg",
+            imageAlt: "Basement finishing placeholder",
+            sortOrder: 7,
           },
         ],
       },
@@ -337,13 +417,13 @@ async function seedCms() {
 
 async function seedSubmissions() {
   await prisma.contactRequest.deleteMany();
-  await prisma.bookingRequest.deleteMany();
 
   await prisma.contactRequest.createMany({
     data: [
       {
         name: "Anna Becker",
         email: "anna@example.com",
+        service: "Custom Home Design & Build",
         company: "Maison Aurelia",
         message:
           "We need a refined landing experience for an upcoming product launch.",
@@ -351,24 +431,10 @@ async function seedSubmissions() {
       {
         name: "Luca Hartmann",
         email: "luca@example.com",
+        service: "Interior & Exterior Design",
         company: "Velour Residence",
         message:
           "Looking for a premium property presentation website with strong inquiry flow.",
-      },
-    ],
-  });
-
-  await prisma.bookingRequest.createMany({
-    data: [
-      {
-        name: "Sofia Klein",
-        email: "sofia@example.com",
-        preferredDate: new Date("2026-04-15T00:00:00.000Z"),
-        preferredTime: "10:30",
-        budgetRange: "5,000 - 10,000 EUR",
-        projectType: "Website redesign",
-        notes:
-          "Interested in a modern luxury visual update and improved booking conversions.",
       },
     ],
   });

@@ -14,11 +14,11 @@ describe("Button", () => {
   it("includes the accent hover class for ghost buttons", () => {
     render(
       <Button href="/contact" variant="ghost">
-        Contact
+        Contact Us
       </Button>,
     );
 
-    expect(screen.getByRole("link", { name: "Contact" })).toHaveClass(
+    expect(screen.getByRole("link", { name: "Contact Us" })).toHaveClass(
       "hover:text-accent",
     );
   });
