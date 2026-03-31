@@ -4,12 +4,6 @@ const { seedCookieConsent } = require("./consent-helper");
 
 const MOBILE_VIEWPORT = { width: 375, height: 812 };
 
-async function selectAvailableDate(page) {
-  await page.locator('input[name="preferredDate"] + button').click();
-  await page.locator('[role="dialog"] button:not([disabled])').nth(10).click();
-  await expect(page.locator('input[name="preferredDate"]')).not.toHaveValue("");
-}
-
 test.describe("basic responsiveness (mobile)", () => {
   test.beforeEach(async ({ page }) => {
     await seedCookieConsent(page);
@@ -22,29 +16,30 @@ test.describe("basic responsiveness (mobile)", () => {
     await page
       .getByRole("button", { name: /toggle navigation menu/i })
       .click();
-    // Mobile drawer nav only (homepage also links cards to /services).
-    const servicesLink = page.locator("header nav.flex-col a[href='/services']");
-    await expect(servicesLink).toBeVisible({ timeout: 10000 });
+    const servicesToggle = page.getByRole("button", { name: "Services" });
+    await expect(servicesToggle).toBeVisible({ timeout: 10000 });
 
     await Promise.all([
-      page.waitForURL(/\/services(?:\/)?$/, { timeout: 15000 }),
-      servicesLink.click(),
+      page.waitForURL(/\/services\/custom-home-design-build$/, { timeout: 15000 }),
+      servicesToggle.click().then(() =>
+        page.getByRole("link", { name: /custom home design & build/i }).click(),
+      ),
     ]);
   });
 
-  test("mobile navigation opens menu and reaches Booking", async ({ page }) => {
+  test("mobile navigation opens menu and reaches Contact Us", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
     await page
       .getByRole("button", { name: /toggle navigation menu/i })
       .click();
-    const bookingCta = page
+    const contactCta = page
       .getByRole("link", { name: /request project/i })
       .filter({ visible: true });
-    await expect(bookingCta).toBeVisible();
+    await expect(contactCta).toBeVisible();
 
-    await bookingCta.click();
-    await expect(page).toHaveURL(/\/booking$/);
+    await contactCta.click();
+    await expect(page).toHaveURL(/\/contact$/);
   });
 
   test("contact form is usable on mobile and submits", async ({ page }) => {
@@ -61,7 +56,7 @@ test.describe("basic responsiveness (mobile)", () => {
     const contactForm = page.locator("form").first();
     const nameField = contactForm.getByPlaceholder("Your full name");
     const messageField = contactForm.getByPlaceholder(
-      "Tell us about your goals, audience, and desired timeline.",
+      "Tell us about your goals, timeline, and what kind of transformation you are planning.",
     );
     const submit = contactForm.getByRole("button", { name: /send message/i });
 
@@ -73,6 +68,9 @@ test.describe("basic responsiveness (mobile)", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("mobile@example.com");
+    await contactForm.getByLabel("Choose Service").selectOption({
+      label: "Kitchen Remodeling",
+    });
     await messageField.fill(
       "We need a premium redesign for our renovation brand this quarter.",
     );
@@ -83,35 +81,14 @@ test.describe("basic responsiveness (mobile)", () => {
     ).toBeVisible();
   });
 
-  test("booking form is usable on mobile and submits", async ({ page }) => {
-    await page.route("**/api/booking", async (route) => {
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ success: true }),
-      });
-    });
+  test("contact form service dropdown is usable on mobile", async ({ page }) => {
+    await page.goto("/contact", { waitUntil: "domcontentloaded" });
 
-    await page.goto("/booking", { waitUntil: "domcontentloaded" });
+    const contactForm = page.locator("form").first();
+    const serviceField = contactForm.getByLabel("Choose Service");
 
-    const nameField = page.getByPlaceholder("Your name");
-    const dateTrigger = page.locator('input[name="preferredDate"] + button');
-    const submit = page.getByRole("button", { name: /send booking/i });
-
-    await expect(nameField).toBeVisible();
-    await expect(dateTrigger).toBeVisible();
-    await expect(submit).toBeVisible();
-
-    await nameField.fill("Mobile Booker");
-    await page.getByPlaceholder("name@example.com").fill("mobile@example.com");
-    await page
-      .getByPlaceholder("Website design, redesign, brand site...")
-      .fill("Website redesign");
-    await selectAvailableDate(page);
-    await submit.click();
-
-    await expect(
-      page.getByText("Your booking request has been saved successfully."),
-    ).toBeVisible();
+    await expect(serviceField).toBeVisible();
+    await serviceField.selectOption({ label: "Basement Finishing" });
+    await expect(serviceField).toHaveValue("Basement Finishing");
   });
 });

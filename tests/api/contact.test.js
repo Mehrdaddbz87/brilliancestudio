@@ -65,6 +65,7 @@ describe("/api/contact", () => {
       body: {
         name: "Jane Doe",
         email: "jane@example.com",
+        service: "Custom Home Design & Build",
         message: "I would like to discuss a renovation website redesign.",
       },
     });
@@ -78,11 +79,22 @@ describe("/api/contact", () => {
       data: {
         name: "Jane Doe",
         email: "jane@example.com",
+        service: "Custom Home Design & Build",
         company: null,
         message: "I would like to discuss a renovation website redesign.",
       },
     });
     expect(sendMail).toHaveBeenCalledTimes(1);
+    expect(sendMail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        text: expect.stringContaining(
+          "Selected Service: Custom Home Design & Build",
+        ),
+        html: expect.stringContaining(
+          "<strong>Selected Service:</strong> Custom Home Design & Build",
+        ),
+      }),
+    );
   });
 
   it("returns 400 for invalid submissions", async () => {
@@ -90,6 +102,7 @@ describe("/api/contact", () => {
       body: {
         name: "",
         email: "invalid-email",
+        service: "",
         message: "short",
       },
     });
@@ -99,7 +112,7 @@ describe("/api/contact", () => {
 
     expect(res.statusCode).toBe(400);
     expect(res.body).toEqual({
-      error: "Name, email, and message are required.",
+      error: "Name, email, service, and message are required.",
     });
     expect(prisma.contactRequest.create).not.toHaveBeenCalled();
     expect(sendMail).not.toHaveBeenCalled();
@@ -110,6 +123,7 @@ describe("/api/contact", () => {
       body: {
         name: "Jane Doe",
         email: "invalid-email",
+        service: "Home Additions",
         message: "This message is long enough to pass length validation.",
       },
     });
@@ -135,7 +149,27 @@ describe("/api/contact", () => {
 
     expect(res.statusCode).toBe(400);
     expect(res.body).toEqual({
-      error: "Name, email, and message are required.",
+      error: "Name, email, service, and message are required.",
+    });
+    expect(prisma.contactRequest.create).not.toHaveBeenCalled();
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it("blocks submissions without a selected service", async () => {
+    const req = createMockReq({
+      body: {
+        name: "Jane Doe",
+        email: "jane@example.com",
+        message: "This message is long enough to pass length validation.",
+      },
+    });
+    const res = createMockRes();
+
+    await handler(req, res);
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body).toEqual({
+      error: "Name, email, service, and message are required.",
     });
     expect(prisma.contactRequest.create).not.toHaveBeenCalled();
     expect(sendMail).not.toHaveBeenCalled();

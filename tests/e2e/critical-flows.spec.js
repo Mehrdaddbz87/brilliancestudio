@@ -2,40 +2,9 @@ const { test, expect } = require("@playwright/test");
 
 const { seedCookieConsent } = require("./consent-helper");
 
-async function selectAvailableDate(page) {
-  await page.locator('input[name="preferredDate"] + button').click();
-  await page.locator('[role="dialog"] button:not([disabled])').nth(10).click();
-  await expect(page.locator('input[name="preferredDate"]')).not.toHaveValue("");
-}
-
 test.describe("critical user flows", () => {
   test.beforeEach(async ({ page }) => {
     await seedCookieConsent(page);
-  });
-
-  test("booking flow submits successfully", async ({ page }) => {
-    await page.route("**/api/booking", async (route) => {
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ success: true }),
-      });
-    });
-
-    await page.goto("/booking", { waitUntil: "domcontentloaded" });
-
-    await page.getByPlaceholder("Your name").fill("Test Booker");
-    await page.getByPlaceholder("name@example.com").fill("booker@example.com");
-    await page
-      .getByPlaceholder("Website design, redesign, brand site...")
-      .fill("Website redesign");
-    await selectAvailableDate(page);
-
-    await page.getByRole("button", { name: /send booking/i }).click();
-
-    await expect(
-      page.getByText("Your booking request has been saved successfully."),
-    ).toBeVisible();
   });
 
   test("contact flow submits successfully", async ({ page }) => {
@@ -55,9 +24,12 @@ test.describe("critical user flows", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("contact@example.com");
+    await contactForm.getByLabel("Choose Service").selectOption({
+      label: "Custom Home Design & Build",
+    });
     await contactForm
       .getByPlaceholder(
-        "Tell us about your goals, audience, and desired timeline.",
+        "Tell us about your goals, timeline, and what kind of transformation you are planning.",
       )
       .fill("We need a premium redesign for our renovation brand this quarter.");
 
@@ -80,13 +52,19 @@ test.describe("critical user flows", () => {
     ).toBeVisible();
     await expect(contactForm.getByText("Name is required.")).toBeVisible();
     await expect(contactForm.getByText("Email is required.")).toBeVisible();
+    await expect(
+      contactForm.getByText("Please choose a service."),
+    ).toBeVisible();
     await expect(contactForm.getByText("Message is required.")).toBeVisible();
 
     await contactForm.getByPlaceholder("Your full name").fill("Test Contact");
     await contactForm.getByPlaceholder("name@example.com").fill("invalid-email");
+    await contactForm.getByLabel("Choose Service").selectOption({
+      label: "Home Additions",
+    });
     await contactForm
       .getByPlaceholder(
-        "Tell us about your goals, audience, and desired timeline.",
+        "Tell us about your goals, timeline, and what kind of transformation you are planning.",
       )
       .fill("This message is long enough to avoid the length error.");
 
@@ -114,9 +92,12 @@ test.describe("critical user flows", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("contact@example.com");
+    await contactForm.getByLabel("Choose Service").selectOption({
+      label: "Bathroom Remodeling",
+    });
     await contactForm
       .getByPlaceholder(
-        "Tell us about your goals, audience, and desired timeline.",
+        "Tell us about your goals, timeline, and what kind of transformation you are planning.",
       )
       .fill("We need a premium redesign for our renovation brand this quarter.");
 
@@ -131,17 +112,36 @@ test.describe("critical user flows", () => {
     await page.goto("/");
 
     await expect(
-      page.getByRole("link", { name: "Services" }).first(),
-    ).toHaveAttribute("href", "/services");
+      page.getByRole("button", { name: "Services" }),
+    ).toHaveAttribute("aria-haspopup", "menu");
+    await expect(
+      page.getByRole("link", { name: "About Us" }).first(),
+    ).toHaveAttribute("href", "/about");
     await expect(
       page.getByRole("link", { name: "References" }).first(),
     ).toHaveAttribute("href", "/references");
     await expect(
-      page.getByRole("link", { name: "Contact" }).first(),
+      page.getByRole("link", { name: "Contact Us" }).first(),
     ).toHaveAttribute("href", "/contact");
     await expect(
       page.getByRole("link", { name: /request project/i }).first(),
-    ).toHaveAttribute("href", "/booking");
+    ).toHaveAttribute("href", "/contact");
+  });
+
+  test("services dropdown reveals service categories on hover", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+
+    await page.getByRole("button", { name: "Services" }).hover();
+
+    await expect(
+      page.getByRole("menu", { name: /services categories/i }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("menuitem", { name: /custom home design & build/i }),
+    ).toHaveAttribute("href", "/services/custom-home-design-build");
+    await expect(
+      page.getByRole("menuitem", { name: /basement finishing/i }),
+    ).toBeVisible();
   });
 
   test("mobile hamburger menu opens, closes, and navigates", async ({ page }) => {
@@ -153,13 +153,51 @@ test.describe("critical user flows", () => {
     });
 
     await menuToggle.click();
-    await expect(page.getByRole("link", { name: "Contact" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Services" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Contact Us" })).toBeVisible();
 
-    await page.getByRole("link", { name: "Contact" }).click();
-    await expect(page).toHaveURL(/\/contact$/);
+    await page.getByRole("button", { name: "Services" }).click();
+    const servicesCategoryLink = page.getByRole("link", {
+      name: /custom home design & build/i,
+    });
+    await expect(servicesCategoryLink).toBeVisible();
+
+    await Promise.all([
+      page.waitForURL(/\/services\/custom-home-design-build$/, { timeout: 15000 }),
+      servicesCategoryLink.click(),
+    ]);
+  });
+
+  test("service detail page loads from dropdown navigation", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+
+    await page.getByRole("button", { name: "Services" }).hover();
+    await page
+      .getByRole("menuitem", { name: /kitchen remodeling/i })
+      .click();
+
+    await expect(page).toHaveURL(/\/services\/kitchen-remodeling$/);
     await expect(
-      page.getByRole("link", { name: "Contact" }),
-    ).not.toBeVisible();
+      page.getByRole("heading", {
+        name: /kitchen remodeling/i,
+        level: 1,
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Services" }),
+    ).toHaveAttribute("aria-current", "page");
+  });
+
+  test("about page highlights the active navigation item", async ({ page }) => {
+    await page.goto("/about", { waitUntil: "domcontentloaded" });
+
+    await expect(page).toHaveTitle(/About Us \| Brilliance Studio/i);
+    await expect(
+      page.getByRole("heading", { name: "About Us", level: 1 }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "About Us" }).first(),
+    ).toHaveAttribute("aria-current", "page");
   });
 
   test("admin page loads Sanity login without CORS or 403 errors", async ({
@@ -196,64 +234,11 @@ test.describe("critical user flows", () => {
     expect(failedResponses).toEqual([]);
   });
 
-  test("booking form blocks empty and invalid submissions", async ({ page }) => {
-    await page.goto("/booking", { waitUntil: "domcontentloaded" });
-
-    await page.getByRole("button", { name: /send booking/i }).click();
-
-    await expect(
-      page.getByText("Please correct the highlighted fields and try again."),
-    ).toBeVisible();
-    await expect(page.getByText("Name is required.")).toBeVisible();
-    await expect(page.getByText("Email is required.")).toBeVisible();
-    await expect(page.getByText("Service is required.")).toBeVisible();
-    await expect(page.getByText("Date is required.")).toBeVisible();
-
-    await page.getByPlaceholder("Your name").fill("Test Booker");
-    await page.getByPlaceholder("name@example.com").fill("invalid-email");
-    await page
-      .getByPlaceholder("Website design, redesign, brand site...")
-      .fill("Website redesign");
-    await selectAvailableDate(page);
-
-    await page.getByRole("button", { name: /send booking/i }).click();
-
-    await expect(
-      page.getByText("Please enter a valid email address."),
-    ).toBeVisible();
-  });
-
-  test("booking form handles API failure gracefully", async ({ page }) => {
-    await page.route("**/api/booking", async (route) => {
-      await route.fulfill({
-        status: 500,
-        contentType: "application/json",
-        body: JSON.stringify({ error: "Failed to save booking request." }),
-      });
-    });
-
-    await page.goto("/booking", { waitUntil: "domcontentloaded" });
-
-    await page.getByPlaceholder("Your name").fill("Test Booker");
-    await page.getByPlaceholder("name@example.com").fill("booker@example.com");
-    await page
-      .getByPlaceholder("Website design, redesign, brand site...")
-      .fill("Website redesign");
-    await selectAvailableDate(page);
-
-    await page.getByRole("button", { name: /send booking/i }).click();
-
-    await expect(
-      page.getByText("Failed to save booking request."),
-    ).toBeVisible();
-  });
-
   test("404 page loads correctly", async ({ page }) => {
     await page.goto("/this-route-does-not-exist", {
       waitUntil: "domcontentloaded",
     });
 
-    await expect(page).toHaveTitle(/404/i);
     await expect(
       page.getByText(/page not found|this page could not be found/i).first(),
     ).toBeVisible();

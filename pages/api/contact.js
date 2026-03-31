@@ -29,16 +29,17 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
-  const { name, email, message } = req.body || {};
+  const { name, email, service, message } = req.body || {};
   const trimmedName = String(name || "").trim();
   const trimmedEmail = String(email || "").trim();
+  const trimmedService = String(service || "").trim();
   const trimmedMessage = String(message || "").trim();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+  if (!trimmedName || !trimmedEmail || !trimmedService || !trimmedMessage) {
     return res
       .status(400)
-      .json({ error: "Name, email, and message are required." });
+      .json({ error: "Name, email, service, and message are required." });
   }
 
   if (!emailPattern.test(trimmedEmail)) {
@@ -67,6 +68,7 @@ export default async function handler(req, res) {
       data: {
         name: trimmedName,
         email: trimmedEmail,
+        service: trimmedService,
         company: null,
         message: trimmedMessage,
       },
@@ -86,6 +88,7 @@ export default async function handler(req, res) {
       text: [
         `Name: ${trimmedName}`,
         `Email: ${trimmedEmail}`,
+        `Selected Service: ${trimmedService}`,
         "",
         "Message:",
         trimmedMessage,
@@ -94,6 +97,7 @@ export default async function handler(req, res) {
         <h2>New contact request</h2>
         <p><strong>Name:</strong> ${trimmedName}</p>
         <p><strong>Email:</strong> ${trimmedEmail}</p>
+        <p><strong>Selected Service:</strong> ${trimmedService}</p>
         <p><strong>Message:</strong></p>
         <p>${trimmedMessage.replace(/\n/g, "<br />")}</p>
       `,

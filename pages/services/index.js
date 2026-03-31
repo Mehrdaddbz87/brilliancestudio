@@ -6,6 +6,7 @@ import { CmsSections } from "@/components/cms-sections";
 import { FadeInSection } from "@/components/fade-in-section";
 import { PageIntro } from "@/components/page-intro";
 import { ResponsiveImage } from "@/components/responsive-image";
+import { servicePages } from "@/lib/service-pages";
 import { getPageContent } from "@/lib/sanity";
 
 export default function ServicesPage({ content }) {
@@ -17,7 +18,7 @@ export default function ServicesPage({ content }) {
           name="description"
           content={
             content.seoDescription ||
-            "Premium web strategy, design systems, and modern development services."
+            "Premium renovation and design services in Canada for custom homes, remodels, additions, and structural transformations."
           }
         />
       </Head>
@@ -45,14 +46,14 @@ export default function ServicesPage({ content }) {
 
         <FadeInSection delay={0.08}>
           <section className="mx-auto mt-12 grid max-w-7xl gap-6 px-4 sm:px-6 md:grid-cols-2 lg:px-8 xl:grid-cols-3">
-            {content.items.map((item) => (
+            {servicePages.map((item) => (
               <Card
                 key={item.title}
-                eyebrow={item.eyebrow}
+                eyebrow="Services"
                 title={item.title}
-                description={item.description}
-                href="/contact"
-                cta="Start project"
+                description={item.description[0]}
+                href={`/services/${item.slug}`}
+                cta="Explore service"
                 media={
                   item.image?.url ? (
                     <ResponsiveImage
@@ -60,7 +61,9 @@ export default function ServicesPage({ content }) {
                       alt={item.image.alt || item.title}
                       className="group-hover:scale-[1.03]"
                     />
-                  ) : null
+                  ) : (
+                    <div className="h-full min-h-64 rounded-[1.5rem] border border-dashed border-accent/30 bg-black/20" />
+                  )
                 }
               />
             ))}

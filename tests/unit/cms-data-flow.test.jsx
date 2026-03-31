@@ -95,7 +95,7 @@ describe("CMS data flow", () => {
     ).toHaveAttribute("src", "https://cdn.sanity.io/images/demo/reference.jpg");
   });
 
-  it("renders services content fetched from CMS props", () => {
+  it("renders shared renovation services alongside CMS page props", () => {
     const content = {
       eyebrow: "CMS Content",
       title: "Services",
@@ -114,13 +114,13 @@ describe("CMS data flow", () => {
     render(<ServicesPage content={content} />);
 
     expect(screen.getByRole("heading", { name: "Services" })).toBeInTheDocument();
-    expect(screen.getByText("Concept Development")).toBeInTheDocument();
+    expect(screen.getByText("Custom Home Design & Build")).toBeInTheDocument();
     expect(
-      screen.getByText("Defined and delivered via CMS content."),
+      screen.getByText(/residence shaped with intention/i),
     ).toBeInTheDocument();
   });
 
-  it("renders services page with empty CMS items without crashing", () => {
+  it("renders shared service cards even when CMS items are empty", () => {
     const content = {
       eyebrow: "",
       title: "",
@@ -132,7 +132,7 @@ describe("CMS data flow", () => {
     const { container } = render(<ServicesPage content={content} />);
 
     expect(container.querySelector("main")).toBeTruthy();
-    expect(screen.queryByRole("article")).not.toBeInTheDocument();
+    expect(screen.getByText("Kitchen Remodeling")).toBeInTheDocument();
   });
 
   it("renders references page with empty CMS items without crashing", () => {

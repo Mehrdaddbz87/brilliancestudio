@@ -26,7 +26,7 @@ export default function Custom404() {
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Button href="/">Startseite</Button>
                 <Button href="/contact" variant="ghost">
-                  Contact
+                  Contact Us
                 </Button>
               </div>
             </div>
