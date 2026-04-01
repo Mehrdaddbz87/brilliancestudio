@@ -60,8 +60,8 @@ export function Hero() {
             }}
           >
             <Button href="/contact">Start project</Button>
-            <Button href="/references" variant="ghost">
-              View references
+            <Button href="/portfolio" variant="ghost">
+              View portfolio
             </Button>
           </motion.div>
         </motion.div>

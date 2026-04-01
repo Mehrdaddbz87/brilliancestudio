@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 const navigation = [
   { label: "Services", href: "/services" },
   { label: "About Us", href: "/about" },
-  { label: "References", href: "/references" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact Us", href: "/contact" },
 ];
 

@@ -5,7 +5,7 @@ Brilliance Studio is a premium Next.js website for a design and renovation brand
 - marketing pages and legal pages
 - a central contact inquiry form with service selection
 - PostgreSQL + Prisma persistence
-- Sanity-ready CMS content for services, references, terms, and imprint
+- Sanity-ready CMS content for services, portfolio, terms, and imprint
 - protected admin access via NextAuth
 - Google Analytics / GTM integration with category-based cookie consent
 
@@ -132,7 +132,7 @@ next.config.ts        Next.js runtime and image configuration
 
 - `/` - homepage
 - `/services` - CMS-driven services page
-- `/references` - CMS-driven references page
+- `/portfolio` - CMS-driven portfolio page
 - `/contact` - central inquiry form with required service selection
 - `/about` - studio overview
 - `/terms` - legal / privacy commitments page
@@ -202,7 +202,7 @@ The standalone Studio source lives in `admin/`.
 Current supported editable content includes:
 
 - services page
-- references page
+- portfolio page
 - terms page
 - imprint page
 

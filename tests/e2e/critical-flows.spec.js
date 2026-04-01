@@ -118,8 +118,8 @@ test.describe("critical user flows", () => {
       page.getByRole("link", { name: "About Us" }).first(),
     ).toHaveAttribute("href", "/about");
     await expect(
-      page.getByRole("link", { name: "References" }).first(),
-    ).toHaveAttribute("href", "/references");
+      page.getByRole("link", { name: "Portfolio" }).first(),
+    ).toHaveAttribute("href", "/portfolio");
     await expect(
       page.getByRole("link", { name: "Contact Us" }).first(),
     ).toHaveAttribute("href", "/contact");

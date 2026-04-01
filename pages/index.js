@@ -24,21 +24,21 @@ const services = [
   },
 ];
 
-const references = [
+const portfolioProjects = [
   {
-    eyebrow: "References",
+    eyebrow: "Portfolio",
     title: "Maison Aurelia",
     description:
       "An immersive launch presence for a premium lifestyle label with cinematic pacing and a tailored story flow.",
   },
   {
-    eyebrow: "References",
+    eyebrow: "Portfolio",
     title: "Velour Residence",
     description:
       "A luxury property presentation focused on atmosphere, trust, and elegant conversion paths for inquiries.",
   },
   {
-    eyebrow: "References",
+    eyebrow: "Portfolio",
     title: "Noir Atelier",
     description:
       "A restrained portfolio experience crafted for a high-end creative practice and selective client acquisition.",
@@ -78,23 +78,23 @@ export default function HomePage() {
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-                References
+                Portfolio
               </p>
               <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.1em] sm:text-4xl">
-                Selected visual directions.
+                Our portfolio.
               </h2>
             </div>
-            <Button href="/references" variant="ghost">
-              View gallery
+            <Button href="/portfolio" variant="ghost">
+              View portfolio
             </Button>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {references.map((reference) => (
+            {portfolioProjects.map((reference) => (
               <Card
                 key={reference.title}
                 {...reference}
                 cta="Case study"
-                href="/references"
+                href="/portfolio"
               >
                 <div className="h-44 rounded-[1.25rem] border border-accent/20 bg-gradient-to-br from-accent/20 via-transparent to-white/5" />
               </Card>

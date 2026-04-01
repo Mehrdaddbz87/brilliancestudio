@@ -13,7 +13,7 @@ Editable documents:
 Editable areas:
 
 1. Services: title, description, CTA labels, service cards, images, flexible sections
-2. References: gallery cards, images, categories, CTA labels, flexible sections
+2. Portfolio: gallery cards, images, categories, CTA labels, flexible sections
 3. Terms & Conditions: intro content and legal sections
 4. Impressum: intro content and legal sections
 

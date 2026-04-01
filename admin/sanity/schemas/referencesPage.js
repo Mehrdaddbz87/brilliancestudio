@@ -1,6 +1,6 @@
 export const referencesPage = {
   name: "referencesPage",
-  title: "References Page",
+  title: "Portfolio Page",
   type: "document",
   fields: [
     { name: "eyebrow", title: "Eyebrow", type: "string" },
@@ -25,7 +25,7 @@ export const referencesPage = {
     { name: "secondaryCtaHref", title: "Secondary CTA Link", type: "string" },
     {
       name: "items",
-      title: "Reference Cards",
+      title: "Portfolio Cards",
       type: "array",
       of: [{ type: "referenceCard" }],
       validation: (Rule) => Rule.min(1),

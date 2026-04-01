@@ -2,14 +2,26 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import type { ComponentPropsWithoutRef } from "react";
 
 import { openCookieConsentPreferences } from "@/lib/cookie-consent";
 
-const socialLinks = [
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Behance", href: "https://behance.net" },
-];
+function InstagramIcon(props: ComponentPropsWithoutRef<"svg">) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" ry="5.5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <path d="M17.5 6.5h.01" />
+    </svg>
+  );
+}
 
 const legalLinks = [
   { label: "Terms", href: "/terms" },
@@ -43,20 +55,21 @@ export function Footer() {
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-text/55">
             Social
           </p>
-          <div className="mt-5 flex flex-col gap-3">
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-11 items-center rounded-xl px-2 py-2 text-base text-text/80 transition hover:text-accent"
-                whileHover={linkHover}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+          <div className="mt-4 flex items-center">
+            <motion.a
+              href="https://instagram.com/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="group inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl p-2 transition-all duration-200 ease-in-out"
+              whileHover={linkHover}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <InstagramIcon
+                aria-hidden="true"
+                className="h-5 w-5 text-white/55 transition-all duration-200 ease-in-out group-hover:scale-105 group-hover:text-[#b99a45]"
+              />
+            </motion.a>
           </div>
         </div>
 
