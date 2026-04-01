@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Cinzel_Decorative, Cormorant_Garamond } from "next/font/google";
-import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import "@/styles/globals.css";
 
@@ -31,7 +30,6 @@ export default function RootLayout({
       <body className="bg-background font-classic text-text antialiased">
         <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

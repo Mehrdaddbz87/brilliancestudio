@@ -205,12 +205,12 @@ async function seedCms() {
     where: { slug: "references" },
     update: {
       eyebrow: "Database CMS",
-      title: "References",
+      title: "Our Portfolio",
       description:
-        "Sample gallery-style reference content stored in PostgreSQL via Prisma.",
-      seoTitle: "References | Brilliance Studio",
+        "Explore our latest renovation and design projects",
+      seoTitle: "Portfolio | Brilliance Studio",
       seoDescription:
-        "Database-backed reference gallery content for Brilliance Studio.",
+        "Explore our renovation and design portfolio across Canada. High-end craftsmanship and modern living spaces.",
       primaryCtaLabel: "Discuss project",
       primaryCtaHref: "/contact",
       secondaryCtaLabel: "Meet the studio",
@@ -220,10 +220,10 @@ async function seedCms() {
           _key: "db-references-1",
           _type: "featureListSection",
           eyebrow: "Database Seed",
-          heading: "Reference content managed in PostgreSQL",
+          heading: "Portfolio content managed in PostgreSQL",
           items: [
-            "Reference cards",
-            "Gallery images",
+            "Portfolio cards",
+            "Project images",
             "SEO metadata",
             "Flexible supporting sections",
           ],
@@ -254,12 +254,12 @@ async function seedCms() {
           },
           {
             slug: "noir-atelier",
-            category: "Creative Portfolio",
+            category: "Design Studio",
             title: "Noir Atelier",
             summary:
               "A refined digital identity for a selective, design-led studio practice.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Portfolio reference placeholder",
+            imageAlt: "Design studio reference placeholder",
             sortOrder: 3,
           },
         ],
@@ -268,12 +268,12 @@ async function seedCms() {
     create: {
       slug: "references",
       eyebrow: "Database CMS",
-      title: "References",
+      title: "Our Portfolio",
       description:
-        "Sample gallery-style reference content stored in PostgreSQL via Prisma.",
-      seoTitle: "References | Brilliance Studio",
+        "Explore our latest renovation and design projects",
+      seoTitle: "Portfolio | Brilliance Studio",
       seoDescription:
-        "Database-backed reference gallery content for Brilliance Studio.",
+        "Explore our renovation and design portfolio across Canada. High-end craftsmanship and modern living spaces.",
       primaryCtaLabel: "Discuss project",
       primaryCtaHref: "/contact",
       secondaryCtaLabel: "Meet the studio",
@@ -283,10 +283,10 @@ async function seedCms() {
           _key: "db-references-1",
           _type: "featureListSection",
           eyebrow: "Database Seed",
-          heading: "Reference content managed in PostgreSQL",
+          heading: "Portfolio content managed in PostgreSQL",
           items: [
-            "Reference cards",
-            "Gallery images",
+            "Portfolio cards",
+            "Project images",
             "SEO metadata",
             "Flexible supporting sections",
           ],
@@ -316,12 +316,12 @@ async function seedCms() {
           },
           {
             slug: "noir-atelier",
-            category: "Creative Portfolio",
+            category: "Design Studio",
             title: "Noir Atelier",
             summary:
               "A refined digital identity for a selective, design-led studio practice.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Portfolio reference placeholder",
+            imageAlt: "Design studio reference placeholder",
             sortOrder: 3,
           },
         ],

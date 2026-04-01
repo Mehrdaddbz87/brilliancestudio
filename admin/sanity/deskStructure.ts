@@ -9,7 +9,7 @@ export const structure = (S: any) =>
           S.document().schemaType("servicesPage").documentId("servicesPage"),
         ),
       S.listItem()
-        .title("References")
+        .title("Portfolio")
         .id("referencesPage")
         .child(
           S.document()

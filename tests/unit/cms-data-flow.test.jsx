@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import ReferencesPage from "@/pages/references";
+import PortfolioPage from "@/pages/portfolio";
 import ServicesPage, { getServerSideProps } from "@/pages/services";
 import { getPageContent } from "@/lib/sanity";
 
@@ -71,7 +71,7 @@ describe("CMS data flow", () => {
   it("renders reference images from CMS content correctly", () => {
     const content = {
       eyebrow: "CMS Content",
-      title: "References",
+      title: "Portfolio",
       description: "Selected work",
       items: [
         {
@@ -87,7 +87,7 @@ describe("CMS data flow", () => {
       sections: [],
     };
 
-    render(<ReferencesPage content={content} />);
+    render(<PortfolioPage content={content} />);
 
     expect(screen.getByText("Lake House")).toBeInTheDocument();
     expect(
@@ -135,7 +135,7 @@ describe("CMS data flow", () => {
     expect(screen.getByText("Kitchen Remodeling")).toBeInTheDocument();
   });
 
-  it("renders references page with empty CMS items without crashing", () => {
+  it("renders portfolio page with empty CMS items without crashing", () => {
     const content = {
       eyebrow: "",
       title: "",
@@ -144,7 +144,7 @@ describe("CMS data flow", () => {
       sections: [],
     };
 
-    const { container } = render(<ReferencesPage content={content} />);
+    const { container } = render(<PortfolioPage content={content} />);
 
     expect(container.querySelector("main")).toBeTruthy();
     expect(screen.queryByRole("article")).not.toBeInTheDocument();
