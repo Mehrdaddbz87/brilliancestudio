@@ -5,7 +5,7 @@ Brilliance Studio is a premium Next.js website for a design and renovation brand
 - marketing pages and legal pages
 - a central contact inquiry form with service selection
 - PostgreSQL + Prisma persistence
-- Sanity-ready CMS content for services, portfolio, terms, and imprint
+- locally managed CMS content for services, portfolio, terms, and imprint
 - protected admin access via NextAuth
 - Google Analytics / GTM integration with category-based cookie consent
 
@@ -24,7 +24,6 @@ The project uses a hybrid setup:
 - `Prisma`
 - `PostgreSQL`
 - `NextAuth.js`
-- `Sanity`
 - `Nodemailer`
 
 ## Project Setup
@@ -51,12 +50,6 @@ CONTACT_RECEIVER_EMAIL=""
 
 NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=""
 NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=""
-
-SANITY_PROJECT_ID=""
-SANITY_DATASET="production"
-SANITY_API_VERSION="2025-01-01"
-SANITY_API_READ_TOKEN=""
-NEXT_PUBLIC_SANITY_STUDIO_URL=""
 
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET=""
@@ -113,16 +106,14 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Folder Structure
 
 ```text
-admin/                Standalone Sanity Studio source
 app/                  App Router files kept for modern Next.js compatibility
-components/           Shared UI, SEO, analytics, consent, and page components
-lib/                  Auth, CMS, Prisma, Sanity, utilities, and consent logic
+components/           Shared UI, SEO, analytics, consent, admin, and page components
+lib/                  Auth, local content, Prisma, utilities, and consent logic
 pages/                Main site routes and API routes
 pages/api/            Contact, auth, and health endpoints
 prisma/               Prisma schema, migrations, and seed script
 public/               Static assets and placeholder images
 styles/               Global Tailwind/CSS files
-middleware.js         NextAuth middleware protecting /admin
 next.config.ts        Next.js runtime and image configuration
 ```
 
@@ -138,7 +129,9 @@ next.config.ts        Next.js runtime and image configuration
 - `/terms` - legal / privacy commitments page
 - `/impressum` - imprint / legal company information page
 - `/login` - admin login
-- `/admin` - protected admin area with embedded Sanity Studio
+- `/admin` - protected local admin dashboard
+- `/admin/services` - protected services content manager
+- `/admin/portfolio` - protected portfolio content manager
 
 ### API routes
 
@@ -175,9 +168,35 @@ Behavior:
 
 NextAuth endpoint used for admin authentication.
 
+#### `GET|POST /api/services`
+
+Local services content endpoint.
+
+Behavior:
+
+- `GET` returns the services page record and its items from PostgreSQL
+- `POST` creates a new service item for the protected local admin
+
+#### `PATCH|DELETE /api/services/:id`
+
+Protected service item mutation endpoint for the local admin.
+
+#### `GET|POST /api/portfolio`
+
+Local portfolio content endpoint.
+
+Behavior:
+
+- `GET` returns the portfolio page record and its items from PostgreSQL
+- `POST` creates a new portfolio item for the protected local admin
+
+#### `PATCH|DELETE /api/portfolio/:id`
+
+Protected portfolio item mutation endpoint for the local admin.
+
 ## CMS And Admin Instructions
 
-### Embedded admin access
+### Local admin access
 
 The project includes a protected `/admin` page.
 
@@ -190,21 +209,10 @@ Requirements:
 
 How it works:
 
-- `/admin` is protected by `middleware.js`
 - users sign in through `/login`
 - access is granted only to the configured admin credentials
-- if `NEXT_PUBLIC_SANITY_STUDIO_URL` is set, the Sanity Studio is embedded inside `/admin`
-
-### Standalone Sanity Studio
-
-The standalone Studio source lives in `admin/`.
-
-Current supported editable content includes:
-
-- services page
-- portfolio page
-- terms page
-- imprint page
+- `/admin/services` manages service cards stored in PostgreSQL
+- `/admin/portfolio` manages portfolio cards stored in PostgreSQL
 
 Legal page sections support:
 
@@ -219,11 +227,10 @@ Legal page sections support:
 
 The app resolves CMS content in this order:
 
-1. Sanity content
-2. PostgreSQL / Prisma content
-3. local fallback content from `lib/cms.js`
+1. PostgreSQL / Prisma content
+2. local fallback content from `lib/cms.js`
 
-This lets the site stay usable even when Sanity is not yet configured.
+This lets the site stay usable even when the database is empty or unavailable.
 
 ## Deployment Steps
 
@@ -260,11 +267,6 @@ At minimum, configure these in Vercel:
 - `SMTP_USER`
 - `SMTP_PASSWORD`
 - `CONTACT_RECEIVER_EMAIL`
-- `SANITY_PROJECT_ID`
-- `SANITY_DATASET`
-- `SANITY_API_VERSION`
-- `SANITY_API_READ_TOKEN`
-- `NEXT_PUBLIC_SANITY_STUDIO_URL`
 - `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`
 - `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID`
 - `ADMIN_EMAIL`
@@ -288,7 +290,7 @@ If you are running this against a managed production database, make sure the con
 - test `/contact`
 - confirm SMTP works with real credentials
 - confirm analytics and GTM only load after cookie consent
-- verify `/admin` login and Sanity embedding
+- verify `/admin` login and local content management
 
 ## Notes
 

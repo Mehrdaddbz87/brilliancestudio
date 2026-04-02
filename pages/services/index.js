@@ -6,10 +6,16 @@ import { CmsSections } from "@/components/cms-sections";
 import { FadeInSection } from "@/components/fade-in-section";
 import { PageIntro } from "@/components/page-intro";
 import { ResponsiveImage } from "@/components/responsive-image";
-import { servicePages } from "@/lib/service-pages";
-import { getPageContent } from "@/lib/sanity";
+import { getPageContent } from "@/lib/content";
+import { servicePages, servicePagesBySlug } from "@/lib/service-pages";
 
 export default function ServicesPage({ content }) {
+  const serviceOverridesBySlug = Object.fromEntries(
+    (content.items || [])
+      .filter((item) => servicePagesBySlug[item.slug || ""])
+      .map((item) => [item.slug, item]),
+  );
+
   return (
     <>
       <Head>
@@ -46,27 +52,31 @@ export default function ServicesPage({ content }) {
 
         <FadeInSection delay={0.08}>
           <section className="mx-auto mt-12 grid max-w-7xl gap-6 px-4 sm:px-6 md:grid-cols-2 lg:px-8 xl:grid-cols-3">
-            {servicePages.map((item) => (
-              <Card
-                key={item.title}
-                eyebrow="Services"
-                title={item.title}
-                description={item.description[0]}
-                href={`/services/${item.slug}`}
-                cta="Explore service"
-                media={
-                  item.image?.url ? (
-                    <ResponsiveImage
-                      src={item.image.url}
-                      alt={item.image.alt || item.title}
-                      className="group-hover:scale-[1.03]"
-                    />
-                  ) : (
-                    <div className="h-full min-h-64 rounded-[1.5rem] border border-dashed border-accent/30 bg-black/20" />
-                  )
-                }
-              />
-            ))}
+            {servicePages.map((service) => {
+              const item = serviceOverridesBySlug[service.slug];
+
+              return (
+                <Card
+                  key={service.slug}
+                  eyebrow={item?.eyebrow || "Services"}
+                  title={service.title}
+                  description={item?.description || service.description[0]}
+                  href={`/services/${service.slug}`}
+                  cta="Explore service"
+                  media={
+                    item?.image?.url ? (
+                      <ResponsiveImage
+                        src={item.image.url}
+                        alt={item.image.alt || service.title}
+                        className="group-hover:scale-[1.03]"
+                      />
+                    ) : (
+                      <div className="h-full min-h-64 rounded-[1.5rem] border border-dashed border-accent/30 bg-black/20" />
+                    )
+                  }
+                />
+              );
+            })}
           </section>
         </FadeInSection>
 
@@ -76,7 +86,8 @@ export default function ServicesPage({ content }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  context.res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
   const content = await getPageContent("services");
 
   return {

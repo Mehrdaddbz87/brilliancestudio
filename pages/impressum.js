@@ -3,7 +3,7 @@ import Head from "next/head";
 import { FadeInSection } from "@/components/fade-in-section";
 import { LegalContent } from "@/components/legal-content";
 import { PageIntro } from "@/components/page-intro";
-import { getPageContent } from "@/lib/sanity";
+import { getPageContent } from "@/lib/content";
 
 export default function ImprintPage({ content }) {
   return (

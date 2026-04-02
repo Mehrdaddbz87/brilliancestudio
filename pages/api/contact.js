@@ -29,10 +29,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
-  const { name, email, service, message } = req.body || {};
+  const { name, email, service, customService, message } = req.body || {};
   const trimmedName = String(name || "").trim();
   const trimmedEmail = String(email || "").trim();
   const trimmedService = String(service || "").trim();
+  const trimmedCustomService = String(customService || "").trim();
   const trimmedMessage = String(message || "").trim();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -46,6 +47,12 @@ export default async function handler(req, res) {
     return res
       .status(400)
       .json({ error: "Please provide a valid email address." });
+  }
+
+  if (trimmedService === "other" && !trimmedCustomService) {
+    return res
+      .status(400)
+      .json({ error: "Please specify your service when selecting Other." });
   }
 
   if (trimmedMessage.length < 10) {
@@ -64,11 +71,16 @@ export default async function handler(req, res) {
   }
 
   try {
+    const storedService =
+      trimmedService === "other"
+        ? `Other: ${trimmedCustomService}`
+        : trimmedService;
+
     const contactRequest = await prisma.contactRequest.create({
       data: {
         name: trimmedName,
         email: trimmedEmail,
-        service: trimmedService,
+        service: storedService,
         company: null,
         message: trimmedMessage,
       },
@@ -88,7 +100,10 @@ export default async function handler(req, res) {
       text: [
         `Name: ${trimmedName}`,
         `Email: ${trimmedEmail}`,
-        `Selected Service: ${trimmedService}`,
+        `Selected Service: ${trimmedService === "other" ? "Other" : trimmedService}`,
+        ...(trimmedService === "other"
+          ? [`Please Specify: ${trimmedCustomService}`]
+          : []),
         "",
         "Message:",
         trimmedMessage,
@@ -97,7 +112,12 @@ export default async function handler(req, res) {
         <h2>New contact request</h2>
         <p><strong>Name:</strong> ${trimmedName}</p>
         <p><strong>Email:</strong> ${trimmedEmail}</p>
-        <p><strong>Selected Service:</strong> ${trimmedService}</p>
+        <p><strong>Selected Service:</strong> ${trimmedService === "other" ? "Other" : trimmedService}</p>
+        ${
+          trimmedService === "other"
+            ? `<p><strong>Please Specify:</strong> ${trimmedCustomService}</p>`
+            : ""
+        }
         <p><strong>Message:</strong></p>
         <p>${trimmedMessage.replace(/\n/g, "<br />")}</p>
       `,

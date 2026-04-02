@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 
 import PortfolioPage from "@/pages/portfolio";
 import ServicesPage, { getServerSideProps } from "@/pages/services";
-import { getPageContent } from "@/lib/sanity";
+import { getPageContent } from "@/lib/content";
 
-jest.mock("@/lib/sanity", () => ({
+jest.mock("@/lib/content", () => ({
   getPageContent: jest.fn(),
 }));
 
@@ -48,10 +48,10 @@ describe("CMS data flow", () => {
     jest.clearAllMocks();
   });
 
-  it("loads services page data from Sanity", async () => {
+  it("loads services page data from local content", async () => {
     const content = {
       title: "Services",
-      description: "CMS-driven services page.",
+      description: "Locally managed services page.",
       items: [],
       sections: [],
     };
@@ -68,7 +68,7 @@ describe("CMS data flow", () => {
     });
   });
 
-  it("renders reference images from CMS content correctly", () => {
+  it("renders portfolio images from local content correctly", () => {
     const content = {
       eyebrow: "CMS Content",
       title: "Portfolio",
@@ -79,7 +79,7 @@ describe("CMS data flow", () => {
           title: "Lake House",
           summary: "Premium renovation storytelling.",
           image: {
-            url: "https://cdn.sanity.io/images/demo/reference.jpg",
+            url: "https://example.com/reference.jpg",
             alt: "Lake House reference image",
           },
         },
@@ -92,19 +92,20 @@ describe("CMS data flow", () => {
     expect(screen.getByText("Lake House")).toBeInTheDocument();
     expect(
       screen.getByAltText("Lake House reference image"),
-    ).toHaveAttribute("src", "https://cdn.sanity.io/images/demo/reference.jpg");
+    ).toHaveAttribute("src", "https://example.com/reference.jpg");
   });
 
-  it("renders shared renovation services alongside CMS page props", () => {
+  it("renders Prisma-backed renovation services on the services page", () => {
     const content = {
-      eyebrow: "CMS Content",
+      eyebrow: "Database CMS",
       title: "Services",
-      description: "Tailored services from Sanity.",
+      description: "Tailored services from PostgreSQL.",
       items: [
         {
-          eyebrow: "Strategy",
-          title: "Concept Development",
-          description: "Defined and delivered via CMS content.",
+          slug: "custom-home-design-build",
+          eyebrow: "Design + Build",
+          title: "Custom Home Design & Build",
+          description: "Defined and delivered via PostgreSQL content.",
           image: null,
         },
       ],
@@ -116,11 +117,11 @@ describe("CMS data flow", () => {
     expect(screen.getByRole("heading", { name: "Services" })).toBeInTheDocument();
     expect(screen.getByText("Custom Home Design & Build")).toBeInTheDocument();
     expect(
-      screen.getByText(/residence shaped with intention/i),
+      screen.getByText(/defined and delivered via postgresql content/i),
     ).toBeInTheDocument();
   });
 
-  it("renders shared service cards even when CMS items are empty", () => {
+  it("renders no service cards when locally managed items are empty", () => {
     const content = {
       eyebrow: "",
       title: "",
@@ -132,7 +133,7 @@ describe("CMS data flow", () => {
     const { container } = render(<ServicesPage content={content} />);
 
     expect(container.querySelector("main")).toBeTruthy();
-    expect(screen.getByText("Kitchen Remodeling")).toBeInTheDocument();
+    expect(screen.queryByRole("article")).not.toBeInTheDocument();
   });
 
   it("renders portfolio page with empty CMS items without crashing", () => {

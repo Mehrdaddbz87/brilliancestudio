@@ -12,6 +12,10 @@ type ResponsiveImageProps = {
 const DEFAULT_SIZES =
   "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
+function isRemoteImage(src: string) {
+  return /^https?:\/\//i.test(src);
+}
+
 /**
  * Wraps `next/image` with the project's default responsive sizing and aspect-ratio behavior.
  */
@@ -32,6 +36,7 @@ export function ResponsiveImage({
         priority={priority}
         quality={80}
         sizes={sizes}
+        unoptimized={isRemoteImage(src)}
         className={`object-cover transition duration-500 ${className}`.trim()}
       />
     </div>

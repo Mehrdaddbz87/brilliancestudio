@@ -97,6 +97,41 @@ describe("/api/contact", () => {
     );
   });
 
+  it("accepts an other service with a custom value", async () => {
+    const req = createMockReq({
+      body: {
+        name: "Jane Doe",
+        email: "jane@example.com",
+        service: "other",
+        customService: "Commercial Fit-Out",
+        message: "We need a tailored consultation for a commercial interior project.",
+      },
+    });
+    const res = createMockRes();
+
+    await handler(req, res);
+
+    expect(res.statusCode).toBe(201);
+    expect(prisma.contactRequest.create).toHaveBeenCalledWith({
+      data: {
+        name: "Jane Doe",
+        email: "jane@example.com",
+        service: "Other: Commercial Fit-Out",
+        company: null,
+        message:
+          "We need a tailored consultation for a commercial interior project.",
+      },
+    });
+    expect(sendMail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        text: expect.stringContaining("Please Specify: Commercial Fit-Out"),
+        html: expect.stringContaining(
+          "<strong>Please Specify:</strong> Commercial Fit-Out",
+        ),
+      }),
+    );
+  });
+
   it("returns 400 for invalid submissions", async () => {
     const req = createMockReq({
       body: {
@@ -170,6 +205,28 @@ describe("/api/contact", () => {
     expect(res.statusCode).toBe(400);
     expect(res.body).toEqual({
       error: "Name, email, service, and message are required.",
+    });
+    expect(prisma.contactRequest.create).not.toHaveBeenCalled();
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it("requires a custom service when other is selected", async () => {
+    const req = createMockReq({
+      body: {
+        name: "Jane Doe",
+        email: "jane@example.com",
+        service: "other",
+        customService: "   ",
+        message: "This message is long enough to pass length validation.",
+      },
+    });
+    const res = createMockRes();
+
+    await handler(req, res);
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body).toEqual({
+      error: "Please specify your service when selecting Other.",
     });
     expect(prisma.contactRequest.create).not.toHaveBeenCalled();
     expect(sendMail).not.toHaveBeenCalled();

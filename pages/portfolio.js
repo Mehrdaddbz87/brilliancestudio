@@ -6,7 +6,7 @@ import { CmsSections } from "@/components/cms-sections";
 import { FadeInSection } from "@/components/fade-in-section";
 import { PageIntro } from "@/components/page-intro";
 import { ResponsiveImage } from "@/components/responsive-image";
-import { getPageContent } from "@/lib/sanity";
+import { getPageContent } from "@/lib/content";
 
 export default function PortfolioPage({ content }) {
   const pageTitle = content.title || "Our Portfolio";
@@ -99,8 +99,9 @@ export default function PortfolioPage({ content }) {
   );
 }
 
-export async function getServerSideProps() {
-  const content = await getPageContent("references");
+export async function getServerSideProps(context) {
+  context.res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+  const content = await getPageContent("portfolio");
 
   return {
     props: {
