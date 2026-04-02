@@ -40,6 +40,52 @@ test.describe("critical user flows", () => {
     ).toBeVisible();
   });
 
+  test("contact form reveals and submits a custom service for other", async ({
+    page,
+  }) => {
+    let submittedPayload = null;
+
+    await page.route("**/api/contact", async (route) => {
+      submittedPayload = route.request().postDataJSON();
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await page.goto("/contact", { waitUntil: "domcontentloaded" });
+
+    const contactForm = page.locator("form").first();
+
+    await contactForm.getByPlaceholder("Your full name").fill("Test Contact");
+    await contactForm
+      .getByPlaceholder("name@example.com")
+      .fill("contact@example.com");
+    await contactForm.getByLabel("Choose Service").selectOption({
+      label: "Other",
+    });
+    await expect(contactForm.getByLabel("Please Specify")).toBeVisible();
+    await contactForm
+      .getByLabel("Please Specify")
+      .fill("Commercial Fit-Out");
+    await contactForm
+      .getByPlaceholder(
+        "Tell us about your goals, timeline, and what kind of transformation you are planning.",
+      )
+      .fill("We need support for a service not covered in the standard list.");
+
+    await contactForm.getByRole("button", { name: /send message/i }).click();
+
+    await expect(
+      contactForm.getByText("Your message has been sent successfully."),
+    ).toBeVisible();
+    expect(submittedPayload).toMatchObject({
+      service: "other",
+      customService: "Commercial Fit-Out",
+    });
+  });
+
   test("contact form blocks empty and invalid submissions", async ({ page }) => {
     await page.goto("/contact", { waitUntil: "domcontentloaded" });
 
@@ -200,38 +246,15 @@ test.describe("critical user flows", () => {
     ).toHaveAttribute("aria-current", "page");
   });
 
-  test("admin page loads Sanity login without CORS or 403 errors", async ({
+  test("admin page redirects unauthenticated visitors to login", async ({
     page,
   }) => {
-    const consoleIssues = [];
-    const failedResponses = [];
-
-    page.on("console", (message) => {
-      if (message.type() === "error") {
-        const text = message.text();
-        if (/cors|403|blocked by cors policy/i.test(text)) {
-          consoleIssues.push(text);
-        }
-      }
-    });
-
-    page.on("response", (response) => {
-      if (
-        response.status() >= 400 &&
-        /sanity\.io|localhost:3000\/admin/i.test(response.url())
-      ) {
-        failedResponses.push(`${response.status()} ${response.url()}`);
-      }
-    });
-
     await page.goto("/admin", { waitUntil: "domcontentloaded" });
 
-    await expect(page.getByText(/choose login provider/i)).toBeVisible({
-      timeout: 30000,
-    });
-    await expect(page.getByText(/google/i)).toBeVisible();
-    expect(consoleIssues).toEqual([]);
-    expect(failedResponses).toEqual([]);
+    await expect(page).toHaveURL(/\/login\?callbackUrl=/);
+    await expect(
+      page.getByRole("heading", { name: /admin login/i }),
+    ).toBeVisible();
   });
 
   test("404 page loads correctly", async ({ page }) => {

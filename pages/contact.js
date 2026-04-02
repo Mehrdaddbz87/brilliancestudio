@@ -14,6 +14,7 @@ function Field({
   value,
   onChange,
   required = true,
+  error = false,
 }) {
   return (
     <label className="block">
@@ -26,7 +27,9 @@ function Field({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
+        className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${
+          error ? "border-red-300/70" : "border-white/10"
+        }`}
         required={required}
       />
     </label>
@@ -82,6 +85,7 @@ export default function ContactPage() {
     name: "",
     email: "",
     service: "",
+    customService: "",
     message: "",
   });
   const [contactStatus, setContactStatus] = useState({
@@ -97,10 +101,12 @@ export default function ContactPage() {
     setContactData((current) => ({
       ...current,
       [name]: value,
+      ...(name === "service" && value !== "other" ? { customService: "" } : {}),
     }));
     setContactErrors((current) => ({
       ...current,
       [name]: "",
+      ...(name === "service" && value !== "other" ? { customService: "" } : {}),
     }));
   }
 
@@ -119,6 +125,13 @@ export default function ContactPage() {
 
     if (!contactData.service.trim()) {
       errors.service = "Please choose a service.";
+    }
+
+    if (
+      contactData.service === "other" &&
+      !contactData.customService.trim()
+    ) {
+      errors.customService = "Please specify your service.";
     }
 
     if (!contactData.message.trim()) {
@@ -171,6 +184,7 @@ export default function ContactPage() {
         name: "",
         email: "",
         service: "",
+        customService: "",
         message: "",
       });
       setContactErrors({});
@@ -184,6 +198,8 @@ export default function ContactPage() {
       setIsSubmittingContact(false);
     }
   }
+
+  const isOtherServiceSelected = contactData.service === "other";
 
   return (
     <>
@@ -245,6 +261,23 @@ export default function ContactPage() {
                   <p className="-mt-2 text-sm text-red-300">
                     {contactErrors.service}
                   </p>
+                ) : null}
+                {isOtherServiceSelected ? (
+                  <>
+                    <Field
+                      label="Please Specify"
+                      name="customService"
+                      placeholder="Tell us which service you need"
+                      value={contactData.customService}
+                      onChange={updateContactField}
+                      error={Boolean(contactErrors.customService)}
+                    />
+                    {contactErrors.customService ? (
+                      <p className="-mt-2 text-sm text-red-300">
+                        {contactErrors.customService}
+                      </p>
+                    ) : null}
+                  </>
                 ) : null}
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">

@@ -56,9 +56,8 @@ export default function LoginPage() {
               Admin Login
             </h1>
             <p className="mt-5 text-lg leading-8 text-text/75">
-              This area is available only to the authorized admin user. Sanity
-              Studio access should also be restricted to the same invited Sanity
-              account.
+              This area is available only to the authorized admin user and
+              protects the local PostgreSQL-backed content management screens.
             </p>
 
             <form className="mt-8 space-y-5" onSubmit={handleSubmit}>

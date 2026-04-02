@@ -7,13 +7,13 @@ module.exports = defineConfig({
   timeout: 60000,
   reporter: "list",
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: "http://127.0.0.1:3101",
     trace: "on-first-retry",
     navigationTimeout: 60000,
   },
   webServer: {
-    command: "npm run dev",
-    url: "http://localhost:3000",
+    command: "node scripts/dev-e2e.js",
+    url: "http://127.0.0.1:3101",
     reuseExistingServer: true,
     timeout: 180000,
   },

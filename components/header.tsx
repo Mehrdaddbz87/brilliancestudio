@@ -16,6 +16,7 @@ import { useRouter } from "next/compat/router";
 import {
   type FocusEvent as ReactFocusEvent,
   type KeyboardEvent as ReactKeyboardEvent,
+  useRef,
   useState,
 } from "react";
 
@@ -97,6 +98,9 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
   const [isServicesAccordionOpen, setIsServicesAccordionOpen] = useState(false);
+  const servicesCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
   const router = useRouter();
   const pathname = usePathname() ?? router?.pathname ?? "";
   const shouldReduceMotion = useReducedMotion();
@@ -107,27 +111,53 @@ export function Header() {
     return pathname === href;
   }
 
+  function clearServicesCloseTimeout() {
+    if (servicesCloseTimeoutRef.current) {
+      clearTimeout(servicesCloseTimeoutRef.current);
+      servicesCloseTimeoutRef.current = null;
+    }
+  }
+
+  function openServicesMenu() {
+    clearServicesCloseTimeout();
+    setIsServicesMenuOpen(true);
+  }
+
+  function closeServicesMenu(withDelay = false) {
+    clearServicesCloseTimeout();
+
+    if (withDelay) {
+      servicesCloseTimeoutRef.current = setTimeout(() => {
+        setIsServicesMenuOpen(false);
+        servicesCloseTimeoutRef.current = null;
+      }, 120);
+      return;
+    }
+
+    setIsServicesMenuOpen(false);
+  }
+
   function closeMobileMenu() {
     setIsOpen(false);
     setIsServicesAccordionOpen(false);
-    setIsServicesMenuOpen(false);
+    closeServicesMenu();
   }
 
   function handleServicesBlur(event: ReactFocusEvent<HTMLDivElement>) {
     const nextFocused = event.relatedTarget as Node | null;
 
     if (!event.currentTarget.contains(nextFocused)) {
-      setIsServicesMenuOpen(false);
+      closeServicesMenu();
     }
   }
 
   function handleServicesKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
     if (event.key === "Escape") {
-      setIsServicesMenuOpen(false);
+      closeServicesMenu();
     }
 
     if (event.key === "ArrowDown") {
-      setIsServicesMenuOpen(true);
+      openServicesMenu();
     }
   }
 
@@ -148,9 +178,9 @@ export function Header() {
                 <div
                   key={item.href}
                   className="relative"
-                  onMouseEnter={() => setIsServicesMenuOpen(true)}
-                  onMouseLeave={() => setIsServicesMenuOpen(false)}
-                  onFocusCapture={() => setIsServicesMenuOpen(true)}
+                  onMouseEnter={openServicesMenu}
+                  onMouseLeave={() => closeServicesMenu(true)}
+                  onFocusCapture={openServicesMenu}
                   onBlurCapture={handleServicesBlur}
                   onKeyDown={handleServicesKeyDown}
                 >
@@ -170,7 +200,13 @@ export function Header() {
                           ? "text-accent"
                           : "text-text/80 hover:text-accent",
                       )}
-                      onClick={() => setIsServicesMenuOpen((open) => !open)}
+                      onClick={() => {
+                        if (isServicesMenuOpen) {
+                          closeServicesMenu();
+                        } else {
+                          openServicesMenu();
+                        }
+                      }}
                     >
                       <span>{item.label}</span>
                       <span
@@ -191,27 +227,33 @@ export function Header() {
                         id="services-menu"
                         role="menu"
                         aria-label="Services categories"
-                        initial={shouldReduceMotion ? false : { opacity: 0, y: -8 }}
+                        initial={shouldReduceMotion ? false : { opacity: 0, y: 2 }}
                         animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-                        exit={shouldReduceMotion ? {} : { opacity: 0, y: -8 }}
+                        exit={shouldReduceMotion ? {} : { opacity: 0, y: 2 }}
                         transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute left-0 top-full z-[70] mt-3 w-[min(28rem,calc(100vw-2rem))] rounded-2xl border border-accent/20 bg-black p-3 shadow-2xl shadow-black/60"
+                        className="absolute left-0 top-full z-[70] w-[min(28rem,calc(100vw-2rem))] pt-2"
                       >
-                        <div className="mb-2 px-3 pt-2">
-                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-accent">
-                            Services
-                          </p>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          {serviceNavItems.map((category) => (
-                            <ServiceMenuLink
-                              key={category.href}
-                              href={category.href}
-                              icon={category.icon}
-                              onClick={() => setIsServicesMenuOpen(false)}
-                              label={category.label}
-                            />
-                          ))}
+                        <div
+                          aria-hidden="true"
+                          className="absolute left-0 top-0 h-2 w-full"
+                        />
+                        <div className="rounded-2xl border border-accent/20 bg-black p-3 shadow-2xl shadow-black/60">
+                          <div className="mb-2 px-3 pt-2">
+                            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-accent">
+                              Services
+                            </p>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            {serviceNavItems.map((category) => (
+                              <ServiceMenuLink
+                                key={category.href}
+                                href={category.href}
+                                icon={category.icon}
+                                onClick={() => closeServicesMenu()}
+                                label={category.label}
+                              />
+                            ))}
+                          </div>
                         </div>
                       </motion.div>
                     ) : null}
