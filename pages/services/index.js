@@ -50,6 +50,7 @@ export default function ServicesPage({ content }) {
           }
         />
 
+        {(!Array.isArray(content.items) || content.items.length > 0) && (
         <FadeInSection delay={0.08}>
           <section className="mx-auto mt-12 grid max-w-7xl gap-6 px-4 sm:px-6 md:grid-cols-2 lg:px-8 xl:grid-cols-3">
             {servicePages.map((service) => {
@@ -79,6 +80,7 @@ export default function ServicesPage({ content }) {
             })}
           </section>
         </FadeInSection>
+        )}
 
         <CmsSections sections={content.sections} />
       </main>
@@ -86,8 +88,8 @@ export default function ServicesPage({ content }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  context.res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+export async function getServerSideProps(context = {}) {
+  context?.res?.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
   const content = await getPageContent("services");
 
   return {
