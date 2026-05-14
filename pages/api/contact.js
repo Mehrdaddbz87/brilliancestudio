@@ -126,6 +126,10 @@ export default async function handler(req, res) {
     return res.status(201).json({ id: contactRequest.id, success: true });
   } catch (error) {
     console.error("Failed to process contact request:", error);
-    return res.status(500).json({ error: "Failed to send contact request." });
+    const detail =
+      process.env.NODE_ENV === "development"
+        ? (error?.message || String(error))
+        : "Failed to send contact request.";
+    return res.status(500).json({ error: detail });
   }
 }
