@@ -34,10 +34,13 @@ export async function getServerSideProps(context) {
   }
 
   if (dbService) {
+    const staticFallback = servicePagesBySlug[slug];
     return {
       props: {
         service: {
           ...dbService,
+          extraDescriptions: staticFallback?.description.slice(1) || [],
+          benefits: staticFallback?.benefits || [],
           seoDescription: dbService.description,
         },
       },
@@ -57,6 +60,8 @@ export async function getServerSideProps(context) {
         eyebrow: "Services",
         title: staticService.title,
         description: staticService.description[0] || "",
+        extraDescriptions: staticService.description.slice(1),
+        benefits: staticService.benefits || [],
         imageUrl: null,
         imageAlt: null,
         seoDescription: staticService.metaDescription,

@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-const DEFAULT_TITLE = "Brilliance Studio | Home Design Renovation Canada";
+const DEFAULT_TITLE = "Brilliance Studio | Premium Home Renovation & Design in Canada";
 const DEFAULT_DESCRIPTION =
-  "Brilliance Studio creates elevated home design and renovation experiences across Canada with a refined, premium visual approach.";
+  "Brilliance Studio is a premium renovation and design studio in Canada specializing in custom homes, kitchen remodeling, bathroom renovations, home additions, basement finishing, and structural transformations. Refined craftsmanship. Precise execution.";
 const DEFAULT_KEYWORDS =
-  "Home Design Renovation, Canada, Brilliance Studio, luxury home design, premium renovation";
+  "home renovation Canada, custom home design build, kitchen remodeling Canada, bathroom renovation, home additions, basement finishing, interior design Canada, luxury renovation, Brilliance Studio";
 const DEFAULT_IMAGE_PATH = "/images/og-cover.svg";
 
 /**
@@ -37,18 +37,30 @@ export function SEO() {
   );
   const canonicalUrl = buildCanonicalUrl(siteUrl, router.asPath);
   const imageUrl = `${siteUrl}${DEFAULT_IMAGE_PATH}`;
+  const homeUrl = normalizeSiteUrl(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://brilliancestudio.ca",
+  );
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "HomeAndConstructionBusiness",
     name: "Brilliance Studio",
-    url: canonicalUrl,
+    url: homeUrl,
     image: imageUrl,
     description: DEFAULT_DESCRIPTION,
     areaServed: {
       "@type": "Country",
       name: "Canada",
     },
-    keywords: ["Home Design Renovation", "Canada"],
+    knowsAbout: [
+      "Home Renovation",
+      "Custom Home Design",
+      "Kitchen Remodeling",
+      "Bathroom Renovation",
+      "Home Additions",
+      "Basement Finishing",
+      "Interior Design",
+      "Structural Modifications",
+    ],
   };
 
   return (

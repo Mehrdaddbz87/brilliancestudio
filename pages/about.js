@@ -26,11 +26,10 @@ export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>About Us | Brilliance Studio</title>
-        <meta
-          name="description"
-          content="Learn more about our renovation and design philosophy in Canada."
-        />
+        <title>About Brilliance Studio | Luxury Home Renovation & Design in Canada</title>
+        <meta name="description" content="Brilliance Studio is a Canada-based premium renovation and design studio pairing refined interiors with disciplined construction planning. Precision, craftsmanship, and calm coordination in every project." />
+        <meta property="og:title" content="About Brilliance Studio | Luxury Home Renovation & Design in Canada" key="og:title" />
+        <meta property="og:description" content="Premium renovation and design studio in Canada. Precision, craftsmanship, and calm coordination from concept to completion." key="og:description" />
       </Head>
       <main className="bg-black pb-20 text-white">
         <PageIntro

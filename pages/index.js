@@ -28,22 +28,22 @@ const services = [
 
 const portfolioProjects = [
   {
-    eyebrow: "Portfolio",
-    title: "Maison Aurelia",
+    eyebrow: "Custom Home",
+    title: "Whole-Home Design & Build",
     description:
-      "An immersive launch presence for a premium lifestyle label with cinematic pacing and a tailored story flow.",
+      "A complete design-build project coordinated from structural planning through final finishes — refined materials, elevated atmosphere, and precise execution throughout.",
   },
   {
-    eyebrow: "Portfolio",
-    title: "Velour Residence",
+    eyebrow: "Kitchen Renovation",
+    title: "Kitchen & Open-Concept Transformation",
     description:
-      "A luxury property presentation focused on atmosphere, trust, and elegant conversion paths for inquiries.",
+      "Load-bearing wall removal, custom cabinetry, and a seamless open layout that connects kitchen, dining, and living spaces with a calm, modern visual clarity.",
   },
   {
-    eyebrow: "Portfolio",
-    title: "Noir Atelier",
+    eyebrow: "Basement Finishing",
+    title: "Lower Level Living Suite",
     description:
-      "A restrained portfolio experience crafted for a high-end creative practice and selective client acquisition.",
+      "An underused basement transformed into a polished living environment — thoughtful lighting, premium finishes, and seamless integration with the rest of the home.",
   },
 ];
 
@@ -51,11 +51,10 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Brilliance Studio | Premium Renovation & Design</title>
-        <meta
-          name="description"
-          content="Brilliance Studio is a premium renovation and design studio crafting elevated living spaces across Canada — custom homes, kitchen remodels, bathroom renovations, and structural transformations."
-        />
+        <title>Brilliance Studio | Premium Home Renovation & Design in Canada</title>
+        <meta name="description" content="Brilliance Studio is a premium renovation and design studio crafting elevated living spaces across Canada — custom homes, kitchen remodels, bathroom renovations, home additions, basement finishing, and structural transformations." />
+        <meta property="og:title" content="Brilliance Studio | Premium Home Renovation & Design in Canada" key="og:title" />
+        <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen & bathroom remodels, additions, structural work, and basement finishing — crafted with precision and refined materials." key="og:description" />
       </Head>
     <main className="bg-background px-4 py-10 sm:px-6 lg:px-8">
       <Hero />

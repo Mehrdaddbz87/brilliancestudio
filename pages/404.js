@@ -7,7 +7,9 @@ export default function Custom404() {
   return (
     <>
       <Head>
-        <title>404 | Brilliance Studio</title>
+        <title>Page Not Found | Brilliance Studio</title>
+        <meta name="description" content="The page you requested could not be found. Return to the Brilliance Studio homepage or contact us about your renovation project." />
+        <meta name="robots" content="noindex, follow" />
       </Head>
       <main className="px-4 py-16 sm:px-6 lg:px-8">
         <FadeInSection>
