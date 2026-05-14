@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel_Decorative, Cormorant_Garamond } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Header } from "@/components/header";
 import "@/styles/globals.css";
 
@@ -9,10 +9,10 @@ const classic = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
 });
 
-const fantasy = Cinzel_Decorative({
+const fantasy = Inter({
   variable: "--font-fantasy",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

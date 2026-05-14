@@ -17,7 +17,7 @@ const config: Config = {
       },
       fontFamily: {
         classic: ["var(--font-classic)", "Georgia", "Times New Roman", "serif"],
-        fantasy: ["var(--font-fantasy)", "Papyrus", "fantasy"],
+        fantasy: ["var(--font-fantasy)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       screens: {
         xs: "480px",
