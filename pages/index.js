@@ -4,6 +4,7 @@ import { Button } from "@/components/button";
 import { Card } from "@/components/card";
 import { FadeInSection } from "@/components/fade-in-section";
 import { Hero } from "@/components/hero";
+import { ScrollIndicator } from "@/components/scroll-indicator";
 
 const services = [
   {
@@ -58,6 +59,7 @@ export default function HomePage() {
       </Head>
     <main className="bg-background px-4 py-10 sm:px-6 lg:px-8">
       <Hero />
+      <ScrollIndicator />
 
       <FadeInSection delay={0.05}>
         <section className="mx-auto mt-14 w-full max-w-7xl">

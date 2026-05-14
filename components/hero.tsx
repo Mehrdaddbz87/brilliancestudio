@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 import { Button } from "@/components/button";
 
@@ -10,18 +9,9 @@ import { Button } from "@/components/button";
  */
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    function onScroll() {
-      setVisible(window.scrollY < 80);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <section className="relative mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center">
+    <section className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center">
       <div className="grid w-full gap-10 rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] px-6 py-12 shadow-[0_0_100px_rgba(185,154,69,0.08)] sm:px-8 lg:grid-cols-[minmax(0,1.2fr)_320px] lg:px-12 xl:px-16">
         <motion.div
           className="max-w-4xl"
@@ -104,31 +94,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator — fixed at bottom of viewport, hides on scroll */}
-      {!shouldReduceMotion && (
-        <motion.div
-          className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-2 pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: visible ? 1 : 0 }}
-          transition={{ duration: 0.5, delay: visible ? 1.2 : 0 }}
-          aria-hidden="true"
-        >
-          <span className="text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-text/40">
-            Scroll
-          </span>
-          <div className="relative h-10 w-5 rounded-full border border-white/25">
-            <motion.div
-              className="absolute left-1/2 top-1.5 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-accent/80"
-              animate={{ y: [0, 14, 0] }}
-              transition={{
-                duration: 1.6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </div>
-        </motion.div>
-      )}
     </section>
   );
 }
