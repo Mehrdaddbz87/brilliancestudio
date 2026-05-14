@@ -29,8 +29,9 @@ const portfolioFields = [
   },
   {
     name: "imageUrl",
-    label: "Image URL",
+    label: "Image",
     placeholder: "/images/placeholders/reference.svg",
+    type: "image-upload",
     required: false,
   },
   {

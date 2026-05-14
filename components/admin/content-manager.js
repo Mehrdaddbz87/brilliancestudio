@@ -1,10 +1,86 @@
 import { signOut } from "next-auth/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/button";
 
 function sortByOrder(items) {
   return [...items].sort((left, right) => left.sortOrder - right.sortOrder);
+}
+
+function ImageUploadField({ name, value, onChange, placeholder }) {
+  const inputRef = useRef(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+
+  async function handleFileChange(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setUploadError("");
+
+    const body = new FormData();
+    body.append("file", file);
+
+    try {
+      const response = await fetch("/api/upload", { method: "POST", body });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Upload failed.");
+      }
+
+      onChange({ target: { name, value: result.url } });
+    } catch (error) {
+      setUploadError(error.message);
+    } finally {
+      setUploading(false);
+      if (inputRef.current) inputRef.current.value = "";
+    }
+  }
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-3">
+        <input
+          type="text"
+          name={name}
+          value={value || ""}
+          onChange={onChange}
+          placeholder={placeholder || "/uploads/image.jpg"}
+          className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
+        />
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
+          disabled={uploading}
+          className="shrink-0 rounded-2xl border border-accent/40 bg-accent/10 px-4 py-3 text-sm font-semibold text-accent transition hover:bg-accent/20 disabled:opacity-50"
+        >
+          {uploading ? "Uploading…" : "Upload"}
+        </button>
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+          className="hidden"
+          onChange={handleFileChange}
+        />
+      </div>
+      {uploadError ? (
+        <p className="text-sm text-red-300">{uploadError}</p>
+      ) : null}
+      {value ? (
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+          <img
+            src={value}
+            alt="Preview"
+            className="max-h-48 w-full object-cover"
+            onError={(e) => { e.currentTarget.style.display = "none"; }}
+          />
+        </div>
+      ) : null}
+    </div>
+  );
 }
 
 export function ContentManager({
@@ -192,7 +268,14 @@ export function ContentManager({
                   <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">
                     {field.label}
                   </span>
-                  {field.type === "textarea" ? (
+                  {field.type === "image-upload" ? (
+                    <ImageUploadField
+                      name={field.name}
+                      value={formData[field.name] || ""}
+                      onChange={updateField}
+                      placeholder={field.placeholder}
+                    />
+                  ) : field.type === "textarea" ? (
                     <textarea
                       name={field.name}
                       value={formData[field.name] || ""}
