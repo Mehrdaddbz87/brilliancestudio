@@ -203,9 +203,9 @@ test.describe("critical user flows", () => {
     await expect(page.getByRole("link", { name: "Contact Us" })).toBeVisible();
 
     await page.getByRole("button", { name: "Services" }).click();
-    const servicesCategoryLink = page.getByRole("link", {
-      name: /custom home design & build/i,
-    });
+    const servicesCategoryLink = page
+      .locator("#mobile-services-menu")
+      .getByRole("link", { name: /custom home design & build/i });
     await expect(servicesCategoryLink).toBeVisible();
 
     await Promise.all([
@@ -237,7 +237,7 @@ test.describe("critical user flows", () => {
   test("about page highlights the active navigation item", async ({ page }) => {
     await page.goto("/about", { waitUntil: "domcontentloaded" });
 
-    await expect(page).toHaveTitle(/About Us \| Brilliance Studio/i);
+    await expect(page).toHaveTitle(/About Brilliance Studio/i);
     await expect(
       page.getByRole("heading", { name: "About Us", level: 1 }),
     ).toBeVisible();

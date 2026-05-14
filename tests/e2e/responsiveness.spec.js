@@ -22,7 +22,10 @@ test.describe("basic responsiveness (mobile)", () => {
     await Promise.all([
       page.waitForURL(/\/services\/custom-home-design-build$/, { timeout: 15000 }),
       servicesToggle.click().then(() =>
-        page.getByRole("link", { name: /custom home design & build/i }).click(),
+        page
+          .locator("#mobile-services-menu")
+          .getByRole("link", { name: /custom home design & build/i })
+          .click(),
       ),
     ]);
   });
