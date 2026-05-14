@@ -2,38 +2,54 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 /**
- * Fixed scroll indicator shown at the bottom of the viewport on the home page.
- * Fades out once the user has scrolled 80px down.
+ * Global scroll indicator — appears on any page where content exceeds the viewport.
+ * Positioned on the right side. Fades out once the user has scrolled 80px.
+ * Uses a React portal to render directly into document.body, bypassing
+ * any overflow:hidden constraints from parent elements.
  */
 export function ScrollIndicator() {
   const shouldReduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const delay = setTimeout(() => setVisible(true), 1200);
-    return () => clearTimeout(delay);
+    setMounted(true);
   }, []);
 
   useEffect(() => {
-    function onScroll() {
-      if (window.scrollY > 80) setVisible(false);
+    if (!mounted) return;
+
+    function checkScrollable() {
+      const isScrollable =
+        document.documentElement.scrollHeight > window.innerHeight + 20;
+      const isAtTop = window.scrollY < 80;
+      setVisible(isScrollable && isAtTop);
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
-  if (shouldReduceMotion) return null;
+    const delay = setTimeout(checkScrollable, 900);
 
-  return (
+    window.addEventListener("scroll", checkScrollable, { passive: true });
+    window.addEventListener("resize", checkScrollable, { passive: true });
+
+    return () => {
+      clearTimeout(delay);
+      window.removeEventListener("scroll", checkScrollable);
+      window.removeEventListener("resize", checkScrollable);
+    };
+  }, [mounted]);
+
+  if (!mounted || shouldReduceMotion) return null;
+
+  const indicator = (
     <div
       aria-hidden="true"
       style={{
         position: "fixed",
-        bottom: "2rem",
-        left: "50%",
-        transform: "translateX(-50%)",
+        bottom: "2.5rem",
+        right: "2rem",
         zIndex: 9999,
         pointerEvents: "none",
         display: "flex",
@@ -41,27 +57,18 @@ export function ScrollIndicator() {
         alignItems: "center",
         gap: "0.5rem",
         opacity: visible ? 1 : 0,
-        transition: "opacity 0.5s ease",
+        transition: "opacity 0.4s ease",
       }}
     >
-      <span
-        style={{
-          fontSize: "0.6rem",
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "0.35em",
-          color: "rgba(255,255,255,0.4)",
-        }}
-      >
-        Scroll
-      </span>
       <div
         style={{
           position: "relative",
           width: "1.25rem",
           height: "2.5rem",
           borderRadius: "9999px",
-          border: "1px solid rgba(255,255,255,0.25)",
+          border: "1px solid rgba(185,154,69,0.45)",
+          backgroundColor: "rgba(0,0,0,0.4)",
+          backdropFilter: "blur(4px)",
         }}
       >
         <motion.div
@@ -72,13 +79,29 @@ export function ScrollIndicator() {
             width: "0.375rem",
             height: "0.375rem",
             borderRadius: "9999px",
-            backgroundColor: "rgba(185,154,69,0.85)",
+            backgroundColor: "rgba(185,154,69,0.9)",
             translateX: "-50%",
           }}
           animate={{ y: [0, 14, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
+      <span
+        style={{
+          fontSize: "0.55rem",
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "0.3em",
+          color: "rgba(185,154,69,0.6)",
+          writingMode: "vertical-rl",
+          transform: "rotate(180deg)",
+          marginTop: "0.25rem",
+        }}
+      >
+        Scroll
+      </span>
     </div>
   );
+
+  return createPortal(indicator, document.body);
 }

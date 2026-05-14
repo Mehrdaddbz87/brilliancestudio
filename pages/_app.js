@@ -4,6 +4,7 @@ import { Analytics } from "@/components/analytics";
 import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { ScrollIndicator } from "@/components/scroll-indicator";
 import { SEO } from "@/components/seo";
 import "@/styles/globals.css";
 
@@ -31,6 +32,7 @@ export default function App({ Component, pageProps, router }) {
         <Component {...pageProps} />
         {isAdminRoute ? null : <Footer />}
         {isAdminRoute ? null : <CookieConsentBanner />}
+        {isAdminRoute ? null : <ScrollIndicator />}
       </div>
     </div>
   );
