@@ -182,6 +182,9 @@ export function ContentManager({
   }
 
   async function handleDelete(id) {
+    if (!window.confirm("Are you sure you want to delete this entry? This action cannot be undone.")) {
+      return;
+    }
     setStatus({ type: "", message: "" });
 
     try {

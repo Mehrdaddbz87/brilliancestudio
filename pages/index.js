@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import { Button } from "@/components/button";
 import { Card } from "@/components/card";
 import { FadeInSection } from "@/components/fade-in-section";
@@ -6,21 +8,21 @@ import { Hero } from "@/components/hero";
 const services = [
   {
     eyebrow: "Services",
-    title: "Brand Websites",
+    title: "Custom Home Design & Build",
     description:
-      "Editorial, conversion-aware websites with an elevated visual language and a clear premium positioning.",
+      "Residences shaped with intention — from earliest concept through final execution, coordinated for a cohesive and elevated result.",
   },
   {
     eyebrow: "Services",
-    title: "Creative Direction",
+    title: "Kitchen & Bathroom Remodeling",
     description:
-      "Luxury-first visual systems, content hierarchy, and interface refinement for high-value brand perception.",
+      "High-end remodels that balance layout efficiency, durable materials, and refined visual clarity for spaces that feel both luxurious and practical.",
   },
   {
     eyebrow: "Services",
-    title: "Launch Support",
+    title: "Structural Modifications",
     description:
-      "Technical implementation, performance tuning, and structured delivery for confident go-live moments.",
+      "Expert structural work and framing that creates the foundation for safe, successful transformation with exacting attention to quality.",
   },
 ];
 
@@ -47,6 +49,14 @@ const portfolioProjects = [
 
 export default function HomePage() {
   return (
+    <>
+      <Head>
+        <title>Brilliance Studio | Premium Renovation & Design</title>
+        <meta
+          name="description"
+          content="Brilliance Studio is a premium renovation and design studio crafting elevated living spaces across Canada — custom homes, kitchen remodels, bathroom renovations, and structural transformations."
+        />
+      </Head>
     <main className="bg-background px-4 py-10 sm:px-6 lg:px-8">
       <Hero />
 
@@ -103,5 +113,6 @@ export default function HomePage() {
         </section>
       </FadeInSection>
     </main>
+    </>
   );
 }

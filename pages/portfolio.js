@@ -54,7 +54,7 @@ export default function PortfolioPage({ content }) {
                 title={item.title}
                 description={item.summary}
                 href="/contact"
-                cta="Start Your Project"
+                cta="Discuss this style of project"
                 media={
                   item.image?.url ? (
                     <ResponsiveImage

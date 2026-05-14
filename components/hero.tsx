@@ -25,7 +25,7 @@ export function Hero() {
             animate={shouldReduceMotion ? {} : { opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.08 }}
           >
-            Boutique Digital Atelier
+            Premium Renovation Studio
           </motion.span>
           <motion.h1
             className="mt-8 font-fantasy text-4xl uppercase tracking-[0.12em] text-text sm:text-5xl md:text-6xl xl:text-7xl"
@@ -37,7 +37,7 @@ export function Hero() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Premium websites for brands with presence.
+            Luxury renovation and design, crafted with precision.
           </motion.h1>
           <motion.p
             className="mt-6 max-w-2xl text-lg leading-8 text-text/75 sm:text-xl"
@@ -45,9 +45,9 @@ export function Hero() {
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            We design elegant digital experiences with a restrained luxury
-            aesthetic, refined storytelling, and technical execution built for
-            modern growth.
+            We design and build elevated living spaces — from custom homes and
+            kitchen remodels to structural transformations — shaped by
+            craftsmanship, refined materials, and a high-end aesthetic.
           </motion.p>
           <motion.div
             className="mt-10 flex flex-col gap-4 sm:flex-row"
@@ -68,9 +68,9 @@ export function Hero() {
 
         <div className="grid gap-4 self-end sm:grid-cols-3 lg:grid-cols-1">
           {[
-            ["Selected Aesthetic", "Minimal, dark, cinematic."],
-            ["Delivery", "Strategy, design, development."],
-            ["Platform", "Responsive and performance-first."],
+            ["Approach", "Craftsmanship & precision."],
+            ["Services", "Design, build, transform."],
+            ["Standard", "High-end, refined, lasting."],
           ].map(([label, value], index) => (
             <motion.div
               key={label}

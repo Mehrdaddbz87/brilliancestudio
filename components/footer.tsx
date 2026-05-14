@@ -46,8 +46,8 @@ export function Footer() {
             Brilliance Studio
           </p>
           <p className="mt-4 text-lg leading-8 text-text/72">
-            Luxury-minded web experiences, elevated visual systems, and refined
-            digital storytelling for ambitious brands.
+            Premium renovation and design studio crafting elevated living spaces
+            with refined materials, expert craftsmanship, and lasting quality.
           </p>
         </div>
 

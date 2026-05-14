@@ -24,7 +24,7 @@ export default function Custom404() {
                 continue to the contact page.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Button href="/">Startseite</Button>
+                <Button href="/">Back to Home</Button>
                 <Button href="/contact" variant="ghost">
                   Contact Us
                 </Button>

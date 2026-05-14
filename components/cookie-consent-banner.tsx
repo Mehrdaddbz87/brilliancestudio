@@ -100,6 +100,17 @@ export function CookieConsentBanner() {
     [draftPreferences, hasSavedConsent, preferences],
   );
 
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.paddingBottom = "";
+      return;
+    }
+    document.body.style.paddingBottom = "160px";
+    return () => {
+      document.body.style.paddingBottom = "";
+    };
+  }, [isOpen]);
+
   if (!isHydrated || !isOpen) {
     return null;
   }

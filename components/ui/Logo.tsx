@@ -15,7 +15,7 @@ type LogoProps = {
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
-const ALT_TEXT = "Brilliance Studio - Home Renovation & Design";
+const ALT_TEXT = "Brilliance Studio - Premium Renovation & Design";
 
 /**
  * Renders the site logo with optimized image loading and a graceful text fallback.
@@ -69,7 +69,7 @@ export function Logo({
             Brilliance Studio
           </p>
           <p className="text-[0.65rem] uppercase tracking-[0.28em] text-text/55 sm:text-xs">
-            High-End Digital Presence
+            Renovation & Design
           </p>
         </div>
       </div>

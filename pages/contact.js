@@ -15,6 +15,7 @@ function Field({
   onChange,
   required = true,
   error = false,
+  errorId,
 }) {
   return (
     <label className="block">
@@ -27,6 +28,8 @@ function Field({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        aria-invalid={error ? "true" : undefined}
+        aria-describedby={error && errorId ? errorId : undefined}
         className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${
           error ? "border-red-300/70" : "border-white/10"
         }`}
@@ -36,7 +39,7 @@ function Field({
   );
 }
 
-function SelectField({ label, name, value, onChange, options, error = false }) {
+function SelectField({ label, name, value, onChange, options, error = false, errorId }) {
   return (
     <label className="block">
       <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">
@@ -47,8 +50,10 @@ function SelectField({ label, name, value, onChange, options, error = false }) {
           name={name}
           value={value}
           onChange={onChange}
-          className={`w-full appearance-none rounded-xl border bg-black px-4 py-3 pr-12 text-base tracking-wide text-white outline-none transition-all duration-200 ease-in-out hover:border-accent/40 focus:border-accent focus:ring-2 focus:ring-[#b99a45]/60 ${
-            error ? "border-red-300/70" : "border-gray-700"
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error && errorId ? errorId : undefined}
+          className={`w-full appearance-none rounded-2xl border bg-white/[0.04] px-4 py-3 pr-12 text-base tracking-wide text-white outline-none transition-all duration-200 ease-in-out hover:border-accent/40 focus:border-accent focus:ring-2 focus:ring-[#b99a45]/60 ${
+            error ? "border-red-300/70" : "border-white/10"
           }`}
           required
         >
@@ -230,9 +235,11 @@ export default function ContactPage() {
                   placeholder="Your full name"
                   value={contactData.name}
                   onChange={updateContactField}
+                  error={Boolean(contactErrors.name)}
+                  errorId="error-name"
                 />
                 {contactErrors.name ? (
-                  <p className="-mt-2 text-sm text-red-300">
+                  <p id="error-name" className="-mt-2 text-sm text-red-300" role="alert">
                     {contactErrors.name}
                   </p>
                 ) : null}
@@ -243,9 +250,11 @@ export default function ContactPage() {
                   placeholder="name@example.com"
                   value={contactData.email}
                   onChange={updateContactField}
+                  error={Boolean(contactErrors.email)}
+                  errorId="error-email"
                 />
                 {contactErrors.email ? (
-                  <p className="-mt-2 text-sm text-red-300">
+                  <p id="error-email" className="-mt-2 text-sm text-red-300" role="alert">
                     {contactErrors.email}
                   </p>
                 ) : null}
@@ -256,9 +265,10 @@ export default function ContactPage() {
                   onChange={updateContactField}
                   options={serviceOptions}
                   error={Boolean(contactErrors.service)}
+                  errorId="error-service"
                 />
                 {contactErrors.service ? (
-                  <p className="-mt-2 text-sm text-red-300">
+                  <p id="error-service" className="-mt-2 text-sm text-red-300" role="alert">
                     {contactErrors.service}
                   </p>
                 ) : null}
@@ -271,9 +281,10 @@ export default function ContactPage() {
                       value={contactData.customService}
                       onChange={updateContactField}
                       error={Boolean(contactErrors.customService)}
+                      errorId="error-customService"
                     />
                     {contactErrors.customService ? (
-                      <p className="-mt-2 text-sm text-red-300">
+                      <p id="error-customService" className="-mt-2 text-sm text-red-300" role="alert">
                         {contactErrors.customService}
                       </p>
                     ) : null}
@@ -289,12 +300,16 @@ export default function ContactPage() {
                     onChange={updateContactField}
                     rows={6}
                     placeholder="Tell us about your goals, timeline, and what kind of transformation you are planning."
-                    className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
+                    aria-invalid={contactErrors.message ? "true" : undefined}
+                    aria-describedby={contactErrors.message ? "error-message" : undefined}
+                    className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${
+                      contactErrors.message ? "border-red-300/70" : "border-white/10"
+                    }`}
                     required
                   />
                 </label>
                 {contactErrors.message ? (
-                  <p className="-mt-2 text-sm text-red-300">
+                  <p id="error-message" className="-mt-2 text-sm text-red-300" role="alert">
                     {contactErrors.message}
                   </p>
                 ) : null}
