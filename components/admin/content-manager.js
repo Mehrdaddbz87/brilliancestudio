@@ -3,6 +3,134 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/button";
 
+function DeleteConfirmModal({ itemTitle, onConfirm, onCancel, isDeleting }) {
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.key === "Escape") onCancel();
+    }
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [onCancel]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="delete-modal-title"
+    >
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={onCancel}
+      />
+      <div className="relative w-full max-w-md rounded-[2rem] border border-red-400/20 bg-[#0d0d0d] p-8 shadow-[0_0_100px_rgba(239,68,68,0.12)]">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full border border-red-400/30 bg-red-500/10">
+          <svg
+            aria-hidden="true"
+            className="h-7 w-7 text-red-400"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
+            <path d="M10 11v6M14 11v6" />
+          </svg>
+        </div>
+
+        <h2
+          id="delete-modal-title"
+          className="mt-5 font-fantasy text-2xl uppercase tracking-[0.08em] text-text"
+        >
+          Delete entry?
+        </h2>
+
+        <p className="mt-3 text-base leading-7 text-text/70">
+          You are about to permanently delete{" "}
+          {itemTitle ? (
+            <span className="font-semibold text-text">
+              &ldquo;{itemTitle}&rdquo;
+            </span>
+          ) : (
+            "this entry"
+          )}
+          . This action cannot be undone.
+        </p>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={onConfirm}
+            disabled={isDeleting}
+            className="inline-flex items-center gap-2 rounded-2xl bg-red-500/90 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-500 disabled:opacity-60"
+          >
+            {isDeleting ? (
+              <>
+                <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round" />
+                </svg>
+                Deleting…
+              </>
+            ) : (
+              "Yes, delete permanently"
+            )}
+          </button>
+          <Button type="button" variant="ghost" onClick={onCancel} disabled={isDeleting}>
+            Cancel
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Toast({ type, message, onDismiss }) {
+  useEffect(() => {
+    const t = setTimeout(onDismiss, 4000);
+    return () => clearTimeout(t);
+  }, [onDismiss]);
+
+  const isSuccess = type === "success";
+
+  return (
+    <div className="fixed bottom-6 right-6 z-[90] flex max-w-sm items-start gap-3 rounded-2xl border border-white/10 bg-[#111] px-5 py-4 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+      <div
+        className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
+          isSuccess ? "bg-emerald-500/20" : "bg-red-500/20"
+        }`}
+      >
+        {isSuccess ? (
+          <svg className="h-3.5 w-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+        ) : (
+          <svg className="h-3.5 w-3.5 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        )}
+      </div>
+      <div className="flex-1">
+        <p className={`text-sm font-semibold ${isSuccess ? "text-emerald-300" : "text-red-300"}`}>
+          {isSuccess ? "Success" : "Error"}
+        </p>
+        <p className="mt-0.5 text-sm text-text/70">{message}</p>
+      </div>
+      <button
+        type="button"
+        onClick={onDismiss}
+        className="ml-2 mt-0.5 text-text/35 transition hover:text-text/70"
+        aria-label="Dismiss"
+      >
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 function sortByOrder(items) {
   return [...items].sort((left, right) => left.sortOrder - right.sortOrder);
 }
@@ -105,18 +233,9 @@ export function ContentManager({
   const [editingId, setEditingId] = useState(null);
   const [status, setStatus] = useState({ type: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (status.type !== "success" || !status.message) {
-      return undefined;
-    }
-
-    const timeoutId = setTimeout(() => {
-      setStatus({ type: "", message: "" });
-    }, 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, [status]);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [toast, setToast] = useState(null);
 
   function updateField(event) {
     const { name, value } = event.target;
@@ -164,15 +283,15 @@ export function ContentManager({
             : [...current, result.item],
         ),
       );
-      setStatus({
+      setToast({
         type: "success",
         message: editingId
-          ? `${sectionLabel} entry updated.`
-          : `${sectionLabel} entry created.`,
+          ? `${sectionLabel} entry updated successfully.`
+          : `${sectionLabel} entry created successfully.`,
       });
       resetForm();
     } catch (error) {
-      setStatus({
+      setToast({
         type: "error",
         message: error.message || "Failed to save content.",
       });
@@ -181,14 +300,16 @@ export function ContentManager({
     }
   }
 
-  async function handleDelete(id) {
-    if (!window.confirm("Are you sure you want to delete this entry? This action cannot be undone.")) {
-      return;
-    }
-    setStatus({ type: "", message: "" });
+  function requestDelete(item) {
+    setDeleteTarget(item);
+  }
+
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    setIsDeleting(true);
 
     try {
-      const response = await fetch(`${endpoint}/${id}`, {
+      const response = await fetch(`${endpoint}/${deleteTarget.id}`, {
         method: "DELETE",
       });
       const result = await response.json();
@@ -197,19 +318,16 @@ export function ContentManager({
         throw new Error(result.error || "Failed to delete content.");
       }
 
-      setItems((current) => current.filter((item) => item.id !== id));
-      if (editingId === id) {
+      setItems((current) => current.filter((item) => item.id !== deleteTarget.id));
+      if (editingId === deleteTarget.id) {
         resetForm();
       }
-      setStatus({
-        type: "success",
-        message: `${sectionLabel} entry deleted.`,
-      });
+      setToast({ type: "success", message: `${sectionLabel} entry deleted successfully.` });
     } catch (error) {
-      setStatus({
-        type: "error",
-        message: error.message || "Failed to delete content.",
-      });
+      setToast({ type: "error", message: error.message || "Failed to delete content." });
+    } finally {
+      setIsDeleting(false);
+      setDeleteTarget(null);
     }
   }
 
@@ -227,6 +345,22 @@ export function ContentManager({
   }
 
   return (
+    <>
+    {deleteTarget && (
+      <DeleteConfirmModal
+        itemTitle={deleteTarget.title}
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteTarget(null)}
+        isDeleting={isDeleting}
+      />
+    )}
+    {toast && (
+      <Toast
+        type={toast.type}
+        message={toast.message}
+        onDismiss={() => setToast(null)}
+      />
+    )}
     <main className="min-h-[calc(100vh-5rem)] bg-background px-4 py-10 sm:px-6 lg:px-8">
       <section className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -325,14 +459,11 @@ export function ContentManager({
               ))}
 
               {status.message ? (
-                <p
-                  className={
-                    status.type === "success" ? "text-emerald-300" : "text-red-300"
-                  }
-                >
+                <p className={status.type === "success" ? "text-emerald-300" : "text-red-300"}>
                   {status.message}
                 </p>
               ) : null}
+
 
               <div className="flex flex-wrap gap-3">
                 <Button type="submit" disabled={isSubmitting}>
@@ -386,7 +517,7 @@ export function ContentManager({
                         <Button type="button" variant="ghost" onClick={() => startEdit(item)}>
                           Edit
                         </Button>
-                        <Button type="button" variant="ghost" onClick={() => handleDelete(item.id)}>
+                        <Button type="button" variant="ghost" onClick={() => requestDelete(item)}>
                           Delete
                         </Button>
                       </div>
@@ -403,5 +534,6 @@ export function ContentManager({
         </div>
       </section>
     </main>
+    </>
   );
 }
