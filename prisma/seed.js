@@ -438,22 +438,30 @@ async function seedCms() {
     {
       slug: "impressum",
       eyebrow: "Legal",
-      title: "Imprint",
+      title: "Imprint & Legal Disclosure",
       description:
-        "Business identity, legal disclosures, and privacy contact information for Brilliance Studio.",
-      seoTitle: "Imprint | Brilliance Studio",
+        "Business registration details, regulatory disclosures, and privacy contact information for Brilliance Studio — operating as a home renovation and design company in Canada.",
+      seoTitle: "Imprint & Legal Disclosure | Brilliance Studio Canada",
       seoDescription:
-        "Business and privacy contact information for Brilliance Studio — prepared for Canadian operations and transparent legal disclosure.",
+        "Legal disclosure, business registration, tax numbers, WSIB information, and privacy contact details for Brilliance Studio — a Canadian home renovation and design company.",
       sections: [
         {
           _key: "impressum-1",
           eyebrow: "Business Identity",
-          heading: "Company Information",
-          body: "Replace the sample details below with the exact legal business name, registration details, and mailing address that apply to Brilliance Studio before launch.",
+          heading: "Registered Business Information",
+          body: "The following information identifies the legal entity responsible for operating the Brilliance Studio website and providing renovation and design services in Canada.",
           contactItems: [
             {
-              label: "Business name",
+              label: "Legal business name",
               value: "Brilliance Studio",
+            },
+            {
+              label: "Province of registration",
+              value: "Ontario, Canada",
+            },
+            {
+              label: "Mailing address",
+              value: "[Street address, City, Province, Postal Code, Canada]",
             },
             {
               label: "Email",
@@ -465,29 +473,47 @@ async function seedCms() {
               value: "https://brilliancestudio.ca",
               href: "https://brilliancestudio.ca",
             },
-            {
-              label: "Mailing address",
-              value: "Canada",
-            },
           ],
         },
         {
           _key: "impressum-2",
-          eyebrow: "Responsible Party",
-          heading: "Responsible Person and Contact Channels",
-          body: "Identify the person or team responsible for legal notices, contractual matters, and privacy-related communications.",
+          eyebrow: "Tax & Registration",
+          heading: "CRA Business Number and HST/GST Registration",
+          body: "All applicable taxes will be itemized separately on project invoices in accordance with CRA requirements.",
           contactItems: [
             {
-              label: "Legal notices",
-              value: "legal@brilliancestudio.ca",
-              href: "mailto:legal@brilliancestudio.ca",
+              label: "CRA Business Number (BN)",
+              value: "[9-digit CRA Business Number]",
             },
             {
-              label: "Privacy officer",
+              label: "HST / GST Registration Number",
+              value: "[BN followed by RT0001]",
+            },
+          ],
+        },
+        {
+          _key: "impressum-3",
+          eyebrow: "Privacy",
+          heading: "Privacy Officer and PIPEDA Contact",
+          body: "Individuals may submit requests to access, correct, or delete their personal information, withdraw consent, or raise privacy concerns by contacting the Privacy Officer directly.",
+          contactItems: [
+            {
+              label: "Privacy requests",
               value: "privacy@brilliancestudio.ca",
               href: "mailto:privacy@brilliancestudio.ca",
             },
+            {
+              label: "General inquiries",
+              value: "hello@brilliancestudio.ca",
+              href: "mailto:hello@brilliancestudio.ca",
+            },
+            {
+              label: "Federal Privacy Commissioner",
+              value: "www.priv.gc.ca",
+              href: "https://www.priv.gc.ca",
+            },
           ],
+          note: "If you are not satisfied with our response to a privacy concern, you may file a complaint with the Office of the Privacy Commissioner of Canada at www.priv.gc.ca.",
         },
       ],
     },
