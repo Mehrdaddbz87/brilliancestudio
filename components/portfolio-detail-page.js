@@ -28,45 +28,39 @@ export function PortfolioDetailPage({ item }) {
       </Head>
 
       <main className="pb-20">
-        {/* Page header */}
-        <div className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
-          <div className="max-w-4xl">
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-text/45 transition hover:text-accent"
-            >
-              <svg
-                aria-hidden="true"
-                className="h-3 w-3"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M10 3L5 8l5 5" />
-              </svg>
-              Portfolio
-            </Link>
 
-            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-              {category}
-            </p>
-            <h1 className="mt-4 break-words font-fantasy text-4xl uppercase tracking-[0.1em] text-text sm:text-5xl">
-              {title}
-            </h1>
-            {summary ? (
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-text/75">
-                {summary}
-              </p>
-            ) : null}
-          </div>
+        {/* Page header — breadcrumb + title only, no duplicate summary */}
+        <div className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-text/45 transition hover:text-accent"
+          >
+            <svg
+              aria-hidden="true"
+              className="h-3 w-3"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M10 3L5 8l5 5" />
+            </svg>
+            Portfolio
+          </Link>
+
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+            {category}
+          </p>
+          <h1 className="mt-4 break-words font-fantasy text-4xl uppercase tracking-[0.1em] text-text sm:text-5xl">
+            {title}
+          </h1>
         </div>
 
-        {/* Main content — image + details */}
+        {/* Main content — image left, details right */}
         <FadeInSection delay={0.06}>
-          <section className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+          <section className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
 
               {/* Image */}
@@ -79,9 +73,9 @@ export function PortfolioDetailPage({ item }) {
                     aspectRatio="aspect-[4/3]"
                   />
                 ) : (
-                  <div className="aspect-[4/3] w-full bg-[radial-gradient(circle_at_30%_30%,rgba(185,154,69,0.22),transparent_55%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.01))] flex items-center justify-center">
+                  <div className="flex aspect-[4/3] w-full items-center justify-center bg-[radial-gradient(circle_at_30%_30%,rgba(185,154,69,0.22),transparent_55%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.01))]">
                     <div className="text-center">
-                      <div className="mx-auto h-16 w-16 rounded-full border border-accent/20 bg-accent/[0.06] flex items-center justify-center">
+                      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-accent/20 bg-accent/[0.06]">
                         <svg
                           aria-hidden="true"
                           className="h-8 w-8 text-accent/40"
@@ -105,8 +99,10 @@ export function PortfolioDetailPage({ item }) {
                 )}
               </div>
 
-              {/* Project details */}
-              <div className="space-y-6">
+              {/* Right column — project details + single CTA */}
+              <div className="space-y-5">
+
+                {/* Project info card — summary shown here only */}
                 <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_60px_rgba(185,154,69,0.05)]">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                     Project Overview
@@ -115,7 +111,7 @@ export function PortfolioDetailPage({ item }) {
                     About this project
                   </h2>
                   {summary ? (
-                    <p className="mt-5 text-base leading-7 text-text/75">
+                    <p className="mt-5 break-words text-base leading-7 text-text/75">
                       {summary}
                     </p>
                   ) : null}
@@ -126,7 +122,7 @@ export function PortfolioDetailPage({ item }) {
                         <dt className="w-24 shrink-0 text-xs font-semibold uppercase tracking-[0.22em] text-text/40">
                           Category
                         </dt>
-                        <dd className="text-sm text-text/75">{category}</dd>
+                        <dd className="min-w-0 break-words text-sm text-text/75">{category}</dd>
                       </div>
                       <div className="flex items-start gap-3">
                         <dt className="w-24 shrink-0 text-xs font-semibold uppercase tracking-[0.22em] text-text/40">
@@ -144,6 +140,7 @@ export function PortfolioDetailPage({ item }) {
                   </div>
                 </div>
 
+                {/* Single CTA card */}
                 <div className="rounded-[2rem] border border-accent/20 bg-accent/[0.06] p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                     Interested in a similar project?
@@ -152,41 +149,15 @@ export function PortfolioDetailPage({ item }) {
                     Let&apos;s discuss your vision.
                   </h2>
                   <p className="mt-4 text-base leading-7 text-text/72">
-                    Tell us about your renovation goals and we will shape a plan
-                    around your space, timeline, and budget.
+                    Tell us about your renovation goals and we will shape a
+                    plan around your space, timeline, and budget.
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Button href="/contact">Start your project</Button>
                     <Button href="/portfolio" variant="ghost">
-                      View all projects
+                      All projects
                     </Button>
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </FadeInSection>
-
-        {/* Bottom CTA band */}
-        <FadeInSection delay={0.12}>
-          <section className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
-              <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-                    Our Portfolio
-                  </p>
-                  <h2 className="mt-3 break-words font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
-                    Explore more projects
-                  </h2>
-                  <p className="mt-3 max-w-xl text-base leading-7 text-text/70">
-                    Browse our full portfolio of renovation and design work across Canada — from custom homes to kitchen remodels and basement finishing.
-                  </p>
-                </div>
-                <div className="shrink-0">
-                  <Button href="/portfolio" variant="ghost">
-                    All projects
-                  </Button>
                 </div>
               </div>
             </div>
