@@ -4,14 +4,18 @@ Brilliance Studio is a premium Next.js website for a luxury home renovation and 
 
 - Marketing, service, portfolio, and legal pages
 - Dynamic service detail pages backed by static content with optional DB overrides
-- A central contact inquiry form with service selection and SMTP email delivery
+- Individual portfolio project detail pages (`/portfolio/[slug]`) with image, description, and CTA
+- A central contact inquiry form with custom accessible service dropdown and SMTP email delivery
 - PostgreSQL + Prisma persistence for CMS content
 - Locally managed CMS for services, portfolio, terms, and imprint with static fallback
+- Canada-specific Terms of Service (PIPEDA, Construction Act, WSIB, HST/GST, warranties)
+- Canada-specific Imprint with CRA Business Number, trade licensing, and consumer protection disclosures
 - Protected admin panel via NextAuth with auto-logout after 10 minutes of inactivity
 - Image upload support in the admin panel (JPEG, PNG, WebP, GIF, SVG)
 - Google Analytics / GTM integration with category-based cookie consent
-- Global scroll indicator and animated UI interactions via Framer Motion
-- Fully accessible forms with ARIA attributes and keyboard navigation
+- Global scroll indicator on all public pages with automatic hide-on-scroll
+- Animated UI interactions via Framer Motion with `prefers-reduced-motion` support
+- Fully accessible forms with ARIA attributes, custom combobox dropdown, and keyboard navigation
 - SEO-optimized pages with per-page meta tags, Open Graph, and JSON-LD structured data
 
 The project uses a hybrid setup:
@@ -142,6 +146,8 @@ components/ui/        Low-level UI primitives (Logo)
 lib/                  Auth, local content, Prisma, utilities, and consent logic
 pages/                Main site routes and API routes
 pages/api/            Contact, auth, upload, and health endpoints
+pages/portfolio/      Portfolio listing (index.js) and detail pages ([slug].js)
+pages/services/       Services listing (index.js) and detail pages ([slug].js)
 prisma/               Prisma schema, migrations, and seed script
 public/               Static assets and placeholder images
 public/uploads/       User-uploaded images via the admin panel
@@ -157,14 +163,15 @@ next.config.ts        Next.js runtime and image configuration
 - `/` - homepage with hero, services preview, and portfolio teasers
 - `/services` - CMS-driven services overview with all 7 service categories
 - `/services/[slug]` - individual service detail page with benefits and CTA
-- `/portfolio` - CMS-driven portfolio showcase
-- `/contact` - contact inquiry form with ARIA-accessible validation
+- `/portfolio` - CMS-driven portfolio showcase; each card links to its detail page
+- `/portfolio/[slug]` - individual portfolio project detail page with image, description, metadata, and CTA
+- `/contact` - contact form with custom accessible service dropdown and ARIA validation
 - `/about` - studio overview with values and brand statement
-- `/terms` - terms of service and PIPEDA-aligned privacy commitments
-- `/impressum` - imprint / legal company information
-- `/login` - admin login (no site chrome)
+- `/terms` - Canada-specific terms of service and PIPEDA-aligned privacy commitments
+- `/impressum` - Canada-specific imprint with CRA BN, HST, WSIB, trade licensing, and consumer protection
+- `/login` - admin login (no site chrome — header, footer, analytics excluded)
 - `/admin` - protected local admin dashboard
-- `/admin/services` - protected services content manager
+- `/admin/services` - protected services content manager with image upload
 - `/admin/portfolio` - protected portfolio content manager with image upload
 
 ### API routes
