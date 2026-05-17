@@ -28,7 +28,7 @@ export function Hero() {
             Premium Renovation Studio
           </motion.span>
           <motion.h1
-            className="mt-8 font-fantasy text-3xl uppercase tracking-[0.1em] text-text sm:text-4xl md:text-5xl xl:text-6xl"
+            className="mt-8 font-fantasy text-5xl uppercase tracking-[0.1em] text-text"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{
