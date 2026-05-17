@@ -69,13 +69,13 @@ function ServiceMenuLink({
       )}
       onClick={onClick}
     >
-      <span className="flex items-center gap-3">
+      <span className="flex min-w-0 flex-1 items-center gap-3">
         <Icon
           aria-hidden="true"
           className="h-[18px] w-[18px] shrink-0 translate-x-0 text-white/40 transition-all duration-200 ease-in-out group-hover:translate-x-1 group-hover:text-accent"
           strokeWidth={1.6}
         />
-        <span className="transition-colors duration-200 ease-in-out">
+        <span className="min-w-0 break-words transition-colors duration-200 ease-in-out">
           {label}
         </span>
       </span>

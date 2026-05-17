@@ -22,7 +22,7 @@ export function PageIntro({
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
           {eyebrow}
         </p>
-        <h1 className="mt-5 font-fantasy text-4xl uppercase tracking-[0.1em] text-text sm:text-5xl">
+        <h1 className="mt-5 break-words font-fantasy text-4xl uppercase tracking-[0.1em] text-text sm:text-5xl">
           {title}
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-text/75">

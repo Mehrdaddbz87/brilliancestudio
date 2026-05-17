@@ -43,7 +43,7 @@ export function Card({
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent/80">
         {eyebrow}
       </p>
-      <h3 className="mt-4 font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
+      <h3 className="mt-4 break-words font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
         {title}
       </h3>
       <p className="mt-4 text-lg leading-7 text-text/72">{description}</p>

@@ -14,7 +14,7 @@ function TextSection({ section }) {
           {section.eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+      <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
         {section.heading}
       </h2>
       <p className="mt-5 max-w-3xl text-lg leading-8 text-text/75">
@@ -35,14 +35,14 @@ function FeatureListSection({ section }) {
           {section.eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+      <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
         {section.heading}
       </h2>
       <ul className="mt-6 grid gap-4 md:grid-cols-2">
         {section.items?.map((item) => (
           <li
             key={item}
-            className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-text/80"
+            className="min-w-0 break-words rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-text/80"
           >
             {item}
           </li>
@@ -63,7 +63,7 @@ function CtaSection({ section }) {
           {section.eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+      <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
         {section.heading}
       </h2>
       <p className="mt-5 max-w-3xl text-lg leading-8 text-text/75">
@@ -94,7 +94,7 @@ function GallerySection({ section }) {
           {section.eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+      <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
         {section.heading}
       </h2>
       <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

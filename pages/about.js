@@ -41,7 +41,7 @@ export default function AboutPage() {
 
         <FadeInSection delay={0.08}>
           <section className="mx-auto mt-12 grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
+            <div className="min-w-0 rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
               <h2 className="font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
                 Company Introduction
               </h2>
@@ -59,7 +59,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-accent/20 bg-accent/[0.06] p-8">
+            <div className="min-w-0 rounded-[2rem] border border-accent/20 bg-accent/[0.06] p-8">
               <h2 className="font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
                 Brand Statement
               </h2>
@@ -96,7 +96,7 @@ export default function AboutPage() {
                 {values.map((value) => (
                   <article
                     key={value.title}
-                    className="rounded-[1.5rem] border border-white/10 bg-black/25 p-5"
+                    className="min-w-0 rounded-[1.5rem] border border-white/10 bg-black/25 p-5"
                   >
                     <h3 className="font-fantasy text-xl uppercase tracking-[0.08em] text-accent">
                       {value.title}

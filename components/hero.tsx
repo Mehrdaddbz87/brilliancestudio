@@ -66,7 +66,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="grid gap-4 self-end sm:grid-cols-3 lg:grid-cols-1">
+        <div className="grid gap-4 self-end md:grid-cols-3 lg:grid-cols-1">
           {[
             ["Approach", "Craftsmanship & precision."],
             ["Services", "Design, build, transform."],
@@ -86,7 +86,7 @@ export function Hero() {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-text/45">
                 {label}
               </p>
-              <p className="mt-3 font-fantasy text-xl uppercase tracking-[0.08em] text-accent">
+              <p className="mt-3 break-words font-fantasy text-xl uppercase tracking-[0.08em] text-accent">
                 {value}
               </p>
             </motion.div>

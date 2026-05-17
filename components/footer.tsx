@@ -107,10 +107,10 @@ export function Footer() {
           <div className="mt-6 space-y-3">
             <a
               href="mailto:hello@example.com"
-              className="flex items-center gap-2 text-sm text-text/60 transition hover:text-accent"
+              className="flex min-w-0 items-center gap-2 text-sm text-text/60 transition hover:text-accent"
             >
               <MailIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
-              hello@example.com
+              <span className="break-all">hello@example.com</span>
             </a>
             <p className="flex items-center gap-2 text-sm text-text/60">
               <MapPinIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
@@ -140,13 +140,12 @@ export function Footer() {
             {navLinks.map((link) => (
               <li key={link.label}>
                 <motion.div
-                  className="w-fit"
                   whileHover={linkHover}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-9 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
+                    className="inline-flex min-h-9 min-w-0 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
                   >
                     {link.label}
                   </Link>
@@ -165,15 +164,14 @@ export function Footer() {
             {serviceLinks.map((link) => (
               <li key={link.label}>
                 <motion.div
-                  className="w-fit"
                   whileHover={linkHover}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-9 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
+                    className="inline-flex min-h-9 min-w-0 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
                   >
-                    {link.label}
+                    <span className="break-words">{link.label}</span>
                   </Link>
                 </motion.div>
               </li>
@@ -190,13 +188,12 @@ export function Footer() {
             {legalLinks.map((link) => (
               <li key={link.label}>
                 <motion.div
-                  className="w-fit"
                   whileHover={linkHover}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-9 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
+                    className="inline-flex min-h-9 min-w-0 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
                   >
                     {link.label}
                   </Link>

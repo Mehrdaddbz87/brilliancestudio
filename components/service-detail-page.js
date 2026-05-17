@@ -41,11 +41,11 @@ export function ServiceDetailPage({ service }) {
 
         <FadeInSection delay={0.08}>
           <section className="mx-auto mt-12 grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-            <article className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
+            <article className="min-w-0 rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Service Overview
               </p>
-              <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+              <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
                 What to expect from our {service.title.toLowerCase()} service.
               </h2>
               {extraDescriptions.length > 0 ? (
@@ -63,7 +63,7 @@ export function ServiceDetailPage({ service }) {
               )}
             </article>
 
-            <aside className="space-y-6">
+            <aside className="min-w-0 space-y-6">
               {benefits.length > 0 && (
                 <div className="rounded-[2rem] border border-accent/20 bg-accent/[0.06] p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
@@ -76,7 +76,7 @@ export function ServiceDetailPage({ service }) {
                     {benefits.map((benefit) => (
                       <li key={benefit} className="flex items-start gap-3">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                        <span className="text-base leading-7 text-text/80">{benefit}</span>
+                        <span className="min-w-0 break-words text-base leading-7 text-text/80">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -102,7 +102,7 @@ export function ServiceDetailPage({ service }) {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Next Step
               </p>
-              <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+              <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
                 Ready to discuss your {service.title.toLowerCase()} project?
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-text/75">
