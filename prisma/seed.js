@@ -428,8 +428,8 @@ async function seedCms() {
             },
             {
               label: "General inquiries",
-              value: "hello@brilliancestudio.ca",
-              href: "mailto:hello@brilliancestudio.ca",
+              value: "info@brilliancestudio.ca",
+              href: "mailto:info@brilliancestudio.ca",
             },
           ],
         },
@@ -465,8 +465,8 @@ async function seedCms() {
             },
             {
               label: "Email",
-              value: "hello@brilliancestudio.ca",
-              href: "mailto:hello@brilliancestudio.ca",
+              value: "info@brilliancestudio.ca",
+              href: "mailto:info@brilliancestudio.ca",
             },
             {
               label: "Website",
@@ -504,8 +504,8 @@ async function seedCms() {
             },
             {
               label: "General inquiries",
-              value: "hello@brilliancestudio.ca",
-              href: "mailto:hello@brilliancestudio.ca",
+              value: "info@brilliancestudio.ca",
+              href: "mailto:info@brilliancestudio.ca",
             },
             {
               label: "Federal Privacy Commissioner",
