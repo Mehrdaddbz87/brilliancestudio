@@ -6,24 +6,36 @@ async function seedCms() {
   await prisma.servicePage.upsert({
     where: { slug: "services" },
     update: {
-      eyebrow: "Database CMS",
+      eyebrow: "Services",
       title: "Services",
       description:
-        "High-end renovation and design services managed through Prisma and PostgreSQL.",
-      seoTitle: "Services | Brilliance Studio",
+        "High-end renovation and design services delivered with craftsmanship, precision, and efficient coordination.",
+      seoTitle: "Residential Renovation Services in Canada | Brilliance Studio",
       seoDescription:
-        "Database-backed renovation and design service content for Brilliance Studio in Canada.",
+        "Custom home design-build, additions, kitchen and bathroom remodeling, basement finishing, interior and exterior design, and structural framing — premium renovation services for Canadian homeowners.",
       primaryCtaLabel: "Send inquiry",
       primaryCtaHref: "/contact",
       secondaryCtaLabel: "Contact us",
       secondaryCtaHref: "/contact",
       sections: [
         {
-          _key: "db-services-1",
+          _key: "services-text-1",
           _type: "textSection",
-          eyebrow: "Database Seed",
-          heading: "Service page content from PostgreSQL",
-          body: "This sample content is stored in PostgreSQL via Prisma and can be used as a structured fallback for your CMS-driven pages.",
+          eyebrow: "Our Approach",
+          heading: "Design-build coordination from first brief to final finish.",
+          body: "Every renovation project at Brilliance Studio is coordinated under one clear process — from early design direction and material planning through structural execution and final detailing. We work with homeowners across Canada to deliver spaces that feel elevated, efficient, and built with long-term value in mind.",
+        },
+        {
+          _key: "services-features-1",
+          _type: "featureListSection",
+          eyebrow: "Why Brilliance Studio",
+          heading: "What sets our renovation services apart.",
+          items: [
+            "Integrated design and build coordination under one team",
+            "Premium material selections and refined finish detailing",
+            "Transparent project planning with realistic timelines",
+            "Dedicated focus on craftsmanship and quality at every phase",
+          ],
         },
       ],
       items: {
@@ -36,7 +48,7 @@ async function seedCms() {
             description:
               "End-to-end planning and execution for clients seeking a refined, custom-built home.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Custom home design and build placeholder",
+            imageAlt: "Custom home design and build",
             sortOrder: 1,
           },
           {
@@ -46,7 +58,7 @@ async function seedCms() {
             description:
               "Integrated home additions designed to expand space and preserve architectural continuity.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Home additions placeholder",
+            imageAlt: "Home additions",
             sortOrder: 2,
           },
           {
@@ -56,7 +68,7 @@ async function seedCms() {
             description:
               "Kitchen renovations focused on flow, material quality, and polished everyday performance.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Kitchen remodeling placeholder",
+            imageAlt: "Kitchen remodeling",
             sortOrder: 3,
           },
           {
@@ -66,7 +78,7 @@ async function seedCms() {
             description:
               "High-end bathroom upgrades shaped around comfort, durability, and elegant detailing.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Bathroom remodeling placeholder",
+            imageAlt: "Bathroom remodeling",
             sortOrder: 4,
           },
           {
@@ -76,7 +88,7 @@ async function seedCms() {
             description:
               "Unified design direction for interior and exterior spaces with premium visual clarity.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Interior and exterior design placeholder",
+            imageAlt: "Interior and exterior design",
             sortOrder: 5,
           },
           {
@@ -86,7 +98,7 @@ async function seedCms() {
             description:
               "Precise structural and framing work that supports safe, design-led renovation.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Structural modifications and framing placeholder",
+            imageAlt: "Structural modifications and framing",
             sortOrder: 6,
           },
           {
@@ -96,7 +108,7 @@ async function seedCms() {
             description:
               "Finished basement spaces designed for comfort, function, and long-term value.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Basement finishing placeholder",
+            imageAlt: "Basement finishing",
             sortOrder: 7,
           },
         ],
@@ -104,24 +116,36 @@ async function seedCms() {
     },
     create: {
       slug: "services",
-      eyebrow: "Database CMS",
+      eyebrow: "Services",
       title: "Services",
       description:
-        "High-end renovation and design services managed through Prisma and PostgreSQL.",
-      seoTitle: "Services | Brilliance Studio",
+        "High-end renovation and design services delivered with craftsmanship, precision, and efficient coordination.",
+      seoTitle: "Residential Renovation Services in Canada | Brilliance Studio",
       seoDescription:
-        "Database-backed renovation and design service content for Brilliance Studio in Canada.",
+        "Custom home design-build, additions, kitchen and bathroom remodeling, basement finishing, interior and exterior design, and structural framing — premium renovation services for Canadian homeowners.",
       primaryCtaLabel: "Send inquiry",
       primaryCtaHref: "/contact",
       secondaryCtaLabel: "Contact us",
       secondaryCtaHref: "/contact",
       sections: [
         {
-          _key: "db-services-1",
+          _key: "services-text-1",
           _type: "textSection",
-          eyebrow: "Database Seed",
-          heading: "Service page content from PostgreSQL",
-          body: "This sample content is stored in PostgreSQL via Prisma and can be used as a structured fallback for your CMS-driven pages.",
+          eyebrow: "Our Approach",
+          heading: "Design-build coordination from first brief to final finish.",
+          body: "Every renovation project at Brilliance Studio is coordinated under one clear process — from early design direction and material planning through structural execution and final detailing. We work with homeowners across Canada to deliver spaces that feel elevated, efficient, and built with long-term value in mind.",
+        },
+        {
+          _key: "services-features-1",
+          _type: "featureListSection",
+          eyebrow: "Why Brilliance Studio",
+          heading: "What sets our renovation services apart.",
+          items: [
+            "Integrated design and build coordination under one team",
+            "Premium material selections and refined finish detailing",
+            "Transparent project planning with realistic timelines",
+            "Dedicated focus on craftsmanship and quality at every phase",
+          ],
         },
       ],
       items: {
@@ -133,7 +157,7 @@ async function seedCms() {
             description:
               "End-to-end planning and execution for clients seeking a refined, custom-built home.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Custom home design and build placeholder",
+            imageAlt: "Custom home design and build",
             sortOrder: 1,
           },
           {
@@ -143,7 +167,7 @@ async function seedCms() {
             description:
               "Integrated home additions designed to expand space and preserve architectural continuity.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Home additions placeholder",
+            imageAlt: "Home additions",
             sortOrder: 2,
           },
           {
@@ -153,7 +177,7 @@ async function seedCms() {
             description:
               "Kitchen renovations focused on flow, material quality, and polished everyday performance.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Kitchen remodeling placeholder",
+            imageAlt: "Kitchen remodeling",
             sortOrder: 3,
           },
           {
@@ -163,7 +187,7 @@ async function seedCms() {
             description:
               "High-end bathroom upgrades shaped around comfort, durability, and elegant detailing.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Bathroom remodeling placeholder",
+            imageAlt: "Bathroom remodeling",
             sortOrder: 4,
           },
           {
@@ -173,7 +197,7 @@ async function seedCms() {
             description:
               "Unified design direction for interior and exterior spaces with premium visual clarity.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Interior and exterior design placeholder",
+            imageAlt: "Interior and exterior design",
             sortOrder: 5,
           },
           {
@@ -183,7 +207,7 @@ async function seedCms() {
             description:
               "Precise structural and framing work that supports safe, design-led renovation.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Structural modifications and framing placeholder",
+            imageAlt: "Structural modifications and framing",
             sortOrder: 6,
           },
           {
@@ -193,7 +217,7 @@ async function seedCms() {
             description:
               "Finished basement spaces designed for comfort, function, and long-term value.",
             imageUrl: "/images/placeholders/service.svg",
-            imageAlt: "Basement finishing placeholder",
+            imageAlt: "Basement finishing",
             sortOrder: 7,
           },
         ],
@@ -204,28 +228,35 @@ async function seedCms() {
   await prisma.referencePage.upsert({
     where: { slug: "references" },
     update: {
-      eyebrow: "Database CMS",
+      eyebrow: "Portfolio",
       title: "Our Portfolio",
       description:
-        "Explore our latest renovation and design projects",
-      seoTitle: "Portfolio | Brilliance Studio",
+        "Explore our renovation and design projects across Canada — crafted with precision, premium materials, and a refined eye for detail.",
+      seoTitle: "Renovation & Interior Design Portfolio | Brilliance Studio Canada",
       seoDescription:
-        "Explore our renovation and design portfolio across Canada. High-end craftsmanship and modern living spaces.",
-      primaryCtaLabel: "Discuss project",
+        "Explore curated Canadian residential renovations and high-end interiors — custom homes, kitchens, baths, additions, basements, and structural transformations.",
+      primaryCtaLabel: "Discuss your project",
       primaryCtaHref: "/contact",
       secondaryCtaLabel: "Meet the studio",
       secondaryCtaHref: "/about",
       sections: [
         {
-          _key: "db-references-1",
+          _key: "references-text-1",
+          _type: "textSection",
+          eyebrow: "Craftsmanship",
+          heading: "Craftsmanship and transformation in focus.",
+          body: "Our portfolio highlights renovation and design work shaped by precision, craftsmanship, and a modern understanding of how people want to live. Each project is presented as a study in thoughtful transformation, refined finishes, and high-end execution.",
+        },
+        {
+          _key: "references-features-1",
           _type: "featureListSection",
-          eyebrow: "Database Seed",
-          heading: "Portfolio content managed in PostgreSQL",
+          eyebrow: "What We Deliver",
+          heading: "Every project shaped by the same high standard.",
           items: [
-            "Portfolio cards",
-            "Project images",
-            "SEO metadata",
-            "Flexible supporting sections",
+            "Precise structural and construction execution across all phases",
+            "Premium materials selected for durability and refined aesthetics",
+            "Design coordination that keeps visual consistency through the build",
+            "Clear communication and planning that protects timeline and quality",
           ],
         },
       ],
@@ -233,33 +264,33 @@ async function seedCms() {
         deleteMany: {},
         create: [
           {
-            slug: "maison-aurelia",
-            category: "Lifestyle",
-            title: "Maison Aurelia",
+            slug: "whole-home-renovation",
+            category: "Custom Home",
+            title: "Whole-Home Renovation",
             summary:
-              "Editorial launch presence with cinematic pacing and premium visual restraint.",
+              "A complete whole-home transformation — structural modifications, open-concept redesign, premium finishes, and precise coordination from concept through completion.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Lifestyle reference placeholder",
+            imageAlt: "Whole-home renovation project",
             sortOrder: 1,
           },
           {
-            slug: "velour-residence",
-            category: "Real Estate",
-            title: "Velour Residence",
+            slug: "kitchen-open-concept-remodel",
+            category: "Kitchen Renovation",
+            title: "Kitchen & Open-Concept Remodel",
             summary:
-              "Elegant property storytelling focused on trust, atmosphere, and inquiries.",
+              "Load-bearing wall removal, custom cabinetry, quartz countertops, and a seamless connection between kitchen, dining, and living spaces.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Real estate reference placeholder",
+            imageAlt: "Kitchen and open-concept remodel project",
             sortOrder: 2,
           },
           {
-            slug: "noir-atelier",
-            category: "Design Studio",
-            title: "Noir Atelier",
+            slug: "primary-bathroom-transformation",
+            category: "Bathroom Renovation",
+            title: "Primary Bathroom Transformation",
             summary:
-              "A refined digital identity for a selective, design-led studio practice.",
+              "A spa-inspired primary bathroom with heated floors, custom tile work, freestanding soaker tub, and refined fixtures selected for durability and luxury feel.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Design studio reference placeholder",
+            imageAlt: "Primary bathroom renovation project",
             sortOrder: 3,
           },
         ],
@@ -267,61 +298,68 @@ async function seedCms() {
     },
     create: {
       slug: "references",
-      eyebrow: "Database CMS",
+      eyebrow: "Portfolio",
       title: "Our Portfolio",
       description:
-        "Explore our latest renovation and design projects",
-      seoTitle: "Portfolio | Brilliance Studio",
+        "Explore our renovation and design projects across Canada — crafted with precision, premium materials, and a refined eye for detail.",
+      seoTitle: "Renovation & Interior Design Portfolio | Brilliance Studio Canada",
       seoDescription:
-        "Explore our renovation and design portfolio across Canada. High-end craftsmanship and modern living spaces.",
-      primaryCtaLabel: "Discuss project",
+        "Explore curated Canadian residential renovations and high-end interiors — custom homes, kitchens, baths, additions, basements, and structural transformations.",
+      primaryCtaLabel: "Discuss your project",
       primaryCtaHref: "/contact",
       secondaryCtaLabel: "Meet the studio",
       secondaryCtaHref: "/about",
       sections: [
         {
-          _key: "db-references-1",
+          _key: "references-text-1",
+          _type: "textSection",
+          eyebrow: "Craftsmanship",
+          heading: "Craftsmanship and transformation in focus.",
+          body: "Our portfolio highlights renovation and design work shaped by precision, craftsmanship, and a modern understanding of how people want to live. Each project is presented as a study in thoughtful transformation, refined finishes, and high-end execution.",
+        },
+        {
+          _key: "references-features-1",
           _type: "featureListSection",
-          eyebrow: "Database Seed",
-          heading: "Portfolio content managed in PostgreSQL",
+          eyebrow: "What We Deliver",
+          heading: "Every project shaped by the same high standard.",
           items: [
-            "Portfolio cards",
-            "Project images",
-            "SEO metadata",
-            "Flexible supporting sections",
+            "Precise structural and construction execution across all phases",
+            "Premium materials selected for durability and refined aesthetics",
+            "Design coordination that keeps visual consistency through the build",
+            "Clear communication and planning that protects timeline and quality",
           ],
         },
       ],
       items: {
         create: [
           {
-            slug: "maison-aurelia",
-            category: "Lifestyle",
-            title: "Maison Aurelia",
+            slug: "whole-home-renovation",
+            category: "Custom Home",
+            title: "Whole-Home Renovation",
             summary:
-              "Editorial launch presence with cinematic pacing and premium visual restraint.",
+              "A complete whole-home transformation — structural modifications, open-concept redesign, premium finishes, and precise coordination from concept through completion.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Lifestyle reference placeholder",
+            imageAlt: "Whole-home renovation project",
             sortOrder: 1,
           },
           {
-            slug: "velour-residence",
-            category: "Real Estate",
-            title: "Velour Residence",
+            slug: "kitchen-open-concept-remodel",
+            category: "Kitchen Renovation",
+            title: "Kitchen & Open-Concept Remodel",
             summary:
-              "Elegant property storytelling focused on trust, atmosphere, and inquiries.",
+              "Load-bearing wall removal, custom cabinetry, quartz countertops, and a seamless connection between kitchen, dining, and living spaces.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Real estate reference placeholder",
+            imageAlt: "Kitchen and open-concept remodel project",
             sortOrder: 2,
           },
           {
-            slug: "noir-atelier",
-            category: "Design Studio",
-            title: "Noir Atelier",
+            slug: "primary-bathroom-transformation",
+            category: "Bathroom Renovation",
+            title: "Primary Bathroom Transformation",
             summary:
-              "A refined digital identity for a selective, design-led studio practice.",
+              "A spa-inspired primary bathroom with heated floors, custom tile work, freestanding soaker tub, and refined fixtures selected for durability and luxury feel.",
             imageUrl: "/images/placeholders/reference.svg",
-            imageAlt: "Design studio reference placeholder",
+            imageAlt: "Primary bathroom renovation project",
             sortOrder: 3,
           },
         ],
@@ -333,34 +371,65 @@ async function seedCms() {
     {
       slug: "terms",
       eyebrow: "Legal",
-      title: "Terms & Privacy Commitments",
+      title: "Terms of Service & Privacy",
       description:
-        "Sample legal and privacy content stored in PostgreSQL via Prisma for Canadian operations.",
-      seoTitle: "Terms | Brilliance Studio",
+        "Service terms, project agreements, payment conditions, warranty commitments, and privacy standards for Brilliance Studio — prepared for Canadian renovation and design operations.",
+      seoTitle: "Terms of Service & Privacy | Brilliance Studio Canada",
       seoDescription:
-        "Sample database-backed terms and privacy commitments page.",
+        "Terms of service for Brilliance Studio renovation and design services in Canada — covering project scope, payments, permits, warranties, holdbacks, and PIPEDA-aligned privacy commitments.",
       sections: [
         {
           _key: "terms-1",
           eyebrow: "Services",
           heading: "Scope of Services",
-          body: "Define project scope, deliverables, approvals, revisions, and acceptance criteria for each engagement.",
+          body: "Brilliance Studio provides residential renovation, interior and exterior design, design-build coordination, structural modifications, and related construction services across Canada. Each project is governed by a written proposal or statement of work that defines the scope, phases, materials, timelines, and completion criteria.\n\nAll services are performed in accordance with applicable provincial building codes, the National Building Code of Canada (NBC), and local municipal requirements.",
           listItems: [
-            "Written proposals define the applicable scope.",
-            "Additional requests may require re-estimation.",
-            "Client delays may affect launch dates.",
+            "Project scope, phases, and deliverables must be agreed in writing prior to construction start.",
+            "Change requests, material substitutions, or additions to scope require a written change order.",
+            "Client selections, approvals, site access, and permit readiness directly affect construction timelines.",
+            "Licensed subcontractors may be engaged for specialized trades including electrical, plumbing, HVAC, and structural work.",
           ],
         },
         {
           _key: "terms-2",
+          eyebrow: "Payment",
+          heading: "Payment Schedule, Holdback, and Change Orders",
+          body: "Renovation projects are invoiced on a milestone basis. A deposit is required before project mobilization, with progress payments tied to defined construction phases. The final payment is due upon substantial completion and client sign-off.\n\nIn accordance with provincial construction lien legislation — including Ontario's Construction Act — a statutory holdback of 10% of the value of services and materials may be retained by the owner until the holdback release period has expired.",
+          listItems: [
+            "Deposit amount and milestone payment schedule are defined in each project proposal.",
+            "All pricing is in Canadian dollars (CAD) and excludes applicable taxes (HST/GST) unless stated otherwise.",
+            "The statutory holdback period under applicable provincial construction legislation must expire before final holdback release.",
+            "Brilliance Studio reserves the right to pause work if invoices remain unpaid beyond the agreed terms.",
+          ],
+        },
+        {
+          _key: "terms-3",
           eyebrow: "Privacy",
-          heading: "PIPEDA-Aligned Information Handling",
-          body: "Explain how personal information is collected, used, safeguarded, retained, and disclosed in a manner appropriate for Canadian operations.",
+          heading: "Personal Information and PIPEDA Compliance",
+          body: "Brilliance Studio collects personal information solely for the purposes of responding to inquiries, preparing estimates, delivering contracted services, and maintaining business records.\n\nBrilliance Studio operates in a manner consistent with the Personal Information Protection and Electronic Documents Act (PIPEDA) and applicable provincial privacy legislation. Personal information is not sold, rented, or disclosed to third parties except as required to deliver services or as required by law.",
+          listItems: [
+            "Information is collected only to the extent necessary for the purpose stated at collection.",
+            "Reasonable technical and organizational safeguards are maintained to protect personal data.",
+            "Clients may request access to, correction of, or deletion of their personal information at any time.",
+            "Personal information is retained only as long as required for business, legal, or tax purposes.",
+          ],
+          note: "This page provides a general legal foundation for Canadian residential renovation operations. It is not a substitute for advice from a qualified Canadian lawyer.",
+        },
+        {
+          _key: "terms-4",
+          eyebrow: "Privacy",
+          heading: "Consent, Access, and Contact",
+          body: "By submitting an inquiry through the Brilliance Studio website, you consent to Brilliance Studio using your contact information to respond to your request and to follow up regarding your renovation project. You may withdraw consent at any time by contacting us directly.",
           contactItems: [
             {
               label: "Privacy requests",
               value: "privacy@brilliancestudio.ca",
               href: "mailto:privacy@brilliancestudio.ca",
+            },
+            {
+              label: "General inquiries",
+              value: "hello@brilliancestudio.ca",
+              href: "mailto:hello@brilliancestudio.ca",
             },
           ],
         },
@@ -371,30 +440,48 @@ async function seedCms() {
       eyebrow: "Legal",
       title: "Imprint",
       description:
-        "Sample business disclosure and privacy contact content stored in PostgreSQL via Prisma.",
+        "Business identity, legal disclosures, and privacy contact information for Brilliance Studio.",
       seoTitle: "Imprint | Brilliance Studio",
       seoDescription:
-        "Sample database-backed business disclosure and privacy contact page.",
+        "Business and privacy contact information for Brilliance Studio — prepared for Canadian operations and transparent legal disclosure.",
       sections: [
         {
           _key: "impressum-1",
           eyebrow: "Business Identity",
           heading: "Company Information",
-          body: "Add registered company name, address, business email, and jurisdiction-specific disclosure details here.",
+          body: "Replace the sample details below with the exact legal business name, registration details, and mailing address that apply to Brilliance Studio before launch.",
           contactItems: [
+            {
+              label: "Business name",
+              value: "Brilliance Studio",
+            },
             {
               label: "Email",
               value: "hello@brilliancestudio.ca",
               href: "mailto:hello@brilliancestudio.ca",
             },
+            {
+              label: "Website",
+              value: "https://brilliancestudio.ca",
+              href: "https://brilliancestudio.ca",
+            },
+            {
+              label: "Mailing address",
+              value: "Canada",
+            },
           ],
         },
         {
           _key: "impressum-2",
-          eyebrow: "Privacy",
-          heading: "Responsible Person",
-          body: "List the responsible contact for legal notices and privacy inquiries here.",
+          eyebrow: "Responsible Party",
+          heading: "Responsible Person and Contact Channels",
+          body: "Identify the person or team responsible for legal notices, contractual matters, and privacy-related communications.",
           contactItems: [
+            {
+              label: "Legal notices",
+              value: "legal@brilliancestudio.ca",
+              href: "mailto:legal@brilliancestudio.ca",
+            },
             {
               label: "Privacy officer",
               value: "privacy@brilliancestudio.ca",
@@ -424,17 +511,17 @@ async function seedSubmissions() {
         name: "Anna Becker",
         email: "anna@example.com",
         service: "Custom Home Design & Build",
-        company: "Maison Aurelia",
+        company: null,
         message:
-          "We need a refined landing experience for an upcoming product launch.",
+          "We are planning a full custom home build and would like to discuss scope, timeline, and design direction.",
       },
       {
         name: "Luca Hartmann",
         email: "luca@example.com",
-        service: "Interior & Exterior Design",
-        company: "Velour Residence",
+        service: "Kitchen Remodeling",
+        company: null,
         message:
-          "Looking for a premium property presentation website with strong inquiry flow.",
+          "Looking to open up our kitchen into the dining area and upgrade finishes throughout. Interested in a consultation.",
       },
     ],
   });
