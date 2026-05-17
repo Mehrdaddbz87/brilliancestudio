@@ -1,6 +1,7 @@
 import { put } from "@vercel/blob";
 import formidable from "formidable";
 import fs from "fs";
+import path from "path";
 
 import { requireAdminApiSession } from "@/lib/admin-auth";
 
@@ -17,12 +18,12 @@ const ALLOWED_TYPES = [
   "image/gif",
   "image/svg+xml",
 ];
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 function safeFileName(original) {
-  const ext = (original.match(/\.[^.]+$/) || [""])[0].toLowerCase();
-  const base = original
-    .replace(/\.[^.]+$/, "")
+  const ext = path.extname(original || "upload.jpg").toLowerCase() || ".jpg";
+  const base = path
+    .basename(original || "upload", path.extname(original || ""))
     .toLowerCase()
     .replace(/[^a-z0-9]/g, "-")
     .replace(/-+/g, "-")
@@ -40,7 +41,7 @@ export default async function handler(req, res) {
 
   const form = formidable({
     maxFileSize: MAX_FILE_SIZE,
-    filter: ({ mimetype }) => Boolean(mimetype && ALLOWED_TYPES.includes(mimetype)),
+    keepExtensions: true,
   });
 
   form.parse(req, async (err, _fields, files) => {
@@ -54,38 +55,40 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "No file received." });
     }
 
-    if (!ALLOWED_TYPES.includes(file.mimetype)) {
-      fs.unlink(file.filepath, () => {});
-      return res.status(400).json({ error: "File type not allowed." });
+    const mimeType = file.mimetype || "image/jpeg";
+
+    if (!ALLOWED_TYPES.includes(mimeType)) {
+      return res.status(400).json({ error: "File type not allowed. Use JPEG, PNG, WebP, GIF, or SVG." });
     }
 
     try {
       const fileName = safeFileName(file.originalFilename || "upload.jpg");
       const fileBuffer = fs.readFileSync(file.filepath);
 
-      // Use Vercel Blob in production, local filesystem locally
+      // Production: Vercel Blob
       if (process.env.BLOB_READ_WRITE_TOKEN) {
-        const blob = await put(`portfolio/${fileName}`, fileBuffer, {
+        const blob = await put(fileName, fileBuffer, {
           access: "public",
-          contentType: file.mimetype,
+          contentType: mimeType,
+          token: process.env.BLOB_READ_WRITE_TOKEN,
         });
-        fs.unlink(file.filepath, () => {});
         return res.status(200).json({ url: blob.url });
       }
 
-      // Local development fallback — save to public/uploads/
-      const uploadDir = `${process.cwd()}/public/uploads`;
+      // Local development: save to public/uploads/
+      const uploadDir = path.join(process.cwd(), "public", "uploads");
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
-      const destPath = `${uploadDir}/${fileName}`;
+      const destPath = path.join(uploadDir, fileName);
       fs.copyFileSync(file.filepath, destPath);
-      fs.unlink(file.filepath, () => {});
       return res.status(200).json({ url: `/uploads/${fileName}` });
 
     } catch (error) {
-      fs.unlink(file.filepath, () => {});
-      return res.status(500).json({ error: "Could not save file: " + error.message });
+      console.error("Upload error:", error);
+      return res.status(500).json({ error: "Upload failed: " + (error.message || "Unknown error") });
+    } finally {
+      try { fs.unlinkSync(file.filepath); } catch {}
     }
   });
 }
