@@ -451,13 +451,10 @@ export default function ContactPage() {
                   </p>
                 ) : null}
 
-                <div className="mt-6 flex flex-wrap items-center gap-4">
+                <div className="mt-6">
                   <Button type="submit" disabled={isSubmittingContact}>
                     {isSubmittingContact ? "Sending..." : "Send message"}
                   </Button>
-                  <p className="text-xs text-text/40">
-                    We typically respond within 1–2 business days.
-                  </p>
                 </div>
               </form>
             )}
