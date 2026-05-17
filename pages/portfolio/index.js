@@ -53,8 +53,8 @@ export default function PortfolioPage({ content }) {
                 eyebrow={item.category}
                 title={item.title}
                 description={item.summary}
-                href="/contact"
-                cta="Discuss this style of project"
+                href={item.slug ? `/portfolio/${item.slug}` : "/contact"}
+                cta="View project"
                 media={
                   item.image?.url ? (
                     <ResponsiveImage

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import PortfolioPage from "@/pages/portfolio";
+import PortfolioPage from "@/pages/portfolio/index";
 import ServicesPage, { getServerSideProps } from "@/pages/services";
 import { getPageContent } from "@/lib/content";
 
