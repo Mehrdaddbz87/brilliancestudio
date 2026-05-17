@@ -84,16 +84,6 @@ export function AdminSessionGuard() {
     };
   }, [resetTimer, clearTimers]);
 
-  // Sign out immediately when tab becomes hidden
-  useEffect(() => {
-    function handleVisibility() {
-      if (document.visibilityState === "hidden") {
-        logout();
-      }
-    }
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
-  }, []);
 
   if (!showWarning) return null;
 
