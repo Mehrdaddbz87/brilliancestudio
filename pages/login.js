@@ -55,10 +55,7 @@ export default function LoginPage() {
             <h1 className="mt-5 font-fantasy text-4xl uppercase tracking-[0.08em] text-text">
               Admin Login
             </h1>
-            <p className="mt-5 text-lg leading-8 text-text/75">
-              This area is available only to the authorized admin user and
-              protects the local PostgreSQL-backed content management screens.
-            </p>
+
 
             <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
               <label className="block">
