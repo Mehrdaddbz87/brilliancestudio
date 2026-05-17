@@ -117,7 +117,7 @@ export function Footer() {
               Canada
             </p>
             <motion.a
-              href="https://instagram.com/yourprofile"
+              href="https://www.instagram.com/brilliancestudio.ca/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
