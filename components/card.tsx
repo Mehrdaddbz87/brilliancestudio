@@ -33,7 +33,7 @@ export function Card({
 
   const content = (
     <motion.article
-      className="group h-full rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:border-accent/60 hover:bg-white/[0.05] hover:shadow-[0_0_40px_rgba(185,154,69,0.08)]"
+      className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:border-accent/60 hover:bg-white/[0.05] hover:shadow-[0_0_40px_rgba(185,154,69,0.08)]"
       whileHover={hoverAnimation}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -46,7 +46,7 @@ export function Card({
       <h3 className="mt-4 break-words font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
         {title}
       </h3>
-      <p className="mt-4 text-lg leading-7 text-text/72">{description}</p>
+      <p className="mt-4 line-clamp-4 break-words text-lg leading-7 text-text/72">{description}</p>
       {children ? <div className="mt-6">{children}</div> : null}
       {href ? (
         <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-accent">
