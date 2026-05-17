@@ -1,6 +1,7 @@
 import { Cormorant_Garamond, Inter } from "next/font/google";
 
 import { Analytics } from "@/components/analytics";
+import { AdminSessionGuard } from "@/components/admin/session-guard";
 import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -33,6 +34,7 @@ export default function App({ Component, pageProps, router }) {
         {isAdminRoute ? null : <Footer />}
         {isAdminRoute ? null : <CookieConsentBanner />}
         {isAdminRoute ? null : <ScrollIndicator />}
+        {isAdminRoute ? <AdminSessionGuard /> : null}
       </div>
     </div>
   );
