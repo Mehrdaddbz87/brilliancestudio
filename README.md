@@ -1,13 +1,18 @@
 # Brilliance Studio
 
-Brilliance Studio is a premium Next.js website for a design and renovation brand with:
+Brilliance Studio is a premium Next.js website for a luxury home renovation and design brand with:
 
-- marketing pages and legal pages
-- a central contact inquiry form with service selection
-- PostgreSQL + Prisma persistence
-- locally managed CMS content for services, portfolio, terms, and imprint
-- protected admin access via NextAuth
+- Marketing, service, portfolio, and legal pages
+- Dynamic service detail pages backed by static content with optional DB overrides
+- A central contact inquiry form with service selection and SMTP email delivery
+- PostgreSQL + Prisma persistence for CMS content
+- Locally managed CMS for services, portfolio, terms, and imprint with static fallback
+- Protected admin panel via NextAuth with auto-logout after 10 minutes of inactivity
+- Image upload support in the admin panel (JPEG, PNG, WebP, GIF, SVG)
 - Google Analytics / GTM integration with category-based cookie consent
+- Global scroll indicator and animated UI interactions via Framer Motion
+- Fully accessible forms with ARIA attributes and keyboard navigation
+- SEO-optimized pages with per-page meta tags, Open Graph, and JSON-LD structured data
 
 The project uses a hybrid setup:
 
@@ -25,6 +30,7 @@ The project uses a hybrid setup:
 - `PostgreSQL`
 - `NextAuth.js`
 - `Nodemailer`
+- `Formidable` (multipart file upload handling)
 
 ## Project Setup
 
@@ -34,12 +40,30 @@ The project uses a hybrid setup:
 npm install
 ```
 
-### 2. Configure environment variables
+### 2. Start PostgreSQL
 
-Create or update `.env` with the variables used by the app:
+The easiest way is Docker:
+
+```bash
+docker run --name brilliancestudio-postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=brilliancestudio \
+  -p 5432:5432 \
+  -d postgres:16
+```
+
+To start an existing container after a restart:
+
+```bash
+docker start brilliancestudio-postgres
+```
+
+### 3. Configure environment variables
+
+Create `.env` in the project root:
 
 ```env
-DATABASE_URL=""
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/brilliancestudio?schema=public"
 NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 
 SMTP_HOST="smtp.gmail.com"
@@ -57,13 +81,15 @@ ADMIN_EMAIL=""
 ADMIN_PASSWORD=""
 ```
 
-### 3. Generate Prisma client
+**SMTP note:** Use a Gmail App Password (not your regular password). Generate one at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) after enabling 2-factor authentication. Enter the 16-character password without spaces.
+
+### 4. Generate Prisma client
 
 ```bash
 npm run prisma:generate
 ```
 
-### 4. Run database migrations
+### 5. Run database migrations
 
 ```bash
 npm run prisma:migrate
@@ -75,13 +101,13 @@ For production-style migration execution:
 npm run prisma:migrate:deploy
 ```
 
-### 5. Seed local sample content
+### 6. Seed local sample content
 
 ```bash
 npm run db:seed
 ```
 
-### 6. Start the development server
+### 7. Start the development server
 
 ```bash
 npm run dev
@@ -97,6 +123,9 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run lint` - run ESLint
 - `npm run format` - format the codebase
 - `npm run format:check` - validate formatting without changing files
+- `npm run test` - run Jest unit tests
+- `npm run test:e2e` - run Playwright end-to-end tests (requires dev server running)
+- `npm run test:e2e:headed` - run E2E tests with visible browser
 - `npm run prisma:generate` - generate Prisma client
 - `npm run prisma:migrate` - create and apply local migrations
 - `npm run prisma:migrate:deploy` - apply existing migrations in production
@@ -108,12 +137,16 @@ Open [http://localhost:3000](http://localhost:3000).
 ```text
 app/                  App Router files kept for modern Next.js compatibility
 components/           Shared UI, SEO, analytics, consent, admin, and page components
+components/admin/     Admin-specific components (ContentManager, SessionGuard)
+components/ui/        Low-level UI primitives (Logo)
 lib/                  Auth, local content, Prisma, utilities, and consent logic
 pages/                Main site routes and API routes
-pages/api/            Contact, auth, and health endpoints
+pages/api/            Contact, auth, upload, and health endpoints
 prisma/               Prisma schema, migrations, and seed script
 public/               Static assets and placeholder images
+public/uploads/       User-uploaded images via the admin panel
 styles/               Global Tailwind/CSS files
+tests/                Jest unit tests and Playwright E2E tests
 next.config.ts        Next.js runtime and image configuration
 ```
 
@@ -121,17 +154,18 @@ next.config.ts        Next.js runtime and image configuration
 
 ### Main pages
 
-- `/` - homepage
-- `/services` - CMS-driven services page
-- `/portfolio` - CMS-driven portfolio page
-- `/contact` - central inquiry form with required service selection
-- `/about` - studio overview
-- `/terms` - legal / privacy commitments page
-- `/impressum` - imprint / legal company information page
-- `/login` - admin login
+- `/` - homepage with hero, services preview, and portfolio teasers
+- `/services` - CMS-driven services overview with all 7 service categories
+- `/services/[slug]` - individual service detail page with benefits and CTA
+- `/portfolio` - CMS-driven portfolio showcase
+- `/contact` - contact inquiry form with ARIA-accessible validation
+- `/about` - studio overview with values and brand statement
+- `/terms` - terms of service and PIPEDA-aligned privacy commitments
+- `/impressum` - imprint / legal company information
+- `/login` - admin login (no site chrome)
 - `/admin` - protected local admin dashboard
 - `/admin/services` - protected services content manager
-- `/admin/portfolio` - protected portfolio content manager
+- `/admin/portfolio` - protected portfolio content manager with image upload
 
 ### API routes
 
@@ -160,9 +194,21 @@ Accepts:
 
 Behavior:
 
-- validates required fields
+- validates required fields and email format
 - saves the contact request to PostgreSQL
-- sends an email notification through SMTP
+- sends an email notification through SMTP to `CONTACT_RECEIVER_EMAIL`
+- returns detailed error messages in development mode
+
+#### `POST /api/upload`
+
+Admin-only image upload endpoint.
+
+- Accepts: `multipart/form-data` with a `file` field
+- Allowed types: JPEG, PNG, WebP, GIF, SVG
+- Max file size: 10 MB
+- Saves to `public/uploads/` with a sanitized, timestamped filename
+- Returns: `{ "url": "/uploads/filename.jpg" }`
+- Requires an active admin session
 
 #### `GET|POST /api/auth/[...nextauth]`
 
@@ -172,10 +218,8 @@ NextAuth endpoint used for admin authentication.
 
 Local services content endpoint.
 
-Behavior:
-
 - `GET` returns the services page record and its items from PostgreSQL
-- `POST` creates a new service item for the protected local admin
+- `POST` creates a new service item (admin session required)
 
 #### `PATCH|DELETE /api/services/:id`
 
@@ -185,52 +229,63 @@ Protected service item mutation endpoint for the local admin.
 
 Local portfolio content endpoint.
 
-Behavior:
-
 - `GET` returns the portfolio page record and its items from PostgreSQL
-- `POST` creates a new portfolio item for the protected local admin
+- `POST` creates a new portfolio item (admin session required)
 
 #### `PATCH|DELETE /api/portfolio/:id`
 
 Protected portfolio item mutation endpoint for the local admin.
 
+## Admin Panel
+
+### Access
+
+Sign in at `/login` with the credentials set in `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
+
+### Session security
+
+- **Auto-logout after 10 minutes** of inactivity (mouse, keyboard, scroll, touch)
+- A warning modal with a 60-second countdown appears at 1 minute remaining
+- "Stay logged in" resets the timer; "Sign out now" logs out immediately
+- The session also ends immediately when the browser tab is hidden or switched
+
+### Content management
+
+- `/admin/services` — create, edit, and delete service entries with optional image upload
+- `/admin/portfolio` — create, edit, and delete portfolio entries with image upload and preview
+- Deleting an entry requires confirmation through a styled modal dialog
+- Success and error feedback is shown via toast notifications
+
+### Image upload
+
+In both the services and portfolio admin forms, the image field supports:
+
+- Direct file upload via an "Upload" button (opens a file picker)
+- Manual URL entry in the text field
+- Live image preview after upload or URL entry
+
+Uploaded files are stored in `public/uploads/` and served as static assets.
+
 ## CMS And Admin Instructions
-
-### Local admin access
-
-The project includes a protected `/admin` page.
-
-Requirements:
-
-- `ADMIN_EMAIL`
-- `ADMIN_PASSWORD`
-- `NEXTAUTH_URL`
-- `NEXTAUTH_SECRET`
-
-How it works:
-
-- users sign in through `/login`
-- access is granted only to the configured admin credentials
-- `/admin/services` manages service cards stored in PostgreSQL
-- `/admin/portfolio` manages portfolio cards stored in PostgreSQL
-
-Legal page sections support:
-
-- section heading
-- optional eyebrow
-- paragraph body
-- bullet/list items
-- structured contact details
-- compliance notes
 
 ### Content fallback behavior
 
 The app resolves CMS content in this order:
 
-1. PostgreSQL / Prisma content
-2. local fallback content from `lib/cms.js`
+1. PostgreSQL / Prisma content (when DB is available)
+2. Local fallback content from `lib/cms.js`
 
-This lets the site stay usable even when the database is empty or unavailable.
+This lets the site stay usable even when the database is empty or unavailable. Service detail pages (`/services/[slug]`) fall back to static content from `lib/service-pages.js` when the DB is unreachable.
+
+### Legal page content
+
+Legal page sections in `lib/cms.js` support:
+
+- section heading and optional eyebrow
+- paragraph body
+- bullet / list items
+- structured contact details
+- compliance notes
 
 ## Deployment Steps
 
@@ -248,15 +303,9 @@ For a production deployment:
 vercel --prod
 ```
 
-If your local Node version is older and the newest CLI does not work, use a compatible CLI version:
-
-```bash
-npx vercel@34.3.0
-```
-
 ### Required production environment variables
 
-At minimum, configure these in Vercel:
+Configure all of the following in Vercel (or your hosting provider):
 
 - `NEXT_PUBLIC_SITE_URL`
 - `NEXTAUTH_URL`
@@ -280,20 +329,21 @@ After `DATABASE_URL` is configured for the deployment target, apply migrations:
 npm run prisma:migrate:deploy
 ```
 
-If you are running this against a managed production database, make sure the connection string points to the correct environment before executing.
-
 ### Post-deploy checklist
 
-- open the live homepage
+- open the live homepage and verify scroll indicator, hero, and footer
 - verify `/api/health`
 - verify `/terms` and `/impressum`
-- test `/contact`
+- test `/contact` form submission and confirm email delivery
 - confirm SMTP works with real credentials
 - confirm analytics and GTM only load after cookie consent
 - verify `/admin` login and local content management
+- test image upload in admin portfolio and services panels
+- confirm auto-logout triggers after inactivity
 
 ## Notes
 
-- The current project contains helper scripts such as `responsive-audit.js`, `check-meta.js`, and Lighthouse summaries used during development/testing.
-- Cookie consent categories currently include `functional`, `analytics`, and `marketing`.
-- Legal content is written to support Canadian operations and PIPEDA-oriented privacy handling, but should still be reviewed with qualified legal counsel before launch.
+- Cookie consent categories: `functional`, `analytics`, and `marketing`
+- The scroll indicator appears on all public pages where content extends beyond the viewport and hides automatically on scroll
+- Legal content is written to support Canadian operations and PIPEDA-oriented privacy handling, but should be reviewed with qualified legal counsel before launch
+- Uploaded images in `public/uploads/` are committed via `.gitkeep` but actual uploaded files should be excluded from version control in production (use object storage like S3 or Vercel Blob for production uploads)
