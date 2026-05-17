@@ -79,7 +79,8 @@ export default async function handler(req, res) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
       const destPath = `${uploadDir}/${fileName}`;
-      fs.renameSync(file.filepath, destPath);
+      fs.copyFileSync(file.filepath, destPath);
+      fs.unlink(file.filepath, () => {});
       return res.status(200).json({ url: `/uploads/${fileName}` });
 
     } catch (error) {
