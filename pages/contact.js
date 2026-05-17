@@ -321,11 +321,11 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <h2 className="mt-6 font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
-                  Message sent
+                  Your message has been sent.
                 </h2>
                 <p className="mt-4 text-lg leading-8 text-text/70">
                   Thank you for reaching out. We have received your inquiry and will
-                  be in touch within one to two business days.
+                  be in touch shortly.
                 </p>
                 <div className="mt-8">
                   <Button
