@@ -24,9 +24,8 @@ test.describe("critical user flows", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("contact@example.com");
-    await contactForm.getByLabel("Choose Service").selectOption({
-      label: "Custom Home Design & Build",
-    });
+    await page.getByRole("combobox", { name: /choose service/i }).click();
+    await page.getByRole("option", { name: "Custom Home Design & Build" }).click();
     await contactForm
       .getByPlaceholder(
         "Tell us about your goals, timeline, and what kind of transformation you are planning.",
@@ -36,7 +35,7 @@ test.describe("critical user flows", () => {
     await contactForm.getByRole("button", { name: /send message/i }).click();
 
     await expect(
-      contactForm.getByText("Your message has been sent successfully."),
+      page.getByText(/message has been sent/i),
     ).toBeVisible();
   });
 
@@ -62,9 +61,8 @@ test.describe("critical user flows", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("contact@example.com");
-    await contactForm.getByLabel("Choose Service").selectOption({
-      label: "Other",
-    });
+    await page.getByRole("combobox", { name: /choose service/i }).click();
+    await page.getByRole("option", { name: "Other" }).click();
     await expect(contactForm.getByLabel("Please Specify")).toBeVisible();
     await contactForm
       .getByLabel("Please Specify")
@@ -78,7 +76,7 @@ test.describe("critical user flows", () => {
     await contactForm.getByRole("button", { name: /send message/i }).click();
 
     await expect(
-      contactForm.getByText("Your message has been sent successfully."),
+      page.getByText(/message has been sent/i),
     ).toBeVisible();
     expect(submittedPayload).toMatchObject({
       service: "other",
@@ -105,9 +103,8 @@ test.describe("critical user flows", () => {
 
     await contactForm.getByPlaceholder("Your full name").fill("Test Contact");
     await contactForm.getByPlaceholder("name@example.com").fill("invalid-email");
-    await contactForm.getByLabel("Choose Service").selectOption({
-      label: "Home Additions",
-    });
+    await page.getByRole("combobox", { name: /choose service/i }).click();
+    await page.getByRole("option", { name: "Home Additions" }).click();
     await contactForm
       .getByPlaceholder(
         "Tell us about your goals, timeline, and what kind of transformation you are planning.",
@@ -138,9 +135,8 @@ test.describe("critical user flows", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("contact@example.com");
-    await contactForm.getByLabel("Choose Service").selectOption({
-      label: "Bathroom Remodeling",
-    });
+    await page.getByRole("combobox", { name: /choose service/i }).click();
+    await page.getByRole("option", { name: "Bathroom Remodeling" }).click();
     await contactForm
       .getByPlaceholder(
         "Tell us about your goals, timeline, and what kind of transformation you are planning.",

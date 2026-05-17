@@ -71,27 +71,26 @@ test.describe("basic responsiveness (mobile)", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("mobile@example.com");
-    await contactForm.getByLabel("Choose Service").selectOption({
-      label: "Kitchen Remodeling",
-    });
+    await page.getByRole("combobox", { name: /choose service/i }).click();
+    await page.getByRole("option", { name: "Kitchen Remodeling" }).click();
     await messageField.fill(
       "We need a premium redesign for our renovation brand this quarter.",
     );
     await submit.click();
 
     await expect(
-      contactForm.getByText("Your message has been sent successfully."),
+      page.getByText(/message has been sent/i),
     ).toBeVisible();
   });
 
   test("contact form service dropdown is usable on mobile", async ({ page }) => {
     await page.goto("/contact", { waitUntil: "domcontentloaded" });
 
-    const contactForm = page.locator("form").first();
-    const serviceField = contactForm.getByLabel("Choose Service");
+    const combobox = page.getByRole("combobox", { name: /choose service/i });
 
-    await expect(serviceField).toBeVisible();
-    await serviceField.selectOption({ label: "Basement Finishing" });
-    await expect(serviceField).toHaveValue("Basement Finishing");
+    await expect(combobox).toBeVisible();
+    await combobox.click();
+    await page.getByRole("option", { name: "Basement Finishing" }).click();
+    await expect(combobox).toContainText("Basement Finishing");
   });
 });

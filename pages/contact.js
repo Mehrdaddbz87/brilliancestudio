@@ -110,7 +110,7 @@ function ServiceSelectField({ label, name, value, onChange, options, error = fal
 
   return (
     <div className="block" ref={containerRef}>
-      <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">
+      <span id={`${name}-label`} className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">
         {label}
       </span>
 
@@ -121,6 +121,7 @@ function ServiceSelectField({ label, name, value, onChange, options, error = fal
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-controls={listboxId}
+          aria-labelledby={`${name}-label`}
           aria-activedescendant={activeDescendant}
           aria-invalid={error ? "true" : undefined}
           aria-describedby={error && errorId ? errorId : undefined}

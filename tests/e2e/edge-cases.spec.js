@@ -28,9 +28,8 @@ test.describe("real-world edge cases", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("slow@example.com");
-    await contactForm.getByLabel("Choose Service").selectOption({
-      label: "Custom Home Design & Build",
-    });
+    await page.getByRole("combobox", { name: /choose service/i }).click();
+    await page.getByRole("option", { name: "Custom Home Design & Build" }).click();
     await contactForm
       .getByPlaceholder(
         "Tell us about your goals, timeline, and what kind of transformation you are planning.",
@@ -39,9 +38,9 @@ test.describe("real-world edge cases", () => {
 
     await contactForm.getByRole("button", { name: /send message/i }).click();
 
-    await expect(contactForm.getByRole("button", { name: /sending/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /sending/i })).toBeVisible();
     await expect(
-      contactForm.getByText("Your message has been sent successfully."),
+      page.getByText(/message has been sent/i),
     ).toBeVisible({ timeout: 15000 });
   });
 
@@ -67,9 +66,8 @@ test.describe("real-world edge cases", () => {
     await contactForm
       .getByPlaceholder("name@example.com")
       .fill("rapid@example.com");
-    await contactForm.getByLabel("Choose Service").selectOption({
-      label: "Interior & Exterior Design",
-    });
+    await page.getByRole("combobox", { name: /choose service/i }).click();
+    await page.getByRole("option", { name: "Interior & Exterior Design" }).click();
     await contactForm
       .getByPlaceholder(
         "Tell us about your goals, timeline, and what kind of transformation you are planning.",
@@ -89,7 +87,7 @@ test.describe("real-world edge cases", () => {
     });
 
     await expect(
-      contactForm.getByText("Your message has been sent successfully."),
+      page.getByText(/message has been sent/i),
     ).toBeVisible();
     expect(requestCount).toBe(1);
   });
