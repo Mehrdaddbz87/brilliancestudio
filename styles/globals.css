@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply min-h-screen overflow-x-hidden bg-background text-text;
+    @apply min-h-screen overflow-x-clip bg-background text-text;
     background-image: radial-gradient(
       circle at top,
       rgba(185, 154, 69, 0.16),
