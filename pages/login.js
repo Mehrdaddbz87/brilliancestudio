@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import Link from "next/link";
 import { Button } from "@/components/button";
 import { authOptions } from "@/lib/auth";
 
@@ -89,6 +90,11 @@ export default function LoginPage() {
               </label>
 
               {error ? <p className="text-sm text-red-300">{error}</p> : null}
+              <div className="flex justify-end">
+                <Link href="/forgot-password" className="text-sm text-text/45 transition hover:text-accent">
+                  Forgot password?
+                </Link>
+              </div>
 
               <div className="flex flex-wrap gap-4">
                 <Button
@@ -125,3 +131,4 @@ export async function getServerSideProps(context) {
     props: {},
   };
 }
+

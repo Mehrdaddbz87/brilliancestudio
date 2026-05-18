@@ -8,14 +8,12 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-/// Tracks the review lifecycle for inbound form submissions.
 enum SubmissionStatus {
   NEW
   REVIEWED
   ARCHIVED
 }
 
-/// Stores editable page-level content and linked service cards for the services route.
 model ServicePage {
   id                Int           @id @default(autoincrement())
   slug              String        @unique @default("services")
@@ -34,7 +32,6 @@ model ServicePage {
   items             ServiceItem[]
 }
 
-/// Stores an individual service card that belongs to the services page.
 model ServiceItem {
   id          Int         @id @default(autoincrement())
   pageId      Int
@@ -52,7 +49,6 @@ model ServiceItem {
   @@index([pageId, sortOrder])
 }
 
-/// Stores editable page-level content and linked gallery items for the references route.
 model ReferencePage {
   id                Int             @id @default(autoincrement())
   slug              String          @unique @default("references")
@@ -71,7 +67,6 @@ model ReferencePage {
   items             ReferenceItem[]
 }
 
-/// Stores an individual reference/gallery item that belongs to the references page.
 model ReferenceItem {
   id        Int           @id @default(autoincrement())
   pageId    Int
@@ -89,7 +84,6 @@ model ReferenceItem {
   @@index([pageId, sortOrder])
 }
 
-/// Stores legal page content such as terms and imprint sections.
 model LegalPage {
   id             Int      @id @default(autoincrement())
   slug           String   @unique
@@ -103,7 +97,6 @@ model LegalPage {
   updatedAt      DateTime @updatedAt
 }
 
-/// Persists contact form submissions for follow-up and audit history.
 model ContactRequest {
   id        Int              @id @default(autoincrement())
   name      String
@@ -118,3 +111,22 @@ model ContactRequest {
   @@index([status, createdAt])
 }
 
+model AdminCredential {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model PasswordResetToken {
+  id        Int      @id @default(autoincrement())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([email])
+}
