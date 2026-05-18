@@ -1,10 +1,18 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { rateLimit } from "@/lib/rate-limit";
 
 const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{12,}$/;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed." });
+
+  // Rate limit: 5 attempts per 15 minutes per IP
+  const ip = req.headers["x-forwarded-for"]?.split(",")[0]?.trim() || req.socket?.remoteAddress || "unknown";
+  const { allowed } = rateLimit(ip, 5, 15 * 60 * 1000);
+  if (!allowed) {
+    return res.status(429).json({ error: "Too many attempts. Please try again later." });
+  }
 
   const { token, password, confirmPassword } = req.body || {};
 
@@ -44,3 +52,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Failed to reset password. Please try again." });
   }
 }
+
