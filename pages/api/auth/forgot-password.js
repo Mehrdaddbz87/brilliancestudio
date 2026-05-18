@@ -8,16 +8,14 @@ export default async function handler(req, res) {
   const { email } = req.body || {};
   const adminEmail = process.env.ADMIN_EMAIL;
 
-  // Always return success to prevent email enumeration
   if (!email || email.toLowerCase().trim() !== adminEmail?.toLowerCase()) {
     return res.status(200).json({ success: true });
   }
 
   try {
     const token = crypto.randomBytes(32).toString("hex");
-    const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
 
-    // Invalidate old tokens
     await prisma.passwordResetToken.updateMany({
       where: { email: adminEmail, used: false },
       data: { used: true },
@@ -40,14 +38,9 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: process.env.SMTP_USER,
       to: adminEmail,
-      subject: "Brilliance Studio — Password Reset",
+      subject: "Brilliance Studio - Password Reset",
       text: `You requested a password reset.\n\nClick the link below to set a new password. The link expires in 1 hour.\n\n${resetUrl}\n\nIf you did not request this, ignore this email.`,
-      html: `
-        <p>You requested a password reset for your Brilliance Studio admin account.</p>
-        <p>Click the link below to set a new password. The link expires in <strong>1 hour</strong>.</p>
-        <p><a href="${resetUrl}">${resetUrl}</a></p>
-        <p>If you did not request this, you can safely ignore this email.</p>
-      `,
+      html: `<p>You requested a password reset for your Brilliance Studio admin account.</p><p>Click the link to set a new password. Expires in <strong>1 hour</strong>.</p><p><a href="${resetUrl}">${resetUrl}</a></p>`,
     });
   } catch (error) {
     console.error("Forgot password error:", error);
