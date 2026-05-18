@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="info@brilliancestudio.ca"
+                    placeholder="Enter your admin email"
                     className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
                     required
                     autoComplete="email"
@@ -91,3 +91,4 @@ export default function ForgotPasswordPage() {
     </>
   );
 }
+
