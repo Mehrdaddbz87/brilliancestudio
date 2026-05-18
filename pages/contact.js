@@ -299,7 +299,7 @@ export default function ContactPage() {
     <>
       <Head>
         <title>Contact Brilliance Studio | Request a Renovation Consultation in Canada</title>
-        <meta name="description" content="Tell us about your renovation project Ã¢â‚¬â€ custom home, kitchen, bathroom, addition, basement, or structural work. Brilliance Studio serves homeowners across Canada with premium design-build services." />
+        <meta name="description" content="Tell us about your renovation project ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â custom home, kitchen, bathroom, addition, basement, or structural work. Brilliance Studio serves homeowners across Canada with premium design-build services." />
         <meta property="og:title" content="Contact Brilliance Studio | Request a Renovation Consultation" key="og:title" />
         <meta property="og:description" content="Tell us about your renovation project. Brilliance Studio serves homeowners across Canada with premium design-build services." key="og:description" />
       </Head>
@@ -327,7 +327,6 @@ export default function ContactPage() {
                   Thank you for reaching out. We have received your inquiry and will
                   be in touch shortly.
                 </p>
-                </div>
               </div>
             ) : (
               <form
