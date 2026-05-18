@@ -422,11 +422,6 @@ async function seedCms() {
           body: "By submitting an inquiry through the Brilliance Studio website, you consent to Brilliance Studio using your contact information to respond to your request and to follow up regarding your renovation project. You may withdraw consent at any time by contacting us directly.",
           contactItems: [
             {
-              label: "Privacy requests",
-              value: "privacy@brilliancestudio.ca",
-              href: "mailto:privacy@brilliancestudio.ca",
-            },
-            {
               label: "General inquiries",
               value: "info@brilliancestudio.ca",
               href: "mailto:info@brilliancestudio.ca",
@@ -497,11 +492,6 @@ async function seedCms() {
           heading: "Privacy Officer and PIPEDA Contact",
           body: "Individuals may submit requests to access, correct, or delete their personal information, withdraw consent, or raise privacy concerns by contacting the Privacy Officer directly.",
           contactItems: [
-            {
-              label: "Privacy requests",
-              value: "privacy@brilliancestudio.ca",
-              href: "mailto:privacy@brilliancestudio.ca",
-            },
             {
               label: "General inquiries",
               value: "info@brilliancestudio.ca",
