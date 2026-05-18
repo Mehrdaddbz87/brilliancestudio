@@ -303,7 +303,7 @@ export default function ContactPage() {
         <meta property="og:title" content="Contact Brilliance Studio | Request a Renovation Consultation" key="og:title" />
         <meta property="og:description" content="Tell us about your renovation project. Brilliance Studio serves homeowners across Canada with premium design-build services." key="og:description" />
       </Head>
-      <main className="overflow-x-hidden pb-20">
+      <main className="overflow-x-clip pb-20">
         <PageIntro
           eyebrow="Contact Us"
           title="Let us shape your next renovation."

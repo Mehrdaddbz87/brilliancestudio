@@ -28,7 +28,7 @@ export default function ServicesPage({ content }) {
           }
         />
       </Head>
-      <main className="overflow-x-hidden pb-20">
+      <main className="overflow-x-clip pb-20">
         <PageIntro
           eyebrow={content.eyebrow}
           title={content.title}

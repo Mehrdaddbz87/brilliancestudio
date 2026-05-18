@@ -56,7 +56,7 @@ export default function HomePage() {
         <meta property="og:title" content="Brilliance Studio | Premium Home Renovation & Design in Canada" key="og:title" />
         <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen & bathroom remodels, additions, structural work, and basement finishing — crafted with precision and refined materials." key="og:description" />
       </Head>
-    <main className="overflow-x-hidden bg-background px-4 py-10 sm:px-6 lg:px-8">
+    <main className="overflow-x-clip bg-background px-4 py-10 sm:px-6 lg:px-8">
       <Hero />
 
       <FadeInSection delay={0.05}>

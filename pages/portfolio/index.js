@@ -23,7 +23,7 @@ export default function PortfolioPage({ content }) {
         <title>{content.seoTitle || "Portfolio | Brilliance Studio"}</title>
         <meta name="description" content={seoDescription} />
       </Head>
-      <main className="overflow-x-hidden pb-20">
+      <main className="overflow-x-clip pb-20">
         <PageIntro
           eyebrow={content.eyebrow}
           title={pageTitle}

@@ -27,7 +27,7 @@ export function PortfolioDetailPage({ item }) {
         <meta property="og:description" content={seoDescription} key="og:description" />
       </Head>
 
-      <main className="overflow-x-hidden pb-20">
+      <main className="overflow-x-clip pb-20">
 
         {/* Page header — breadcrumb + title only, no duplicate summary */}
         <div className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">

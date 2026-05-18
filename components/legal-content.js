@@ -43,7 +43,7 @@ export function LegalContent({ sections = [] }) {
     <div className="mx-auto mt-12 grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-8">
       <aside
         aria-label="Legal page contents"
-        className="h-fit rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 lg:sticky lg:top-28"
+        className="hidden h-fit rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 lg:block lg:sticky lg:top-28"
       >
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
           On this page

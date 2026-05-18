@@ -31,7 +31,7 @@ export default function AboutPage() {
         <meta property="og:title" content="About Brilliance Studio | Luxury Home Renovation & Design in Canada" key="og:title" />
         <meta property="og:description" content="Premium renovation and design studio in Canada. Precision, craftsmanship, and calm coordination from concept to completion." key="og:description" />
       </Head>
-      <main className="overflow-x-hidden bg-black pb-20 text-white">
+      <main className="overflow-x-clip bg-black pb-20 text-white">
         <PageIntro
           eyebrow="About Us"
           title="About Us"
