@@ -82,7 +82,7 @@ export function Footer() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
               Ready to transform your space?
             </p>
-            <h2 className="mt-3 font-fantasy text-2xl uppercase tracking-[0.1em] text-text sm:text-3xl">
+            <h2 className="mt-2 break-words font-fantasy text-lg uppercase tracking-[0.08em] text-text sm:text-xl">
               Let&apos;s shape your next renovation.
             </h2>
           </div>
