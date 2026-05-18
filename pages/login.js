@@ -50,7 +50,7 @@ export default function LoginPage() {
       <main className="min-h-[calc(100vh-5rem)] bg-background px-4 py-12 sm:px-6 lg:px-8">
         <section className="mx-auto grid min-h-[70vh] max-w-4xl place-items-center">
           <div className="w-full max-w-xl rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)] sm:p-10">
-            <h1 className="mt-5 font-fantasy text-4xl uppercase tracking-[0.08em] text-text">
+            <h1 className="mt-5 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
               Admin Login
             </h1>
 

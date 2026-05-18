@@ -28,7 +28,7 @@ export function Hero() {
             Premium Renovation Studio
           </motion.span>
           <motion.h1
-            className="mt-8 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text sm:text-4xl md:text-5xl"
+            className="mt-8 break-words font-fantasy text-2xl uppercase tracking-[0.08em] text-text sm:text-3xl md:text-4xl"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{
@@ -45,8 +45,8 @@ export function Hero() {
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            We design and build elevated living spaces — from custom homes and
-            kitchen remodels to structural transformations — shaped by
+            We design and build elevated living spaces â€” from custom homes and
+            kitchen remodels to structural transformations â€” shaped by
             craftsmanship, refined materials, and a high-end aesthetic.
           </motion.p>
           <motion.div

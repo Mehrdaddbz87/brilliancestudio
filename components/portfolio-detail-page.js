@@ -16,7 +16,7 @@ export function PortfolioDetailPage({ item }) {
   const imageAlt = item.imageAlt || title;
   const seoDescription =
     item.summary ||
-    `${title} — a premium renovation and design project by Brilliance Studio in Canada.`;
+    `${title} â€” a premium renovation and design project by Brilliance Studio in Canada.`;
 
   return (
     <>
@@ -29,7 +29,7 @@ export function PortfolioDetailPage({ item }) {
 
       <main className="overflow-x-clip pb-20">
 
-        {/* Page header — breadcrumb + title only, no duplicate summary */}
+        {/* Page header â€” breadcrumb + title only, no duplicate summary */}
         <div className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-20">
           <Link
             href="/portfolio"
@@ -53,12 +53,12 @@ export function PortfolioDetailPage({ item }) {
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             {category}
           </p>
-          <h1 className="mt-4 break-words font-fantasy text-4xl uppercase tracking-[0.1em] text-text sm:text-5xl">
+          <h1 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text sm:text-4xl">
             {title}
           </h1>
         </div>
 
-        {/* Main content — image left, details right */}
+        {/* Main content â€” image left, details right */}
         <FadeInSection delay={0.06}>
           <section className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -99,10 +99,10 @@ export function PortfolioDetailPage({ item }) {
                 )}
               </div>
 
-              {/* Right column — project details + single CTA */}
+              {/* Right column â€” project details + single CTA */}
               <div className="space-y-5">
 
-                {/* Project info card — summary shown here only */}
+                {/* Project info card â€” summary shown here only */}
                 <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_60px_rgba(185,154,69,0.05)]">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                     Project Overview

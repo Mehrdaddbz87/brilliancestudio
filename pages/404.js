@@ -18,7 +18,7 @@ export default function Custom404() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 404
               </p>
-              <h1 className="mt-5 font-fantasy text-4xl uppercase tracking-[0.1em] text-text sm:text-5xl">
+              <h1 className="mt-5 font-fantasy text-3xl uppercase tracking-[0.08em] text-text sm:text-4xl">
                 Page not found
               </h1>
               <p className="mt-6 text-lg leading-8 text-text/75">

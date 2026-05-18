@@ -16,7 +16,7 @@ export default function AdminDashboard() {
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             Local CMS
           </p>
-          <h1 className="mt-4 font-fantasy text-4xl uppercase tracking-[0.08em] text-text">
+          <h1 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
             Admin Dashboard
           </h1>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-text/75">

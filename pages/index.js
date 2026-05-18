@@ -10,7 +10,7 @@ const services = [
     eyebrow: "Services",
     title: "Custom Home Design & Build",
     description:
-      "Residences shaped with intention — from earliest concept through final execution, coordinated for a cohesive and elevated result.",
+      "Residences shaped with intention â€” from earliest concept through final execution, coordinated for a cohesive and elevated result.",
   },
   {
     eyebrow: "Services",
@@ -31,7 +31,7 @@ const portfolioProjects = [
     eyebrow: "Custom Home",
     title: "Whole-Home Design & Build",
     description:
-      "A complete design-build project coordinated from structural planning through final finishes — refined materials, elevated atmosphere, and precise execution throughout.",
+      "A complete design-build project coordinated from structural planning through final finishes â€” refined materials, elevated atmosphere, and precise execution throughout.",
   },
   {
     eyebrow: "Kitchen Renovation",
@@ -43,7 +43,7 @@ const portfolioProjects = [
     eyebrow: "Basement Finishing",
     title: "Lower Level Living Suite",
     description:
-      "An underused basement transformed into a polished living environment — thoughtful lighting, premium finishes, and seamless integration with the rest of the home.",
+      "An underused basement transformed into a polished living environment â€” thoughtful lighting, premium finishes, and seamless integration with the rest of the home.",
   },
 ];
 
@@ -52,9 +52,9 @@ export default function HomePage() {
     <>
       <Head>
         <title>Brilliance Studio | Premium Home Renovation & Design in Canada</title>
-        <meta name="description" content="Brilliance Studio is a premium renovation and design studio crafting elevated living spaces across Canada — custom homes, kitchen remodels, bathroom renovations, home additions, basement finishing, and structural transformations." />
+        <meta name="description" content="Brilliance Studio is a premium renovation and design studio crafting elevated living spaces across Canada â€” custom homes, kitchen remodels, bathroom renovations, home additions, basement finishing, and structural transformations." />
         <meta property="og:title" content="Brilliance Studio | Premium Home Renovation & Design in Canada" key="og:title" />
-        <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen & bathroom remodels, additions, structural work, and basement finishing — crafted with precision and refined materials." key="og:description" />
+        <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen & bathroom remodels, additions, structural work, and basement finishing â€” crafted with precision and refined materials." key="og:description" />
       </Head>
     <main className="overflow-x-clip bg-background px-4 py-10 sm:px-6 lg:px-8">
       <Hero />
@@ -66,7 +66,7 @@ export default function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Services
               </p>
-              <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] sm:text-4xl">
+              <h2 className="mt-4 break-words font-fantasy text-2xl uppercase tracking-[0.08em] sm:text-3xl">
                 What we build with precision.
               </h2>
             </div>
@@ -89,7 +89,7 @@ export default function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Portfolio
               </p>
-              <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] sm:text-4xl">
+              <h2 className="mt-4 break-words font-fantasy text-2xl uppercase tracking-[0.08em] sm:text-3xl">
                 Our portfolio.
               </h2>
             </div>
