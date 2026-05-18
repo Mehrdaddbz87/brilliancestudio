@@ -26,7 +26,7 @@ export function ServiceDetailPage({ service }) {
         <meta property="og:title" content={`${service.title} | Brilliance Studio Canada`} key="og:title" />
         <meta property="og:description" content={service.seoDescription || service.description} key="og:description" />
       </Head>
-      <main className="bg-black pb-20 text-white">
+      <main className="overflow-x-hidden bg-black pb-20 text-white">
         <PageIntro
           eyebrow={service.eyebrow || "Services"}
           title={service.title}
