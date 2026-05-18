@@ -26,6 +26,7 @@
   "dependencies": {
     "@prisma/client": "^6.16.0",
     "@vercel/blob": "^2.3.3",
+    "bcryptjs": "^3.0.3",
     "date-fns": "^4.1.0",
     "formidable": "^3.5.4",
     "framer-motion": "^12.38.0",
