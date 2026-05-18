@@ -11,7 +11,7 @@ export default function Custom404() {
         <meta name="description" content="The page you requested could not be found. Return to the Brilliance Studio homepage or contact us about your renovation project." />
         <meta name="robots" content="noindex, follow" />
       </Head>
-      <main className="px-4 py-16 sm:px-6 lg:px-8">
+      <main className="overflow-x-hidden px-4 py-16 sm:px-6 lg:px-8">
         <FadeInSection>
           <section className="mx-auto grid min-h-[70vh] max-w-4xl place-items-center">
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 text-center shadow-[0_0_80px_rgba(185,154,69,0.06)]">

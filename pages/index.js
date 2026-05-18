@@ -56,7 +56,7 @@ export default function HomePage() {
         <meta property="og:title" content="Brilliance Studio | Premium Home Renovation & Design in Canada" key="og:title" />
         <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen & bathroom remodels, additions, structural work, and basement finishing — crafted with precision and refined materials." key="og:description" />
       </Head>
-    <main className="bg-background px-4 py-10 sm:px-6 lg:px-8">
+    <main className="overflow-x-hidden bg-background px-4 py-10 sm:px-6 lg:px-8">
       <Hero />
 
       <FadeInSection delay={0.05}>
@@ -66,7 +66,7 @@ export default function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Services
               </p>
-              <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.1em] sm:text-4xl">
+              <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] sm:text-4xl">
                 What we build with precision.
               </h2>
             </div>
@@ -89,7 +89,7 @@ export default function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Portfolio
               </p>
-              <h2 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.1em] sm:text-4xl">
+              <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] sm:text-4xl">
                 Our portfolio.
               </h2>
             </div>

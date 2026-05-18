@@ -18,7 +18,7 @@ export default function TermsPage({ content }) {
           }
         />
       </Head>
-      <main className="pb-20">
+      <main className="overflow-x-hidden pb-20">
         <PageIntro
           eyebrow={content.eyebrow}
           title={content.title}

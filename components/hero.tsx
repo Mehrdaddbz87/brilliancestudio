@@ -12,15 +12,15 @@ export function Hero() {
 
   return (
     <section className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center">
-      <div className="grid w-full gap-10 rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] px-6 py-12 shadow-[0_0_100px_rgba(185,154,69,0.08)] sm:px-8 lg:grid-cols-[minmax(0,1.2fr)_320px] lg:px-12 xl:px-16">
+      <div className="grid w-full gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] px-6 py-12 shadow-[0_0_100px_rgba(185,154,69,0.08)] sm:px-8 lg:grid-cols-[minmax(0,1.2fr)_320px] lg:px-12 xl:px-16">
         <motion.div
-          className="max-w-4xl"
+          className="min-w-0"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.span
-            className="inline-flex rounded-full border border-accent/40 bg-accent/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm"
+            className="inline-flex max-w-full break-words rounded-full border border-accent/40 bg-accent/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-accent sm:tracking-[0.3em]"
             initial={shouldReduceMotion ? false : { opacity: 0 }}
             animate={shouldReduceMotion ? {} : { opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.08 }}
@@ -28,7 +28,7 @@ export function Hero() {
             Premium Renovation Studio
           </motion.span>
           <motion.h1
-            className="mt-8 font-fantasy text-5xl uppercase tracking-[0.1em] text-text"
+            className="mt-8 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text sm:text-4xl md:text-5xl"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{
