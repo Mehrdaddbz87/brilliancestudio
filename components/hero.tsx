@@ -45,8 +45,8 @@ export function Hero() {
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            We design and build elevated living spaces â€” from custom homes and
-            kitchen remodels to structural transformations â€” shaped by
+            We design and build elevated living spaces from custom homes and
+            kitchen remodels to structural transformations, shaped by
             craftsmanship, refined materials, and a high-end aesthetic.
           </motion.p>
           <motion.div
