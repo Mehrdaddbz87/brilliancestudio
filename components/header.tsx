@@ -216,7 +216,7 @@ export function Header() {
                           isServicesMenuOpen ? "rotate-180 text-accent" : "",
                         )}
                       >
-                        ▼
+                        <svg aria-hidden="true" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{display:"inline",width:"0.7rem",height:"0.7rem"}}><path d="M1 1l4 4 4-4"/></svg>
                       </span>
                     </button>
                   </motion.div>
@@ -359,7 +359,7 @@ export function Header() {
                             isServicesAccordionOpen ? "rotate-180 text-accent" : "",
                           )}
                         >
-                          ▼
+                          <svg aria-hidden="true" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{display:"inline",width:"0.7rem",height:"0.7rem"}}><path d="M1 1l4 4 4-4"/></svg>
                         </span>
                       </button>
 
