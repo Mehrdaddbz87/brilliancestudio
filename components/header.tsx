@@ -85,7 +85,7 @@ function ServiceMenuLink({
           aria-hidden="true"
           className="translate-x-0 text-accent/0 transition-all duration-200 ease-in-out group-hover:translate-x-1 group-hover:text-accent"
         >
-          ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢
+          →
         </span>
       ) : null}
     </Link>
