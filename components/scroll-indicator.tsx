@@ -4,12 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-/**
- * Global scroll indicator — appears on any page where content exceeds the viewport.
- * Positioned on the right side. Fades out once the user has scrolled 80px.
- * Uses a React portal to render directly into document.body, bypassing
- * any overflow:hidden constraints from parent elements.
- */
 export function ScrollIndicator() {
   const shouldReduceMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
@@ -23,10 +17,10 @@ export function ScrollIndicator() {
     if (!mounted) return;
 
     function checkScrollable() {
-      const isScrollable =
-        document.documentElement.scrollHeight > window.innerHeight + 20;
+      const menuOpen = document.body.classList.contains("menu-open");
+      const isScrollable = document.documentElement.scrollHeight > window.innerHeight + 20;
       const isAtTop = window.scrollY < 80;
-      setVisible(isScrollable && isAtTop);
+      setVisible(isScrollable && isAtTop && !menuOpen);
     }
 
     const delay = setTimeout(checkScrollable, 900);
@@ -34,10 +28,15 @@ export function ScrollIndicator() {
     window.addEventListener("scroll", checkScrollable, { passive: true });
     window.addEventListener("resize", checkScrollable, { passive: true });
 
+    // Also listen for menu-open class changes via MutationObserver
+    const observer = new MutationObserver(checkScrollable);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
     return () => {
       clearTimeout(delay);
       window.removeEventListener("scroll", checkScrollable);
       window.removeEventListener("resize", checkScrollable);
+      observer.disconnect();
     };
   }, [mounted]);
 

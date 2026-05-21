@@ -16,6 +16,7 @@ import { useRouter } from "next/compat/router";
 import {
   type FocusEvent as ReactFocusEvent,
   type KeyboardEvent as ReactKeyboardEvent,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -84,7 +85,7 @@ function ServiceMenuLink({
           aria-hidden="true"
           className="translate-x-0 text-accent/0 transition-all duration-200 ease-in-out group-hover:translate-x-1 group-hover:text-accent"
         >
-          Ã¢â€ â€™
+          ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢
         </span>
       ) : null}
     </Link>
@@ -96,6 +97,15 @@ function ServiceMenuLink({
  */
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+    return () => document.body.classList.remove("menu-open");
+  }, [isOpen]);
   const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
   const [isServicesAccordionOpen, setIsServicesAccordionOpen] = useState(false);
   const servicesCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
