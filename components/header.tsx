@@ -84,7 +84,7 @@ function ServiceMenuLink({
           aria-hidden="true"
           className="translate-x-0 text-accent/0 transition-all duration-200 ease-in-out group-hover:translate-x-1 group-hover:text-accent"
         >
-          →
+          â†’
         </span>
       ) : null}
     </Link>
@@ -313,6 +313,20 @@ export function Header() {
         </motion.button>
       </div>
 
+      <AnimatePresence>
+        {isOpen && !shouldReduceMotion ? (
+          <motion.div
+            key="mobile-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[40] bg-black/60 backdrop-blur-sm lg:hidden"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+        ) : null}
+      </AnimatePresence>
       <AnimatePresence initial={false}>
         {isOpen ? (
           <motion.div
