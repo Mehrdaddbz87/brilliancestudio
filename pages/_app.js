@@ -23,7 +23,7 @@ const fantasy = Inter({
 
 export default function App({ Component, pageProps, router }) {
   const isAdminRoute =
-    router.pathname.startsWith("/admin") || router.pathname === "/login";
+    router.pathname.startsWith("/admin") || router.pathname === "/login" || router.pathname === "/forgot-password" || router.pathname === "/reset-password";
 
   return (
     <div className={`dark ${classic.variable} ${fantasy.variable}`}>
