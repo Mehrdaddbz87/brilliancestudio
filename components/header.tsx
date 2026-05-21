@@ -84,7 +84,7 @@ function ServiceMenuLink({
           aria-hidden="true"
           className="translate-x-0 text-accent/0 transition-all duration-200 ease-in-out group-hover:translate-x-1 group-hover:text-accent"
         >
-          â†’
+          Ã¢â€ â€™
         </span>
       ) : null}
     </Link>
@@ -162,6 +162,21 @@ export function Header() {
   }
 
   return (
+    <>
+      <AnimatePresence>
+        {isOpen && !shouldReduceMotion ? (
+          <motion.div
+            key="mobile-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[40] bg-black/60 backdrop-blur-sm lg:hidden"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+        ) : null}
+      </AnimatePresence>
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <motion.div
@@ -313,20 +328,6 @@ export function Header() {
         </motion.button>
       </div>
 
-      <AnimatePresence>
-        {isOpen && !shouldReduceMotion ? (
-          <motion.div
-            key="mobile-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[40] bg-black/60 backdrop-blur-sm lg:hidden"
-            onClick={() => setIsOpen(false)}
-            aria-hidden="true"
-          />
-        ) : null}
-      </AnimatePresence>
       <AnimatePresence initial={false}>
         {isOpen ? (
           <motion.div
@@ -455,5 +456,6 @@ export function Header() {
         ) : null}
       </AnimatePresence>
     </header>
+    </>
   );
 }
