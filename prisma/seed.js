@@ -269,7 +269,7 @@ async function seedCms() {
             title: "Whole-Home Renovation",
             summary:
               "A complete whole-home transformation — structural modifications, open-concept redesign, premium finishes, and precise coordination from concept through completion.",
-            imageUrl: "/images/placeholders/reference.svg",
+            imageUrl: "/images/portfolio/whole-home-renovation.svg",
             imageAlt: "Whole-home renovation project",
             sortOrder: 1,
           },
@@ -279,7 +279,7 @@ async function seedCms() {
             title: "Kitchen & Open-Concept Remodel",
             summary:
               "Load-bearing wall removal, custom cabinetry, quartz countertops, and a seamless connection between kitchen, dining, and living spaces.",
-            imageUrl: "/images/placeholders/reference.svg",
+            imageUrl: "/images/portfolio/kitchen-open-concept-remodel.svg",
             imageAlt: "Kitchen and open-concept remodel project",
             sortOrder: 2,
           },
@@ -289,7 +289,7 @@ async function seedCms() {
             title: "Primary Bathroom Transformation",
             summary:
               "A spa-inspired primary bathroom with heated floors, custom tile work, freestanding soaker tub, and refined fixtures selected for durability and luxury feel.",
-            imageUrl: "/images/placeholders/reference.svg",
+            imageUrl: "/images/portfolio/primary-bathroom-transformation.svg",
             imageAlt: "Primary bathroom renovation project",
             sortOrder: 3,
           },
@@ -338,7 +338,7 @@ async function seedCms() {
             title: "Whole-Home Renovation",
             summary:
               "A complete whole-home transformation — structural modifications, open-concept redesign, premium finishes, and precise coordination from concept through completion.",
-            imageUrl: "/images/placeholders/reference.svg",
+            imageUrl: "/images/portfolio/whole-home-renovation.svg",
             imageAlt: "Whole-home renovation project",
             sortOrder: 1,
           },
@@ -348,7 +348,7 @@ async function seedCms() {
             title: "Kitchen & Open-Concept Remodel",
             summary:
               "Load-bearing wall removal, custom cabinetry, quartz countertops, and a seamless connection between kitchen, dining, and living spaces.",
-            imageUrl: "/images/placeholders/reference.svg",
+            imageUrl: "/images/portfolio/kitchen-open-concept-remodel.svg",
             imageAlt: "Kitchen and open-concept remodel project",
             sortOrder: 2,
           },
@@ -358,7 +358,7 @@ async function seedCms() {
             title: "Primary Bathroom Transformation",
             summary:
               "A spa-inspired primary bathroom with heated floors, custom tile work, freestanding soaker tub, and refined fixtures selected for durability and luxury feel.",
-            imageUrl: "/images/placeholders/reference.svg",
+            imageUrl: "/images/portfolio/primary-bathroom-transformation.svg",
             imageAlt: "Primary bathroom renovation project",
             sortOrder: 3,
           },

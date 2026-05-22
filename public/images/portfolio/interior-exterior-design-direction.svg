@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Interior and exterior design direction illustration</title>
+  <desc id="desc">Design direction illustration with material boards, facade lines, and refined interior accents.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151109"/>
+      <stop offset="0.58" stop-color="#030303"/>
+      <stop offset="1" stop-color="#0d0d0d"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="34%" cy="22%" r="72%">
+      <stop offset="0" stop-color="#b99a45" stop-opacity="0.27"/>
+      <stop offset="1" stop-color="#b99a45" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <path d="M215 225h330v430H215z" fill="#111" stroke="#b99a45" stroke-width="4"/>
+  <path d="M655 225h330v430H655z" fill="#0b0b0b" stroke="#5f4d1f" stroke-width="4"/>
+  <path d="M270 300h220M270 380h220M270 460h140M700 300h230M700 380h190M700 460h230" stroke="#b99a45" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="320" cy="565" r="34" fill="#b99a45" fill-opacity="0.22" stroke="#b99a45" stroke-width="4"/>
+  <circle cx="430" cy="565" r="34" fill="#ffffff" fill-opacity="0.08" stroke="#b99a45" stroke-width="4"/>
+  <path d="M720 565l85-85 85 85 55-55" fill="none" stroke="#b99a45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="600" y="795" fill="#d7c17b" font-family="Arial, sans-serif" font-size="34" letter-spacing="8" text-anchor="middle">DESIGN DIRECTION</text>
+</svg>

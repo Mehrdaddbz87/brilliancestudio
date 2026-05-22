@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Kitchen and open-concept remodel illustration</title>
+  <desc id="desc">Luxury kitchen remodel illustration with island, pendant lights, and open living flow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#120f08"/>
+      <stop offset="0.6" stop-color="#050505"/>
+      <stop offset="1" stop-color="#1b1406"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="70%" cy="18%" r="65%">
+      <stop offset="0" stop-color="#b99a45" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#b99a45" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <path d="M170 610h860v120H170z" fill="#0a0a0a" stroke="#b99a45" stroke-width="4"/>
+  <path d="M285 450h630l70 160H215l70-160Z" fill="#151515" stroke="#b99a45" stroke-width="4"/>
+  <path d="M330 420V240h540v180M440 420V260M560 420V260M680 420V260M800 420V260" fill="none" stroke="#5f4d1f" stroke-width="4"/>
+  <circle cx="450" cy="180" r="34" fill="none" stroke="#b99a45" stroke-width="4"/>
+  <circle cx="600" cy="180" r="34" fill="none" stroke="#b99a45" stroke-width="4"/>
+  <circle cx="750" cy="180" r="34" fill="none" stroke="#b99a45" stroke-width="4"/>
+  <path d="M450 146V90M600 146V90M750 146V90" stroke="#b99a45" stroke-width="4"/>
+  <text x="600" y="795" fill="#d7c17b" font-family="Arial, sans-serif" font-size="34" letter-spacing="8" text-anchor="middle">KITCHEN REMODEL</text>
+</svg>

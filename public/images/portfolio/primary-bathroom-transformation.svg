@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Primary bathroom transformation illustration</title>
+  <desc id="desc">Luxury bathroom renovation illustration with freestanding tub, vanity, and warm gold accents.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111111"/>
+      <stop offset="0.55" stop-color="#030303"/>
+      <stop offset="1" stop-color="#151008"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="40%" cy="25%" r="65%">
+      <stop offset="0" stop-color="#b99a45" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#b99a45" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <path d="M270 565c0 105 90 155 330 155s330-50 330-155H270Z" fill="#111" stroke="#b99a45" stroke-width="5"/>
+  <path d="M320 565c18 70 95 100 280 100s262-30 280-100" fill="none" stroke="#5f4d1f" stroke-width="4"/>
+  <path d="M390 470h420v95H390z" fill="#0a0a0a" stroke="#b99a45" stroke-width="4"/>
+  <path d="M420 470V295h360v175M500 470V320M700 470V320" fill="none" stroke="#59491e" stroke-width="4"/>
+  <path d="M470 245h260M600 245v-90M555 155h90" stroke="#b99a45" stroke-width="5" stroke-linecap="round"/>
+  <text x="600" y="795" fill="#d7c17b" font-family="Arial, sans-serif" font-size="34" letter-spacing="8" text-anchor="middle">BATHROOM TRANSFORMATION</text>
+</svg>
