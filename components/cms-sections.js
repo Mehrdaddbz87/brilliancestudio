@@ -4,22 +4,50 @@ import { Button } from "@/components/button";
 import { FadeInSection } from "@/components/fade-in-section";
 
 /**
- * Renders a simple prose content block from CMS-managed section data.
+ * Renders a simple prose content block — open editorial style, no box.
  */
-function TextSection({ section }) {
+function TextSection({ section, ctaHref, ctaLabel }) {
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
+    <div className="py-2">
       {section.eyebrow ? (
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
           {section.eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+      <h2 className="mt-3 break-words text-2xl font-semibold leading-snug text-text sm:text-3xl">
         {section.heading}
       </h2>
-      <p className="mt-5 max-w-3xl text-lg leading-8 text-text/75">
+      <p className="mt-5 text-base leading-relaxed text-text/60">
         {section.body}
       </p>
+      {ctaHref ? (
+        <a
+          href={ctaHref}
+          className="mt-6 inline-block text-xs font-semibold uppercase tracking-[0.25em] text-accent transition-all duration-200 hover:tracking-[0.35em]"
+        >
+          {ctaLabel || "Learn more"} &rarr;
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
+/**
+ * Renders a textSection + featureListSection side-by-side in an editorial
+ * two-column layout, separated by a thin gold top rule.
+ */
+function TextFeaturePair({ text, features }) {
+  return (
+    <div className="pt-2">
+      <div className="mb-10 h-px w-full bg-accent/20" />
+      <div className="grid gap-12 md:grid-cols-5">
+        <div className="md:col-span-2">
+          <TextSection section={text} ctaHref="/contact" ctaLabel="Start your project" />
+        </div>
+        <div className="md:col-span-3">
+          <FeatureListSection section={features} />
+        </div>
+      </div>
     </div>
   );
 }
@@ -142,19 +170,46 @@ function GallerySection({ section }) {
 
 /**
  * Dispatches CMS section records to the matching visual component by `_type`.
+ * When a textSection is immediately followed by a featureListSection, they are
+ * rendered together in a two-column editorial layout.
  */
 export function CmsSections({ sections = [] }) {
   if (!sections.length) {
     return null;
   }
 
+  // Build a render queue, collapsing adjacent text+feature pairs
+  const queue = [];
+  let i = 0;
+  while (i < sections.length) {
+    const curr = sections[i];
+    const next = sections[i + 1];
+    if (
+      curr._type === "textSection" &&
+      next?._type === "featureListSection"
+    ) {
+      queue.push({ type: "pair", text: curr, features: next, key: curr._key || `pair-${i}` });
+      i += 2;
+    } else {
+      queue.push({ type: "single", section: curr, key: curr._key || `${curr._type}-${i}` });
+      i += 1;
+    }
+  }
+
   return (
     <div className="mx-auto mt-16 max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
-      {sections.map((section, index) => {
-        const key = section._key || `${section._type}-${index}`;
+      {queue.map((entry, index) => {
+        if (entry.type === "pair") {
+          return (
+            <FadeInSection key={entry.key} delay={0.05 + index * 0.04}>
+              <TextFeaturePair text={entry.text} features={entry.features} />
+            </FadeInSection>
+          );
+        }
 
+        const { section } = entry;
         return (
-          <FadeInSection key={key} delay={0.05 + index * 0.04}>
+          <FadeInSection key={entry.key} delay={0.05 + index * 0.04}>
             {section._type === "textSection" ? (
               <TextSection section={section} />
             ) : null}
