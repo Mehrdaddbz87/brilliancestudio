@@ -26,25 +26,31 @@ function TextSection({ section }) {
 
 /**
  * Renders a highlighted list of CMS-managed feature bullets.
+ * Editorial open layout: gold dash prefix, thin dividers, no heavy borders.
  */
 function FeatureListSection({ section }) {
   return (
-    <div className="rounded-[2rem] border border-accent/20 bg-accent/[0.06] p-8">
+    <div className="py-4">
       {section.eyebrow ? (
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
           {section.eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-4 break-words font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+      <h2 className="mt-3 break-words text-2xl font-semibold text-text sm:text-3xl">
         {section.heading}
       </h2>
-      <ul className="mt-6 grid gap-4 md:grid-cols-2">
+      <ul className="mt-8 divide-y divide-white/[0.07]">
         {section.items?.map((item) => (
           <li
             key={item}
-            className="min-w-0 break-words rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-base text-text/80"
+            className="flex items-start gap-5 py-5"
           >
-            {item}
+            <span className="mt-0.5 shrink-0 text-base font-semibold leading-none text-accent select-none">
+              &mdash;
+            </span>
+            <span className="text-base leading-relaxed text-text/75">
+              {item}
+            </span>
           </li>
         ))}
       </ul>

@@ -136,23 +136,25 @@ export default function PortfolioPage({ content }) {
         </FadeInSection>
 
         {/* ── CTA Band ── */}
-        <FadeInSection delay={0.12}>
-          <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="rounded-[2rem] border border-accent/20 bg-[radial-gradient(circle_at_top,rgba(185,154,69,0.18),transparent_35%),rgba(185,154,69,0.06)] p-8 shadow-[0_0_80px_rgba(185,154,69,0.08)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+        <FadeInSection delay={0.16}>
+          <section className="relative mx-auto mt-24 max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Radial gold glow */}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <div className="h-64 w-[600px] rounded-full bg-accent/10 blur-[120px]" />
+            </div>
+            <div className="relative py-16 text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                 Craftsmanship
               </p>
-              <h2 className="mt-4 text-3xl font-bold uppercase tracking-[0.05em] text-text">
-                Designed to show transformation with quality.
+              <h2 className="mt-4 text-3xl font-bold text-text sm:text-4xl">
+                Designed to elevate. Built to last.
               </h2>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-text/75">
-                Our portfolio highlights renovation and design work shaped by
-                precision, craftsmanship, and a modern understanding of how
-                people want to live. Each project is presented as a study in
-                thoughtful transformation, refined finishes, and high-end
-                execution.
+              <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-text/60">
+                We blend refined design with expert construction to create
+                spaces that stand the test of time — in beauty, function, and
+                quality.
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex justify-center">
                 <Button href="/contact">Start Your Project</Button>
               </div>
             </div>
