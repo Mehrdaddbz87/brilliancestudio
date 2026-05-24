@@ -24,42 +24,52 @@ export function ServiceDetailPage({ service }) {
       </Head>
       <main className="overflow-x-clip bg-black pb-24 text-white">
 
-        {/* ── Hero Header — left text / right image ── */}
+        {/* ── Hero Header — text left / image bleeds to viewport right with left fade ── */}
         <FadeInSection>
-          <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 pt-20 pb-14 sm:px-6 lg:grid-cols-2 lg:px-8">
-            {/* Left */}
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
-                {service.eyebrow || "Services"}
-              </p>
-              <h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-                {service.title}.
-              </h1>
-              <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
-                {service.subtitle || service.description}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/contact">Start Your Project</Button>
-                <Button href="/services" variant="ghost">All Services</Button>
+          <section className="relative min-h-[480px] overflow-hidden pt-20 pb-16 lg:min-h-[560px]">
+            {/* Text — left half inside container */}
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="lg:w-[48%]">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+                  {service.eyebrow || "Services"}
+                </p>
+                <h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+                  {service.title}.
+                </h1>
+                <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
+                  {service.subtitle || service.description}
+                </p>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Button href="/contact">Start Your Project</Button>
+                  <Button href="/services" variant="ghost">All Services</Button>
+                </div>
               </div>
             </div>
 
-            {/* Right — single image */}
+            {/* Image — absolutely positioned, right half, bleeds to viewport edge */}
             {service.imageUrl ? (
-              <div className="overflow-hidden rounded-[1.5rem] border border-accent/25 shadow-[0_0_60px_rgba(185,154,69,0.12)]">
-                <div className="relative aspect-[4/3] w-full">
+              <div className="mt-10 h-64 lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-full lg:w-[55%]">
+                <div
+                  className="relative h-full w-full"
+                  style={{
+                    maskImage: "linear-gradient(to right, transparent 0%, black 22%)",
+                    WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%)",
+                  }}
+                >
                   <Image
                     src={service.imageUrl}
                     alt={service.imageAlt || service.title}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="(max-width: 1024px) 100vw, 55vw"
                     priority
                   />
                 </div>
               </div>
             ) : (
-              <div className="aspect-[4/3] rounded-[1.5rem] border border-accent/20 bg-[radial-gradient(circle_at_center,rgba(185,154,69,0.15),transparent_60%)]" />
+              <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-[55%]">
+                <div className="h-full bg-[radial-gradient(circle_at_center,rgba(185,154,69,0.12),transparent_60%)]" />
+              </div>
             )}
           </section>
         </FadeInSection>
