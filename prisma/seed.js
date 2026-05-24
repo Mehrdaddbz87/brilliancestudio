@@ -253,41 +253,7 @@ async function seedCms() {
           ],
         },
       ],
-      items: {
-        deleteMany: {},
-        create: [
-          {
-            slug: "whole-home-renovation",
-            category: "Custom Home",
-            title: "Whole-Home Renovation",
-            summary:
-              "A complete whole-home transformation — structural modifications, open-concept redesign, premium finishes, and precise coordination from concept through completion.",
-            imageUrl: "/images/portfolio/whole-home-renovation.svg",
-            imageAlt: "Whole-home renovation project",
-            sortOrder: 1,
-          },
-          {
-            slug: "kitchen-open-concept-remodel",
-            category: "Kitchen Renovation",
-            title: "Kitchen & Open-Concept Remodel",
-            summary:
-              "Load-bearing wall removal, custom cabinetry, quartz countertops, and a seamless connection between kitchen, dining, and living spaces.",
-            imageUrl: "/images/portfolio/kitchen-open-concept-remodel.svg",
-            imageAlt: "Kitchen and open-concept remodel project",
-            sortOrder: 2,
-          },
-          {
-            slug: "primary-bathroom-transformation",
-            category: "Bathroom Renovation",
-            title: "Primary Bathroom Transformation",
-            summary:
-              "A spa-inspired primary bathroom with heated floors, custom tile work, freestanding soaker tub, and refined fixtures selected for durability and luxury feel.",
-            imageUrl: "/images/portfolio/primary-bathroom-transformation.svg",
-            imageAlt: "Primary bathroom renovation project",
-            sortOrder: 3,
-          },
-        ],
-      },
+      // Items are managed separately below via safe upserts (never overwrite images)
     },
     create: {
       slug: "references",
@@ -352,6 +318,70 @@ async function seedCms() {
       },
     },
   });
+
+  // Safe per-item upserts: update only non-image fields; images are never overwritten.
+  // On first run (create), the SVG placeholder is used. After an admin uploads a real
+  // photo, subsequent seeds leave imageUrl/imageAlt untouched.
+  const portfolioPage = await prisma.referencePage.findUnique({ where: { slug: "references" } });
+  if (portfolioPage) {
+    const seedItems = [
+      {
+        slug: "whole-home-renovation",
+        category: "Custom Home",
+        title: "Whole-Home Renovation",
+        summary:
+          "A complete whole-home transformation — structural modifications, open-concept redesign, premium finishes, and precise coordination from concept through completion.",
+        imageUrl: "/images/portfolio/whole-home-renovation.svg",
+        imageAlt: "Whole-home renovation project",
+        sortOrder: 1,
+      },
+      {
+        slug: "kitchen-open-concept-remodel",
+        category: "Kitchen Renovation",
+        title: "Kitchen & Open-Concept Remodel",
+        summary:
+          "Load-bearing wall removal, custom cabinetry, quartz countertops, and a seamless connection between kitchen, dining, and living spaces.",
+        imageUrl: "/images/portfolio/kitchen-open-concept-remodel.svg",
+        imageAlt: "Kitchen and open-concept remodel project",
+        sortOrder: 2,
+      },
+      {
+        slug: "primary-bathroom-transformation",
+        category: "Bathroom Renovation",
+        title: "Primary Bathroom Transformation",
+        summary:
+          "A spa-inspired primary bathroom with heated floors, custom tile work, freestanding soaker tub, and refined fixtures selected for durability and luxury feel.",
+        imageUrl: "/images/portfolio/primary-bathroom-transformation.svg",
+        imageAlt: "Primary bathroom renovation project",
+        sortOrder: 3,
+      },
+    ];
+
+    for (const item of seedItems) {
+      await prisma.referenceItem.upsert({
+        where: { slug: item.slug },
+        // On update: only refresh text/metadata — never touch imageUrl or imageAlt
+        update: {
+          category: item.category,
+          title: item.title,
+          summary: item.summary,
+          sortOrder: item.sortOrder,
+          pageId: portfolioPage.id,
+        },
+        // On create (first seed): include SVG placeholder image
+        create: {
+          slug: item.slug,
+          category: item.category,
+          title: item.title,
+          summary: item.summary,
+          imageUrl: item.imageUrl,
+          imageAlt: item.imageAlt,
+          sortOrder: item.sortOrder,
+          pageId: portfolioPage.id,
+        },
+      });
+    }
+  }
 
   const legalPages = [
     {
