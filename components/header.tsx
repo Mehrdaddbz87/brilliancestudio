@@ -46,48 +46,59 @@ const serviceIconMap = {
 function ServiceMenuLink({
   href,
   label,
+  description,
   icon,
   onClick,
   mobile = false,
 }: {
   href: string;
   label: string;
+  description?: string;
   icon: keyof typeof serviceIconMap;
   onClick: () => void;
   mobile?: boolean;
 }) {
   const Icon = serviceIconMap[icon];
 
+  if (mobile) {
+    return (
+      <Link
+        href={href}
+        className="group flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-text/82 transition-all duration-200 hover:bg-accent/10 hover:text-accent"
+        onClick={onClick}
+      >
+        <Icon
+          aria-hidden="true"
+          className="h-4 w-4 shrink-0 text-white/40 transition-colors duration-200 group-hover:text-accent"
+          strokeWidth={1.5}
+        />
+        <span className="min-w-0 break-words">{label}</span>
+      </Link>
+    );
+  }
+
   return (
     <Link
       href={href}
-      role={mobile ? undefined : "menuitem"}
-      className={cn(
-        "group flex items-center justify-between rounded-xl transition-all duration-200 ease-in-out",
-        mobile
-          ? "px-3 py-3 text-sm text-text/82 hover:bg-accent/10 hover:text-accent"
-          : "px-4 py-3 text-sm font-medium text-text/88 hover:bg-white/[0.04] hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/50",
-      )}
+      role="menuitem"
+      className="group relative flex items-start gap-4 border-l-2 border-transparent py-4 pl-4 pr-5 transition-all duration-200 ease-in-out hover:border-accent hover:bg-white/[0.04] focus:outline-none focus:ring-2 focus:ring-accent/50"
       onClick={onClick}
     >
-      <span className="flex min-w-0 flex-1 items-center gap-3">
-        <Icon
-          aria-hidden="true"
-          className="h-[18px] w-[18px] shrink-0 translate-x-0 text-white/40 transition-all duration-200 ease-in-out group-hover:translate-x-1 group-hover:text-accent"
-          strokeWidth={1.6}
-        />
-        <span className="min-w-0 break-words transition-colors duration-200 ease-in-out">
+      <Icon
+        aria-hidden="true"
+        className="mt-0.5 h-4 w-4 shrink-0 text-accent/50 transition-colors duration-200 group-hover:text-accent"
+        strokeWidth={1.5}
+      />
+      <span className="min-w-0 flex-1">
+        <span className="block text-sm font-semibold text-text/90 transition-colors duration-200 group-hover:text-accent">
           {label}
         </span>
+        {description ? (
+          <span className="mt-0.5 block text-xs leading-relaxed text-text/45 transition-colors duration-200 group-hover:text-text/60">
+            {description}
+          </span>
+        ) : null}
       </span>
-      {!mobile ? (
-        <span
-          aria-hidden="true"
-          className="translate-x-0 text-accent/0 transition-all duration-200 ease-in-out group-hover:translate-x-1 group-hover:text-accent"
-        >
-          →
-        </span>
-      ) : null}
     </Link>
   );
 }
@@ -256,29 +267,31 @@ export function Header() {
                         animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
                         exit={shouldReduceMotion ? {} : { opacity: 0, y: 2 }}
                         transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute left-0 top-full z-[70] w-[min(28rem,calc(100vw-2rem))] pt-2"
+                        className="absolute left-0 top-full z-[70] w-[min(34rem,calc(100vw-2rem))] pt-2"
                       >
                         <div
                           aria-hidden="true"
                           className="absolute left-0 top-0 h-2 w-full"
                         />
-                        <div className="rounded-2xl border border-accent/20 bg-black p-3 shadow-2xl shadow-black/60">
-                          <div className="mb-2 px-3 pt-2">
-                            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-accent">
+                        <div className="rounded-2xl border border-accent/20 bg-black shadow-2xl shadow-black/60">
+                          <div className="px-5 pb-2 pt-5">
+                            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-accent">
                               Services
                             </p>
                           </div>
-                          <div className="flex flex-col gap-1">
+                          <div className="flex flex-col divide-y divide-white/[0.06]">
                             {serviceNavItems.map((category) => (
                               <ServiceMenuLink
                                 key={category.href}
                                 href={category.href}
                                 icon={category.icon}
+                                description={category.description}
                                 onClick={() => closeServicesMenu()}
                                 label={category.label}
                               />
                             ))}
                           </div>
+                          <div className="h-3" />
                         </div>
                       </motion.div>
                     ) : null}
