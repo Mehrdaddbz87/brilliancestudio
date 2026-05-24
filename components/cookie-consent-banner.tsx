@@ -105,11 +105,11 @@ export function CookieConsentBanner() {
       document.body.style.paddingBottom = "";
       return;
     }
-    document.body.style.paddingBottom = "160px";
+    document.body.style.paddingBottom = showPreferences ? "360px" : "72px";
     return () => {
       document.body.style.paddingBottom = "";
     };
-  }, [isOpen]);
+  }, [isOpen, showPreferences]);
 
   if (!isHydrated || !isOpen) {
     return null;
@@ -140,48 +140,53 @@ export function CookieConsentBanner() {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[70] px-4 pb-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-background/95 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-              Cookie Consent
-            </p>
-            <h2 className="mt-3 font-fantasy text-2xl uppercase tracking-[0.08em] text-text">
-              Control how your visit is measured.
-            </h2>
-            <p className="mt-4 text-base leading-7 text-text/75">
-              We use optional cookies to support site functionality, understand
-              traffic, and improve marketing performance. You can accept all,
-              reject optional cookies, or save category-specific preferences.
-            </p>
-          </div>
-
-          {!showPreferences ? (
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Button type="button" onClick={handleAcceptAll}>
-                Accept all
-              </Button>
-              <Button
+    <div className="fixed inset-x-0 bottom-0 z-[70]">
+      {/* ── Slim banner (default) ── */}
+      {!showPreferences ? (
+        <div className="border-t border-accent/20 bg-black/95 backdrop-blur-xl">
+          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3.5 sm:flex-row sm:items-center sm:gap-6 sm:px-6 lg:px-8">
+            {/* Left — label + text */}
+            <div className="flex min-w-0 flex-1 items-baseline gap-3">
+              <span className="shrink-0 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-accent">
+                Cookie Consent
+              </span>
+              <p className="min-w-0 text-xs leading-relaxed text-text/55">
+                We use optional cookies to improve your experience. You can accept all or manage your preferences.
+              </p>
+            </div>
+            {/* Right — actions */}
+            <div className="flex shrink-0 items-center gap-4">
+              <button
                 type="button"
-                variant="ghost"
-                onClick={handleRejectOptional}
-              >
-                Reject optional
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
                 onClick={() => setShowPreferences(true)}
+                className="text-xs text-text/45 underline-offset-2 transition hover:text-accent hover:underline"
               >
                 Customize
-              </Button>
+              </button>
+              <button
+                type="button"
+                onClick={handleRejectOptional}
+                className="inline-flex h-8 items-center rounded-full border border-white/15 bg-white/5 px-4 text-xs font-semibold uppercase tracking-[0.18em] text-text/70 transition hover:border-white/30 hover:text-text"
+              >
+                Decline
+              </button>
+              <button
+                type="button"
+                onClick={handleAcceptAll}
+                className="inline-flex h-8 items-center rounded-full border border-accent bg-accent px-4 text-xs font-semibold uppercase tracking-[0.18em] text-primary transition hover:bg-transparent hover:text-accent"
+              >
+                Accept All
+              </button>
             </div>
-          ) : null}
+          </div>
         </div>
+      ) : null}
 
-        {showPreferences ? (
-          <div className="mt-6 grid gap-4">
+      {/* ── Preferences panel (customize view) ── */}
+      {showPreferences ? (
+        <div className="border-t border-accent/20 bg-black/95 backdrop-blur-xl">
+          <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+        <div className="mt-0 grid gap-4">
             <div className="rounded-[1.5rem] border border-accent/20 bg-accent/[0.06] px-4 py-4">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
                 Strictly Necessary
@@ -257,8 +262,10 @@ export function CookieConsentBanner() {
               ) : null}
             </div>
           </div>
-        ) : null}
-      </div>
+        </div>
+        </div>
+      ) : null}
+
     </div>
   );
 }
