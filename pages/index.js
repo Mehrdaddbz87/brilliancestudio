@@ -5,6 +5,7 @@ import { Card } from "@/components/card";
 import { FadeInSection } from "@/components/fade-in-section";
 import { Hero } from "@/components/hero";
 import { ResponsiveImage } from "@/components/responsive-image";
+import { getPageContent } from "@/lib/content";
 
 const services = [
   {
@@ -27,43 +28,7 @@ const services = [
   },
 ];
 
-const portfolioProjects = [
-  {
-    eyebrow: "Custom Home",
-    title: "Whole-Home Design & Build",
-    description:
-      "A complete design-build project coordinated from structural planning through final finishes, with refined materials, elevated atmosphere, and precise execution throughout.",
-    href: "/portfolio/whole-home-renovation",
-    image: {
-      url: "/images/portfolio/whole-home-renovation.svg",
-      alt: "Whole-home renovation project illustration",
-    },
-  },
-  {
-    eyebrow: "Kitchen Renovation",
-    title: "Kitchen & Open-Concept Transformation",
-    description:
-      "Load-bearing wall removal, custom cabinetry, and a seamless open layout that connects kitchen, dining, and living spaces with a calm, modern visual clarity.",
-    href: "/portfolio/kitchen-open-concept-remodel",
-    image: {
-      url: "/images/portfolio/kitchen-open-concept-remodel.svg",
-      alt: "Kitchen and open-concept remodel project illustration",
-    },
-  },
-  {
-    eyebrow: "Basement Finishing",
-    title: "Lower Level Living Suite",
-    description:
-      "An underused basement transformed into a polished living environment, with thoughtful lighting, premium finishes, and seamless integration with the rest of the home.",
-    href: "/portfolio/basement-living-suite",
-    image: {
-      url: "/images/portfolio/basement-living-suite.svg",
-      alt: "Basement living suite project illustration",
-    },
-  },
-];
-
-export default function HomePage() {
+export default function HomePage({ portfolioProjects }) {
   return (
     <>
       <Head>
@@ -117,16 +82,22 @@ export default function HomePage() {
             {portfolioProjects.map((reference) => (
               <Card
                 key={reference.title}
-                {...reference}
+                eyebrow={reference.category}
+                title={reference.title}
+                description={reference.summary}
                 cta="Case study"
-                href={reference.href}
+                href={reference.slug ? `/portfolio/${reference.slug}` : "/portfolio"}
                 media={
-                  <ResponsiveImage
-                    src={reference.image.url}
-                    alt={reference.image.alt}
-                    aspectRatio="aspect-[16/10]"
-                    className="group-hover:scale-[1.03]"
-                  />
+                  reference.image?.url ? (
+                    <ResponsiveImage
+                      src={reference.image.url}
+                      alt={reference.image.alt || reference.title}
+                      aspectClassName="aspect-[16/10]"
+                      className="group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div className="h-44 rounded-[1.25rem] border border-accent/20 bg-gradient-to-br from-accent/20 via-transparent to-white/5" />
+                  )
                 }
               />
             ))}
@@ -136,4 +107,14 @@ export default function HomePage() {
     </main>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const portfolioContent = await getPageContent("portfolio");
+
+  return {
+    props: {
+      portfolioProjects: (portfolioContent?.items || []).slice(0, 3),
+    },
+  };
 }
