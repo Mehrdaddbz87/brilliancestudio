@@ -110,7 +110,7 @@ export default function HomePage({ portfolioProjects }) {
                       <h3 className="mt-5 max-w-md break-words font-classic text-4xl uppercase leading-[0.95] tracking-[0.02em] text-text sm:text-5xl">
                         {featuredService.title}
                       </h3>
-                      <div className="mt-6 h-px w-20 bg-accent" />
+                      <div className="mt-6 h-px w-28 bg-gradient-to-r from-accent/80 to-transparent" />
                       <p className="mt-6 max-w-sm text-lg leading-8 text-text/78">
                         {featuredService.description}
                       </p>
