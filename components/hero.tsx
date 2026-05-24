@@ -24,7 +24,7 @@ export function Hero() {
           {/* Ghost watermark "BRILLIANCE" */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -top-6 left-0 select-none break-words font-classic text-[5.5rem] font-black uppercase leading-none tracking-[0.18em] text-white/[0.045] sm:text-[7rem] md:text-[8.5rem]"
+            className="pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap font-classic text-[8.5vw] font-black uppercase leading-none tracking-[0.06em] text-white/[0.045] sm:text-[5.5rem] sm:tracking-[0.18em] md:text-[8.5rem]"
           >
             BRILLIANCE
           </span>
