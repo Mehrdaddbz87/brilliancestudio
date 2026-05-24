@@ -1,11 +1,10 @@
 import Head from "next/head";
+import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import Link from "next/link";
-import { Button } from "@/components/button";
 import { authOptions } from "@/lib/auth";
 
 export default function LoginPage() {
@@ -47,66 +46,84 @@ export default function LoginPage() {
         <title>Admin Login | Brilliance Studio</title>
         <meta name="robots" content="noindex,nofollow" />
       </Head>
-      <main className="min-h-[calc(100vh-5rem)] bg-background px-4 py-12 sm:px-6 lg:px-8">
-        <section className="mx-auto grid min-h-[70vh] max-w-4xl place-items-center">
-          <div className="w-full max-w-xl rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)] sm:p-10">
-            <h1 className="mt-5 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
+      <main className="flex min-h-screen items-center justify-center bg-black px-4">
+        <div className="w-full max-w-md rounded-[1.75rem] border border-white/[0.08] bg-white/[0.02] p-8 shadow-[0_32px_80px_rgba(0,0,0,0.6)] sm:p-10">
+
+          {/* Brand */}
+          <div className="mb-8 text-center">
+            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.4em] text-accent">
+              Brilliance Studio
+            </p>
+            <div className="mx-auto mt-3 h-px w-12 bg-accent/50" />
+            <h1 className="mt-5 text-2xl font-semibold text-text">
               Admin Login
             </h1>
-
-
-            <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
-              <label className="block">
-                <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">
-                  Admin Email
-                </span>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
-                  placeholder=""
-                  autoComplete="username"
-                  required
-                />
-              </label>
-
-              <label className="block">
-                <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">
-                  Password
-                </span>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
-                  placeholder=""
-                  autoComplete="current-password"
-                  required
-                />
-              </label>
-
-              {error ? <p className="text-sm text-red-300">{error}</p> : null}
-              <div className="flex justify-end">
-                <Link href="/forgot-password" className="text-sm text-text/45 transition hover:text-accent">
-                  Forgot password?
-                </Link>
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  type="submit"
-                  className={isSubmitting ? "opacity-70" : ""}
-                >
-                  {isSubmitting ? "Signing in..." : "Sign in"}
-                </Button>
-                <Button href="/" variant="ghost">
-                  Back to site
-                </Button>
-              </div>
-            </form>
           </div>
-        </section>
+
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            <label className="block">
+              <span className="mb-2 block text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-text/50">
+                Admin Email
+              </span>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full rounded-xl border border-white/12 bg-white/[0.04] px-4 py-3 text-sm text-text outline-none transition placeholder:text-text/25 focus:border-accent/70 focus:bg-white/[0.06] focus:ring-1 focus:ring-accent/30"
+                placeholder="Enter your admin email"
+                autoComplete="username"
+                required
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-text/50">
+                Password
+              </span>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-xl border border-white/12 bg-white/[0.04] px-4 py-3 text-sm text-text outline-none transition placeholder:text-text/25 focus:border-accent/70 focus:bg-white/[0.06] focus:ring-1 focus:ring-accent/30"
+                placeholder="Enter your password"
+                autoComplete="current-password"
+                required
+              />
+            </label>
+
+            <div className="flex justify-end">
+              <Link
+                href="/forgot-password"
+                className="text-xs text-text/40 transition hover:text-accent"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            {error ? (
+              <p className="text-sm text-red-300" role="alert">{error}</p>
+            ) : null}
+
+            {/* Primary action */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full rounded-full border border-accent bg-accent py-3 text-sm font-semibold uppercase tracking-[0.22em] text-primary shadow-[0_0_24px_rgba(185,154,69,0.2)] transition duration-300 hover:bg-transparent hover:text-accent disabled:opacity-60"
+            >
+              {isSubmitting ? "Signing in..." : "Sign In"}
+            </button>
+
+            {/* Secondary link */}
+            <div className="pt-1 text-center">
+              <Link
+                href="/"
+                className="text-xs text-text/35 transition hover:text-accent"
+              >
+                &larr; Back to site
+              </Link>
+            </div>
+          </form>
+        </div>
       </main>
     </>
   );
@@ -117,15 +134,9 @@ export async function getServerSideProps(context) {
 
   if (session?.user?.role === "admin") {
     return {
-      redirect: {
-        destination: "/admin",
-        permanent: false,
-      },
+      redirect: { destination: "/admin", permanent: false },
     };
   }
 
-  return {
-    props: {},
-  };
+  return { props: {} };
 }
-
