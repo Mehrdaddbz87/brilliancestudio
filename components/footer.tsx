@@ -100,7 +100,7 @@ export function Footer() {
             </a>
             <a
               href="tel:041655588186"
-              className="flex min-w-0 items-center gap-2.5 text-sm text-text/55 transition hover:text-accent"
+              className="flex min-w-0 items-center gap-2.5 font-sans text-sm text-text/55 transition hover:text-accent"
             >
               <PhoneIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
               <span>041 655 588 186</span>
