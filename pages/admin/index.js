@@ -11,61 +11,67 @@ export default function AdminDashboard() {
         <title>Admin | Brilliance Studio</title>
         <meta name="robots" content="noindex,nofollow" />
       </Head>
-      <main className="min-h-[calc(100vh-5rem)] bg-background px-4 py-10 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-black px-4 py-10 sm:px-6 lg:px-8">
+
+        {/* Top bar */}
+        <div className="mx-auto flex max-w-6xl items-center justify-between pb-8">
+          <p className="text-[0.6rem] font-semibold uppercase tracking-[0.4em] text-accent">
+            Brilliance Studio
+          </p>
+          <button
+            type="button"
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="text-xs text-text/40 transition hover:text-accent"
+          >
+            Sign out
+          </button>
+        </div>
+
         <section className="mx-auto max-w-6xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-            Local CMS
+          {/* Header */}
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+            Admin
           </p>
-          <h1 className="mt-4 font-fantasy text-3xl uppercase tracking-[0.08em] text-text">
-            Admin Dashboard
+          <h1 className="mt-3 text-3xl font-semibold text-text sm:text-4xl">
+            Dashboard.
           </h1>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-text/75">
-            Manage locally stored content in PostgreSQL through Prisma. Services and
-            portfolio entries are now edited directly inside this project without
-            any Sanity dependency.
+          <p className="mt-3 text-sm leading-relaxed text-text/50">
+            Manage your services and portfolio content.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/admin/services">Manage services</Button>
-            <Button href="/admin/portfolio" variant="ghost">
-              Manage portfolio
-            </Button>
-            <Button variant="ghost" onClick={() => signOut({ callbackUrl: "/login" })}>
-              Sign out
-            </Button>
-          </div>
+          {/* Gold divider */}
+          <div className="mb-10 mt-8 h-px w-full bg-accent/20" />
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <article className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          {/* Cards */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <article className="rounded-[1.5rem] border border-white/10 bg-white/[0.02] p-8 shadow-[0_0_60px_rgba(185,154,69,0.05)] transition hover:border-accent/25 hover:shadow-[0_0_60px_rgba(185,154,69,0.1)]">
+              <p className="text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
                 Services
               </p>
-              <h2 className="mt-4 text-2xl font-semibold text-text">
-                Service cards and landing content
+              <h2 className="mt-4 text-xl font-semibold text-text">
+                Manage Services
               </h2>
-              <p className="mt-4 text-base leading-7 text-text/72">
-                Create, update, and delete the entries that populate the services
-                overview page.
+              <p className="mt-3 text-sm leading-relaxed text-text/50">
+                Update service titles, descriptions, and images shown across the site.
               </p>
-              <div className="mt-6">
-                <Button href="/admin/services">Open services admin</Button>
+              <div className="mt-7">
+                <Button href="/admin/services">Open Services</Button>
               </div>
             </article>
 
-            <article className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+            <article className="rounded-[1.5rem] border border-white/10 bg-white/[0.02] p-8 shadow-[0_0_60px_rgba(185,154,69,0.05)] transition hover:border-accent/25 hover:shadow-[0_0_60px_rgba(185,154,69,0.1)]">
+              <p className="text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
                 Portfolio
               </p>
-              <h2 className="mt-4 text-2xl font-semibold text-text">
-                Portfolio items and showcase content
+              <h2 className="mt-4 text-xl font-semibold text-text">
+                Manage Portfolio
               </h2>
-              <p className="mt-4 text-base leading-7 text-text/72">
-                Manage the project cards shown on the portfolio page with local
-                PostgreSQL-backed storage.
+              <p className="mt-3 text-sm leading-relaxed text-text/50">
+                Add, edit, or remove portfolio projects and their images.
               </p>
-              <div className="mt-6">
+              <div className="mt-7">
                 <Button href="/admin/portfolio" variant="ghost">
-                  Open portfolio admin
+                  Open Portfolio
                 </Button>
               </div>
             </article>
@@ -83,7 +89,5 @@ export async function getServerSideProps(context) {
     return authResult;
   }
 
-  return {
-    props: {},
-  };
+  return { props: {} };
 }
