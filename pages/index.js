@@ -4,13 +4,14 @@ import { Button } from "@/components/button";
 import { Card } from "@/components/card";
 import { FadeInSection } from "@/components/fade-in-section";
 import { Hero } from "@/components/hero";
+import { ResponsiveImage } from "@/components/responsive-image";
 
 const services = [
   {
     eyebrow: "Services",
     title: "Custom Home Design & Build",
     description:
-      "Residences shaped with intention â€” from earliest concept through final execution, coordinated for a cohesive and elevated result.",
+      "Residences shaped with intention, from earliest concept through final execution, coordinated for a cohesive and elevated result.",
   },
   {
     eyebrow: "Services",
@@ -31,19 +32,34 @@ const portfolioProjects = [
     eyebrow: "Custom Home",
     title: "Whole-Home Design & Build",
     description:
-      "A complete design-build project coordinated from structural planning through final finishes â€” refined materials, elevated atmosphere, and precise execution throughout.",
+      "A complete design-build project coordinated from structural planning through final finishes, with refined materials, elevated atmosphere, and precise execution throughout.",
+    href: "/portfolio/whole-home-renovation",
+    image: {
+      url: "/images/portfolio/whole-home-renovation.svg",
+      alt: "Whole-home renovation project illustration",
+    },
   },
   {
     eyebrow: "Kitchen Renovation",
     title: "Kitchen & Open-Concept Transformation",
     description:
       "Load-bearing wall removal, custom cabinetry, and a seamless open layout that connects kitchen, dining, and living spaces with a calm, modern visual clarity.",
+    href: "/portfolio/kitchen-open-concept-remodel",
+    image: {
+      url: "/images/portfolio/kitchen-open-concept-remodel.svg",
+      alt: "Kitchen and open-concept remodel project illustration",
+    },
   },
   {
     eyebrow: "Basement Finishing",
     title: "Lower Level Living Suite",
     description:
-      "An underused basement transformed into a polished living environment â€” thoughtful lighting, premium finishes, and seamless integration with the rest of the home.",
+      "An underused basement transformed into a polished living environment, with thoughtful lighting, premium finishes, and seamless integration with the rest of the home.",
+    href: "/portfolio/basement-living-suite",
+    image: {
+      url: "/images/portfolio/basement-living-suite.svg",
+      alt: "Basement living suite project illustration",
+    },
   },
 ];
 
@@ -52,9 +68,9 @@ export default function HomePage() {
     <>
       <Head>
         <title>Brilliance Studio | Premium Home Renovation & Design in Canada</title>
-        <meta name="description" content="Brilliance Studio is a premium renovation and design studio crafting elevated living spaces across Canada â€” custom homes, kitchen remodels, bathroom renovations, home additions, basement finishing, and structural transformations." />
+        <meta name="description" content="Brilliance Studio is a premium renovation and design studio crafting elevated living spaces across Canada, including custom homes, kitchen remodels, bathroom renovations, home additions, basement finishing, and structural transformations." />
         <meta property="og:title" content="Brilliance Studio | Premium Home Renovation & Design in Canada" key="og:title" />
-        <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen & bathroom remodels, additions, structural work, and basement finishing â€” crafted with precision and refined materials." key="og:description" />
+        <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen and bathroom remodels, additions, structural work, and basement finishing crafted with precision and refined materials." key="og:description" />
       </Head>
     <main className="overflow-x-clip bg-background px-4 py-10 sm:px-6 lg:px-8">
       <Hero />
@@ -103,10 +119,16 @@ export default function HomePage() {
                 key={reference.title}
                 {...reference}
                 cta="Case study"
-                href="/portfolio"
-              >
-                <div className="h-44 rounded-[1.25rem] border border-accent/20 bg-gradient-to-br from-accent/20 via-transparent to-white/5" />
-              </Card>
+                href={reference.href}
+                media={
+                  <ResponsiveImage
+                    src={reference.image.url}
+                    alt={reference.image.alt}
+                    aspectRatio="aspect-[16/10]"
+                    className="group-hover:scale-[1.03]"
+                  />
+                }
+              />
             ))}
           </div>
         </section>
