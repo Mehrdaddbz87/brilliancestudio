@@ -318,9 +318,11 @@ export default function ContactPage() {
                     <p className="text-sm text-red-300" role="alert">{contactStatus.message}</p>
                   ) : null}
 
-                  <Button type="submit" disabled={isSubmittingContact} className="w-full justify-center">
-                    {isSubmittingContact ? "Sending..." : "Send Message"}
-                  </Button>
+                  <div className="pt-1">
+                    <Button type="submit" disabled={isSubmittingContact}>
+                      {isSubmittingContact ? "Sending..." : "Send Message"}
+                    </Button>
+                  </div>
                 </form>
               )}
             </div>
