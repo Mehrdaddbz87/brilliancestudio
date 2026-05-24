@@ -9,15 +9,14 @@ import { CmsSections } from "@/components/cms-sections";
 import { FadeInSection } from "@/components/fade-in-section";
 import { getPageContent } from "@/lib/content";
 
-function PortfolioCard({ item, tall = false }) {
+function PortfolioCard({ item }) {
   const href = item.slug ? `/portfolio/${item.slug}` : "/contact";
 
   return (
     <motion.div
       whileHover={{ y: -4, boxShadow: "0 0 40px rgba(185,154,69,0.22)" }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className={`group relative overflow-hidden rounded-[1.5rem] border border-accent/30 ${tall ? "row-span-2" : ""}`}
-      style={{ minHeight: tall ? "560px" : "320px" }}
+      className="group relative overflow-hidden rounded-[1.5rem] border border-accent/30 h-full"
     >
       <Link href={href} className="block h-full w-full">
         {item.image?.url ? (
@@ -74,7 +73,6 @@ export default function PortfolioPage({ content }) {
     "Explore our renovation and design portfolio across Canada. High-end craftsmanship and modern living spaces.";
 
   const items = content.items || [];
-  const [featured, ...rest] = items;
 
   return (
     <>
@@ -89,7 +87,7 @@ export default function PortfolioPage({ content }) {
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
               {content.eyebrow || "Portfolio"}
             </p>
-            <h1 className="mt-4 text-5xl font-extrabold uppercase tracking-tight text-text sm:text-6xl lg:text-7xl">
+            <h1 className="mt-3 text-3xl font-extrabold uppercase tracking-tight text-text sm:text-4xl">
               OUR{" "}
               <em className="not-italic font-extrabold italic text-accent">
                 Portfolio.
@@ -124,15 +122,8 @@ export default function PortfolioPage({ content }) {
         <FadeInSection delay={0.08}>
           <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             {items.length > 0 ? (
-              <div className="grid gap-5 md:grid-cols-3" style={{ gridAutoRows: "280px" }}>
-                {/* Featured tall card */}
-                {featured && (
-                  <div className="md:row-span-2" style={{ gridRow: "span 2" }}>
-                    <PortfolioCard item={featured} tall />
-                  </div>
-                )}
-                {/* Remaining cards */}
-                {rest.map((item) => (
+              <div className="grid gap-5 md:grid-cols-3" style={{ gridAutoRows: "420px" }}>
+                {items.map((item) => (
                   <PortfolioCard key={item.title} item={item} />
                 ))}
               </div>
