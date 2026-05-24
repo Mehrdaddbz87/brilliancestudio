@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Button } from "@/components/button";
 import { openCookieConsentPreferences } from "@/lib/cookie-consent";
 
 function InstagramIcon(props: ComponentPropsWithoutRef<"svg">) {
@@ -52,11 +51,8 @@ const navLinks = [
 
 const serviceLinks = [
   { label: "Custom Home Design & Build", href: "/services/custom-home-design-build" },
-  { label: "Home Additions", href: "/services/home-additions" },
   { label: "Kitchen Remodeling", href: "/services/kitchen-remodeling" },
   { label: "Bathroom Remodeling", href: "/services/bathroom-remodeling" },
-  { label: "Interior & Exterior Design", href: "/services/interior-exterior-design" },
-  { label: "Structural Modifications", href: "/services/structural-modifications-framing" },
   { label: "Basement Finishing", href: "/services/basement-finishing" },
 ];
 
@@ -73,55 +69,52 @@ export function Footer() {
   const linkHover = shouldReduceMotion ? {} : { x: 4, color: "#b99a45" };
 
   return (
-    <footer id="footer" className="relative z-0 border-t border-white/10 bg-black/70 backdrop-blur-xl">
-
-
+    <footer id="footer" className="relative z-0 border-t border-accent/20 bg-black/70 backdrop-blur-xl">
 
       {/* Main footer grid */}
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.6fr_1fr_1.2fr_0.8fr] lg:px-8">
 
         {/* Brand column */}
         <div className="max-w-sm">
-          <p className="font-fantasy text-2xl uppercase tracking-[0.16em] text-accent">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
             Brilliance Studio
           </p>
-          <p className="mt-4 text-base leading-7 text-text/72">
-            Premium renovation and design studio crafting elevated living spaces
-            with refined materials, expert craftsmanship, and lasting quality.
+          <p className="mt-3 text-sm leading-6 text-text/55">
+            Premium renovation and design,<br />crafted with precision.
           </p>
           <div className="mt-6 space-y-3">
             <a
               href="mailto:info@brilliancestudio.ca"
-              className="flex min-w-0 items-center gap-2 text-sm text-text/60 transition hover:text-accent"
+              className="flex min-w-0 items-center gap-2.5 text-sm text-text/55 transition hover:text-accent"
             >
-              <MailIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+              <MailIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
               <span className="break-all">info@brilliancestudio.ca</span>
             </a>
-            <p className="flex items-center gap-2 text-sm text-text/60">
-              <MapPinIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+            <p className="flex items-center gap-2.5 text-sm text-text/55">
+              <MapPinIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
               Canada
             </p>
-            <motion.a
-              href="https://www.instagram.com/brilliancestudio.ca/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="inline-flex items-center gap-2 text-sm text-text/60 transition hover:text-accent"
-              whileHover={linkHover}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <InstagramIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
-              Instagram
-            </motion.a>
           </div>
+          {/* Instagram circle button */}
+          <motion.a
+            href="https://www.instagram.com/brilliancestudio.ca/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Follow us on Instagram"
+            className="mt-5 inline-flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 text-accent/70 transition-all duration-200 hover:border-accent hover:text-accent"
+            whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <InstagramIcon aria-hidden="true" className="h-4 w-4" strokeWidth={1.5} />
+          </motion.a>
         </div>
 
         {/* Navigation column */}
         <nav aria-label="Footer navigation">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-text/55">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
             Navigation
           </p>
-          <ul className="mt-5 space-y-1">
+          <ul className="mt-5 space-y-3">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <motion.div
@@ -130,7 +123,7 @@ export function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-9 min-w-0 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
+                    className="text-sm text-text/60 transition hover:text-accent"
                   >
                     {link.label}
                   </Link>
@@ -142,10 +135,10 @@ export function Footer() {
 
         {/* Services column */}
         <nav aria-label="Services navigation">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-text/55">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
             Services
           </p>
-          <ul className="mt-5 space-y-1">
+          <ul className="mt-5 space-y-3">
             {serviceLinks.map((link) => (
               <li key={link.label}>
                 <motion.div
@@ -154,7 +147,7 @@ export function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-9 min-w-0 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
+                    className="text-sm text-text/60 transition hover:text-accent"
                   >
                     <span className="break-words">{link.label}</span>
                   </Link>
@@ -166,10 +159,10 @@ export function Footer() {
 
         {/* Legal column */}
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-text/55">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
             Legal
           </p>
-          <ul className="mt-5 space-y-1">
+          <ul className="mt-5 space-y-3">
             {legalLinks.map((link) => (
               <li key={link.label}>
                 <motion.div
@@ -178,33 +171,25 @@ export function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-9 min-w-0 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
+                    className="text-sm text-text/60 transition hover:text-accent"
                   >
                     {link.label}
                   </Link>
                 </motion.div>
               </li>
             ))}
-            <li>
-              <motion.button
-                type="button"
-                className="inline-flex min-h-9 items-center rounded-xl px-2 py-1 text-sm text-text/75 transition hover:text-accent"
-                whileHover={linkHover}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                onClick={openCookieConsentPreferences}
-              >
-                Cookie settings
-              </motion.button>
-            </li>
           </ul>
         </div>
       </div>
 
       {/* Copyright bar */}
       <div className="border-t border-white/[0.06]">
-        <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-5 sm:px-6 lg:px-8">
-          <p className="text-xs text-text/40">
-            © {new Date().getFullYear()} Brilliance Studio. All rights reserved.
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <p className="text-xs text-text/35">
+            © 2026 Brilliance Studio. All rights reserved.
+          </p>
+          <p className="text-xs text-text/35">
+            Designed with precision in Canada
           </p>
         </div>
       </div>
