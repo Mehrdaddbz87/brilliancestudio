@@ -62,7 +62,7 @@ function ServiceCard({ service, item, size = "md" }) {
           <p className="mb-2 text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-accent">
             {category}
           </p>
-          <h3 className="text-lg font-bold uppercase tracking-wide text-white leading-tight">
+          <h3 className="text-sm font-bold uppercase tracking-wide text-white leading-tight sm:text-base lg:text-lg">
             {service.title}
           </h3>
           <p className="mt-1.5 text-sm leading-relaxed text-white/60 line-clamp-2">
