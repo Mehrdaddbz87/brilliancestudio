@@ -41,6 +41,14 @@ function MapPinIcon(props: ComponentPropsWithoutRef<"svg">) {
   );
 }
 
+function PhoneIcon(props: ComponentPropsWithoutRef<"svg">) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 11.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
@@ -89,6 +97,13 @@ export function Footer() {
             >
               <MailIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
               <span className="break-all">info@brilliancestudio.ca</span>
+            </a>
+            <a
+              href="tel:041655588186"
+              className="flex min-w-0 items-center gap-2.5 text-sm text-text/55 transition hover:text-accent"
+            >
+              <PhoneIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+              <span>041 655 588 186</span>
             </a>
             <p className="flex items-center gap-2.5 text-sm text-text/55">
               <MapPinIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
