@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -370,11 +371,11 @@ export function ContentManager({
             Brilliance Studio
           </p>
           <nav className="flex items-center gap-5 text-xs text-text/40">
-            <a href="/admin" className="transition hover:text-accent">Dashboard</a>
+            <Link href="/admin" className="transition hover:text-accent">Dashboard</Link>
             <span>/</span>
-            <a href="/admin/services" className="transition hover:text-accent">Services</a>
+            <Link href="/admin/services" className="transition hover:text-accent">Services</Link>
             <span>/</span>
-            <a href="/admin/portfolio" className="transition hover:text-accent">Portfolio</a>
+            <Link href="/admin/portfolio" className="transition hover:text-accent">Portfolio</Link>
             <span className="mx-2 text-white/10">|</span>
             <button
               type="button"

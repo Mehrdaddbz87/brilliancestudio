@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
-import { openCookieConsentPreferences } from "@/lib/cookie-consent";
 
 function InstagramIcon(props: ComponentPropsWithoutRef<"svg">) {
   return (

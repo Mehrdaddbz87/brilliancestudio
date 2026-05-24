@@ -64,7 +64,6 @@ function PortfolioCard({ item }) {
 }
 
 export default function PortfolioPage({ content }) {
-  const pageTitle = content.title || "Our Portfolio";
   const pageDescription =
     content.description ||
     "A curated collection of transformative spaces, thoughtfully reimagined with timeless design, meticulous craftsmanship, and enduring quality.";

@@ -2,10 +2,8 @@ import Head from "next/head";
 import { Hammer, Home, Layers3, UtensilsCrossed } from "lucide-react";
 
 import { Button } from "@/components/button";
-import { Card } from "@/components/card";
 import { FadeInSection } from "@/components/fade-in-section";
 import { Hero } from "@/components/hero";
-import { ResponsiveImage } from "@/components/responsive-image";
 import { getPageContent } from "@/lib/content";
 
 const services = [
