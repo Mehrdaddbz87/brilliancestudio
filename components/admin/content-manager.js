@@ -361,48 +361,48 @@ export function ContentManager({
         onDismiss={() => setToast(null)}
       />
     )}
-    <main className="min-h-[calc(100vh-5rem)] bg-background px-4 py-10 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-black px-4 py-10 sm:px-6 lg:px-8">
       <section className="mx-auto max-w-7xl">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-              Local Admin
-            </p>
-            <h1 className="mt-4 font-fantasy text-4xl uppercase tracking-[0.08em] text-text">
-              {title}
-            </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-text/75">
-              {description}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Button href="/admin" variant="ghost">
-              Admin Home
-            </Button>
-            <Button href="/admin/services" variant="ghost">
-              Services
-            </Button>
-            <Button href="/admin/portfolio" variant="ghost">
-              Portfolio
-            </Button>
-            <Button
-              variant="ghost"
+
+        {/* Top bar */}
+        <div className="mb-8 flex items-center justify-between">
+          <p className="text-[0.6rem] font-semibold uppercase tracking-[0.4em] text-accent">
+            Brilliance Studio
+          </p>
+          <nav className="flex items-center gap-5 text-xs text-text/40">
+            <a href="/admin" className="transition hover:text-accent">Dashboard</a>
+            <span>/</span>
+            <a href="/admin/services" className="transition hover:text-accent">Services</a>
+            <span>/</span>
+            <a href="/admin/portfolio" className="transition hover:text-accent">Portfolio</a>
+            <span className="mx-2 text-white/10">|</span>
+            <button
+              type="button"
               onClick={() => signOut({ callbackUrl: "/login" })}
+              className="transition hover:text-accent"
             >
               Sign out
-            </Button>
-          </div>
+            </button>
+          </nav>
         </div>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1.05fr_1.35fr]">
-          <section className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+        {/* Header */}
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">Admin</p>
+        <h1 className="mt-3 text-3xl font-semibold text-text">{title}.</h1>
+        <p className="mt-2 text-sm leading-relaxed text-text/50">{description}</p>
+        <div className="mb-10 mt-8 h-px w-full bg-accent/20" />
+
+        <div className="grid gap-8 lg:grid-cols-[2fr_3fr]">
+
+          {/* Form */}
+          <section>
+            <p className="mb-5 text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
               {editingId ? "Edit Entry" : "New Entry"}
             </p>
-            <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               {fields.map((field) => (
                 <label key={field.name} className="block">
-                  <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-text/65">
+                  <span className="mb-1.5 block text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-text/50">
                     {field.label}
                   </span>
                   {field.type === "image-upload" ? (
@@ -419,7 +419,7 @@ export function ContentManager({
                       onChange={updateField}
                       rows={field.rows || 4}
                       placeholder={field.placeholder}
-                      className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text outline-none transition focus:border-accent/60 focus:bg-white/[0.06]"
                       required={field.required !== false}
                     />
                   ) : field.type === "select" ? (
@@ -427,16 +427,12 @@ export function ContentManager({
                       name={field.name}
                       value={formData[field.name] || ""}
                       onChange={updateField}
-                      className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text outline-none transition focus:border-accent/60 focus:bg-white/[0.06]"
                       required={field.required !== false}
                     >
-                      <option value="">
-                        {field.placeholder || `Select ${field.label}`}
-                      </option>
+                      <option value="">{field.placeholder || `Select ${field.label}`}</option>
                       {(field.options || []).map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
+                        <option key={option.value} value={option.value}>{option.label}</option>
                       ))}
                     </select>
                   ) : (
@@ -446,91 +442,94 @@ export function ContentManager({
                       value={formData[field.name] || ""}
                       onChange={updateField}
                       placeholder={field.placeholder}
-                      className="w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06]"
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-text outline-none transition focus:border-accent/60 focus:bg-white/[0.06]"
                       required={field.required !== false}
                       readOnly={Boolean(field.readOnly)}
                       disabled={Boolean(field.disabled)}
                     />
                   )}
                   {field.helpText ? (
-                    <p className="mt-2 text-sm text-text/55">{field.helpText}</p>
+                    <p className="mt-1.5 text-xs text-text/45">{field.helpText}</p>
                   ) : null}
                 </label>
               ))}
 
               {status.message ? (
-                <p className={status.type === "success" ? "text-emerald-300" : "text-red-300"}>
+                <p className={`text-sm ${status.type === "success" ? "text-emerald-300" : "text-red-300"}`}>
                   {status.message}
                 </p>
               ) : null}
 
-
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 pt-2">
                 <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting
-                    ? "Saving..."
-                    : editingId
-                      ? "Update entry"
-                      : "Create entry"}
+                  {isSubmitting ? "Saving..." : editingId ? "Update Entry" : "Create Entry"}
                 </Button>
                 {editingId ? (
-                  <Button type="button" variant="ghost" onClick={resetForm}>
-                    Cancel edit
-                  </Button>
+                  <Button type="button" variant="ghost" onClick={resetForm}>Cancel</Button>
                 ) : null}
               </div>
             </form>
           </section>
 
-          <section className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-[0_0_80px_rgba(185,154,69,0.06)]">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          {/* Existing entries */}
+          <section>
+            <p className="mb-5 text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
               Existing Entries
             </p>
-            <div className="mt-6 space-y-4">
+            <div className="space-y-3">
               {items.length ? (
                 items.map((item) => (
                   <article
                     key={item.id}
-                    className="rounded-[1.5rem] border border-white/10 bg-black/20 p-5"
+                    className={`rounded-[1.25rem] border px-5 py-4 transition ${
+                      editingId === item.id
+                        ? "border-accent/40 bg-accent/[0.04]"
+                        : "border-white/[0.08] bg-white/[0.02] hover:border-white/15"
+                    }`}
                   >
-                    <div className="flex flex-wrap items-start justify-between gap-4">
-                      <div className="max-w-2xl">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent/80">
-                          {item.slug}
-                        </p>
-                        <h2 className="mt-3 text-xl font-semibold text-text">
-                          {item.title}
-                        </h2>
-                        {item.eyebrow || item.category ? (
-                          <p className="mt-2 text-sm uppercase tracking-[0.18em] text-text/55">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div className="min-w-0">
+                        {(item.eyebrow || item.category) && (
+                          <p className="text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-accent/70">
                             {item.eyebrow || item.category}
                           </p>
-                        ) : null}
-                        <p className="mt-3 text-base leading-7 text-text/72">
-                          {item.description || item.summary}
-                        </p>
-                        <p className="mt-3 text-sm text-text/55">
-                          Sort order: {item.sortOrder}
-                        </p>
+                        )}
+                        <h2 className="mt-1 truncate text-sm font-semibold text-text">
+                          {item.title}
+                        </h2>
+                        {(item.description || item.summary) && (
+                          <p className="mt-1 line-clamp-1 text-xs text-text/40">
+                            {item.description || item.summary}
+                          </p>
+                        )}
                       </div>
-                      <div className="flex flex-wrap gap-3">
-                        <Button type="button" variant="ghost" onClick={() => startEdit(item)}>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => startEdit(item)}
+                          className="rounded-lg border border-white/15 px-3 py-1.5 text-xs font-semibold text-text/70 transition hover:border-accent/40 hover:text-accent"
+                        >
                           Edit
-                        </Button>
-                        <Button type="button" variant="ghost" onClick={() => requestDelete(item)}>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => requestDelete(item)}
+                          className="rounded-lg border border-red-500/20 px-3 py-1.5 text-xs font-semibold text-red-400/70 transition hover:border-red-500/50 hover:text-red-400"
+                        >
                           Delete
-                        </Button>
+                        </button>
                       </div>
                     </div>
                   </article>
                 ))
               ) : (
-                <div className="rounded-[1.5rem] border border-dashed border-white/10 bg-black/20 p-6 text-text/65">
+                <div className="rounded-[1.25rem] border border-dashed border-white/10 p-6 text-sm text-text/40">
                   No entries yet.
                 </div>
               )}
             </div>
           </section>
+
         </div>
       </section>
     </main>
