@@ -173,43 +173,105 @@ export default function HomePage({ portfolioProjects }) {
 
       <FadeInSection delay={0.1}>
         <section className="mx-auto mt-20 w-full max-w-7xl pb-20">
+          {/* Header */}
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Portfolio
               </p>
-              <h2 className="mt-4 break-words font-fantasy text-2xl uppercase tracking-[0.08em] sm:text-3xl">
-                Our portfolio.
+              <h2 className="mt-3 break-words font-classic text-3xl font-black uppercase leading-[0.95] tracking-[0.03em] sm:text-4xl">
+                Our{" "}
+                <em className="font-light not-italic italic text-accent">
+                  Portfolio.
+                </em>
               </h2>
             </div>
             <Button href="/portfolio" variant="ghost">
               View portfolio
             </Button>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {portfolioProjects.map((reference) => (
-              <Card
-                key={reference.title}
-                eyebrow={reference.category}
-                title={reference.title}
-                description={reference.summary}
-                cta="Case study"
-                href={reference.slug ? `/portfolio/${reference.slug}` : "/portfolio"}
-                media={
-                  reference.image?.url ? (
-                    <ResponsiveImage
-                      src={reference.image.url}
-                      alt={reference.image.alt || reference.title}
-                      aspectClassName="aspect-[16/10]"
-                      className="group-hover:scale-[1.03]"
-                    />
-                  ) : (
-                    <div className="h-44 rounded-[1.25rem] border border-accent/20 bg-gradient-to-br from-accent/20 via-transparent to-white/5" />
-                  )
-                }
-              />
-            ))}
-          </div>
+
+          {/* Asymmetric grid: 1 large + 2 stacked */}
+          {portfolioProjects.length > 0 ? (
+            <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+              {/* Featured large card */}
+              {(() => {
+                const featured = portfolioProjects[0];
+                const rest = portfolioProjects.slice(1);
+                return (
+                  <>
+                    <a
+                      href={featured.slug ? `/portfolio/${featured.slug}` : "/portfolio"}
+                      className="group relative min-h-[32rem] overflow-hidden rounded-[2rem] border border-accent/30 transition duration-500 hover:border-accent/70 hover:shadow-[0_30px_90px_rgba(185,154,69,0.14)] lg:min-h-[36rem]"
+                    >
+                      {featured.image?.url ? (
+                        <img
+                          src={featured.image.url}
+                          alt={featured.image.alt || featured.title}
+                          className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-white/5" />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                      <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
+                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+                          {featured.category}
+                        </p>
+                        <h3 className="mt-3 break-words font-classic text-3xl font-black uppercase leading-[0.95] tracking-[0.03em] text-white sm:text-4xl">
+                          {featured.title}
+                        </h3>
+                        {featured.summary ? (
+                          <p className="mt-3 line-clamp-2 max-w-lg text-base leading-7 text-white/68">
+                            {featured.summary}
+                          </p>
+                        ) : null}
+                        <span className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-accent transition duration-300 group-hover:gap-4">
+                          Case study
+                          <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                        </span>
+                      </div>
+                    </a>
+
+                    {/* Two smaller stacked cards */}
+                    <div className="grid gap-4">
+                      {rest.map((ref) => (
+                        <a
+                          key={ref.title}
+                          href={ref.slug ? `/portfolio/${ref.slug}` : "/portfolio"}
+                          className="group relative overflow-hidden rounded-[1.75rem] border border-accent/25 transition duration-500 hover:border-accent/65 hover:shadow-[0_22px_70px_rgba(185,154,69,0.12)]"
+                          style={{ minHeight: "calc(50% - 0.5rem)" }}
+                        >
+                          {ref.image?.url ? (
+                            <img
+                              src={ref.image.url}
+                              alt={ref.image.alt || ref.title}
+                              className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-white/5" />
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-transparent" />
+                          <div className="absolute inset-x-0 bottom-0 p-6">
+                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                              {ref.category}
+                            </p>
+                            <h3 className="mt-2 break-words font-classic text-xl font-black uppercase leading-[0.95] tracking-[0.03em] text-white sm:text-2xl">
+                              {ref.title}
+                            </h3>
+                            <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-accent transition duration-300 group-hover:gap-3">
+                              Case study
+                              <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                            </span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          ) : null}
         </section>
       </FadeInSection>
     </main>
