@@ -241,13 +241,6 @@ async function seedCms() {
       secondaryCtaHref: "/about",
       sections: [
         {
-          _key: "references-text-1",
-          _type: "textSection",
-          eyebrow: "Craftsmanship",
-          heading: "Craftsmanship and transformation in focus.",
-          body: "Our portfolio highlights renovation and design work shaped by precision, craftsmanship, and a modern understanding of how people want to live. Each project is presented as a study in thoughtful transformation, refined finishes, and high-end execution.",
-        },
-        {
           _key: "references-features-1",
           _type: "featureListSection",
           eyebrow: "What We Deliver",
@@ -310,13 +303,6 @@ async function seedCms() {
       secondaryCtaLabel: "Meet the studio",
       secondaryCtaHref: "/about",
       sections: [
-        {
-          _key: "references-text-1",
-          _type: "textSection",
-          eyebrow: "Craftsmanship",
-          heading: "Craftsmanship and transformation in focus.",
-          body: "Our portfolio highlights renovation and design work shaped by precision, craftsmanship, and a modern understanding of how people want to live. Each project is presented as a study in thoughtful transformation, refined finishes, and high-end execution.",
-        },
         {
           _key: "references-features-1",
           _type: "featureListSection",
