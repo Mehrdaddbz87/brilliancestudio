@@ -25,10 +25,6 @@ export default function App({ Component, pageProps, router }) {
   const isAdminRoute =
     router.pathname.startsWith("/admin") || router.pathname === "/login" || router.pathname === "/forgot-password" || router.pathname === "/reset-password";
 
-  const hideCtaBand =
-    router.pathname === "/contact" ||
-    router.pathname === "/portfolio/[slug]";
-
   return (
     <div className={`dark ${classic.variable} ${fantasy.variable}`}>
       <div className="min-h-screen bg-background font-classic text-text antialiased">
@@ -36,7 +32,7 @@ export default function App({ Component, pageProps, router }) {
         {isAdminRoute ? null : <Analytics />}
         {isAdminRoute ? null : <Header />}
         <Component {...pageProps} />
-        {isAdminRoute ? null : <Footer hideCtaBand={hideCtaBand} />}
+        {isAdminRoute ? null : <Footer />}
         {isAdminRoute ? null : <CookieConsentBanner />}
         {isAdminRoute ? null : <ScrollIndicator />}
         {isAdminRoute ? <AdminSessionGuard /> : null}

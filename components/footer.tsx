@@ -75,22 +75,7 @@ export function Footer() {
   return (
     <footer id="footer" className="relative z-0 border-t border-white/10 bg-black/70 backdrop-blur-xl">
 
-      {/* CTA band */}
-      <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-12 text-center sm:px-6 lg:flex-row lg:justify-between lg:px-8 lg:text-left">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
-              Ready to transform your space?
-            </p>
-            <h2 className="mt-2 break-words font-fantasy text-lg uppercase tracking-[0.08em] text-text sm:text-xl">
-              Let&apos;s shape your next renovation.
-            </h2>
-          </div>
-          <div className="shrink-0">
-            <Button href="/contact">Start your project</Button>
-          </div>
-        </div>
-      </div>
+
 
       {/* Main footer grid */}
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:px-8">
