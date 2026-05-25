@@ -1,27 +1,32 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { Button } from "@/components/button";
 
+// Replace this URL with a real project photo when available
+const HERO_IMAGE_URL =
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&auto=format&fit=crop&q=85";
+
 /**
- * Renders the landing-page hero with staged motion and primary navigation CTAs.
+ * Renders the landing-page hero with staged motion and a floating tilted project photo.
  */
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center">
-      <div className="grid w-full gap-10 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] px-6 py-12 shadow-[0_0_100px_rgba(185,154,69,0.08)] sm:px-8 lg:grid-cols-[minmax(0,1.2fr)_320px] lg:px-12 xl:px-16">
+    <section className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+      <div className="grid w-full items-center gap-12 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] px-6 py-14 shadow-[0_0_100px_rgba(185,154,69,0.08)] sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12 xl:px-16">
 
-        {/* Left: headline + body + CTAs */}
+        {/* ── Left: headline + body + CTA ── */}
         <motion.div
           className="relative min-w-0"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Ghost watermark "BRILLIANCE" */}
+          {/* Ghost watermark */}
           <span
             aria-hidden="true"
             className="pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap font-classic text-[8.5vw] font-black uppercase leading-none tracking-[0.06em] text-white/[0.045] sm:text-[5.5rem] sm:tracking-[0.18em] md:text-[8.5rem]"
@@ -39,7 +44,7 @@ export function Hero() {
             Premium Renovation Studio
           </motion.span>
 
-          {/* Thin gold separator line */}
+          {/* Gold separator */}
           <motion.div
             className="relative mt-4 h-px w-28 bg-gradient-to-r from-accent/80 to-transparent"
             initial={shouldReduceMotion ? false : { scaleX: 0, opacity: 0 }}
@@ -48,7 +53,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
           />
 
-          {/* Headline — split for italic + gold accent */}
+          {/* Headline */}
           <motion.h1
             className="relative mt-7 break-words font-classic text-3xl font-black uppercase leading-[0.95] tracking-[0.03em] text-text sm:text-4xl md:text-5xl"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
@@ -76,50 +81,44 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            className="relative mt-10 flex flex-col gap-4 sm:flex-row"
+            className="relative mt-10"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.30, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Button href="/contact">Start project</Button>
             <Button href="/portfolio" variant="ghost">
               View portfolio
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* Right: premium stat panels — no numbers, gold top border */}
-        <div className="grid gap-4 self-end md:grid-cols-3 lg:grid-cols-1">
-          {[
-            ["Approach", "Craftsmanship & Precision."],
-            ["Services", "Design, Build, Transform."],
-            ["Standard", "High-End, Refined, Lasting."],
-          ].map(([label, value], index) => (
-            <motion.div
-              key={label}
-              className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/40 px-5 pb-5 pt-4"
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
-              animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.75,
-                delay: 0.22 + index * 0.09,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              {/* Gold top border line */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent/70 via-accent/30 to-transparent"
+        {/* ── Right: floating tilted card photo ── */}
+        <motion.div
+          className="hidden lg:flex lg:items-center lg:justify-center"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 30, rotate: 4 }}
+          animate={shouldReduceMotion ? {} : { opacity: 1, y: 0, rotate: 3 }}
+          transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={shouldReduceMotion ? {} : { rotate: 1, scale: 1.02, y: -6 }}
+        >
+          <div
+            className="overflow-hidden rounded-[1.75rem] border border-accent/30 shadow-[0_32px_100px_rgba(0,0,0,0.7),0_0_60px_rgba(185,154,69,0.14)]"
+            style={{ rotate: "3deg" }}
+          >
+            <div className="relative aspect-[4/3] w-full max-w-[480px]">
+              <Image
+                src={HERO_IMAGE_URL}
+                alt="Luxury renovation project by Brilliance Studio"
+                fill
+                className="object-cover"
+                sizes="480px"
+                priority
               />
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-text/40">
-                {label}
-              </p>
-              <p className="mt-3 break-words font-classic text-lg font-light italic text-accent">
-                {value}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+              {/* Subtle inner dark vignette */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.35)_100%)]" />
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
