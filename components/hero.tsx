@@ -99,10 +99,10 @@ export function Hero() {
           whileHover={shouldReduceMotion ? {} : { rotate: 1, scale: 1.02, y: -6 }}
         >
           <div
-            className="overflow-hidden rounded-[1.75rem] border border-accent/30 shadow-[0_32px_100px_rgba(0,0,0,0.7),0_0_60px_rgba(185,154,69,0.14)]"
+            className="w-full max-w-[480px] overflow-hidden rounded-[1.75rem] border border-accent/30 shadow-[0_32px_100px_rgba(0,0,0,0.7),0_0_60px_rgba(185,154,69,0.14)]"
             style={{ rotate: "3deg" }}
           >
-            <div className="relative aspect-[4/3] w-full max-w-[480px]">
+            <div className="relative aspect-[4/3] w-full">
               <Image
                 src={HERO_IMAGE_URL}
                 alt="Luxury renovation project by Brilliance Studio"
