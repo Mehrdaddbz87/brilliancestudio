@@ -319,7 +319,7 @@ export default function ContactPage() {
                   ) : null}
 
                   <div className="pt-1">
-                    <Button type="submit" disabled={isSubmittingContact}>
+                    <Button type="submit" disabled={isSubmittingContact} className="w-full">
                       {isSubmittingContact ? "Sending..." : "Send Message"}
                     </Button>
                   </div>
