@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { motion } from "framer-motion";
 
+import { Button } from "@/components/button";
 import { CmsSections } from "@/components/cms-sections";
 import { FadeInSection } from "@/components/fade-in-section";
 import { getPageContent } from "@/lib/content";
@@ -109,6 +110,9 @@ export default function PortfolioPage({ content }) {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-text/65">
               {pageDescription}
             </p>
+            <div className="mt-8">
+              <Button href="/contact">Start Your Project</Button>
+            </div>
           </section>
         </FadeInSection>
 
