@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import { motion } from "framer-motion";
 
-import { Button } from "@/components/button";
 import { CmsSections } from "@/components/cms-sections";
 import { FadeInSection } from "@/components/fade-in-section";
 import { getPageContent } from "@/lib/content";
@@ -80,46 +79,9 @@ export default function PortfolioPage({ content }) {
         <meta name="description" content={seoDescription} />
       </Head>
       <main className="overflow-x-clip pb-24">
-        {/* ── Page Header ── */}
-        <FadeInSection>
-          <section className="mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 lg:px-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
-              {content.eyebrow || "Portfolio"}
-            </p>
-            <h1 className="mt-3 text-3xl font-extrabold uppercase tracking-tight text-text sm:text-4xl">
-              OUR{" "}
-              <em className="not-italic font-extrabold italic text-accent">
-                Portfolio.
-              </em>
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-text/65">
-              {pageDescription}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              {content.primaryAction?.label && content.primaryAction?.href ? (
-                <Button href={content.primaryAction.href}>
-                  {content.primaryAction.label}
-                </Button>
-              ) : (
-                <Button href="/contact">Discuss Your Project</Button>
-              )}
-              {content.secondaryAction?.label &&
-              content.secondaryAction?.href ? (
-                <Button href={content.secondaryAction.href} variant="ghost">
-                  {content.secondaryAction.label}
-                </Button>
-              ) : (
-                <Button href="/about" variant="ghost">
-                  Meet the Studio
-                </Button>
-              )}
-            </div>
-          </section>
-        </FadeInSection>
-
         {/* ── Portfolio Cards Grid ── */}
-        <FadeInSection delay={0.08}>
-          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <FadeInSection>
+          <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
             {items.length > 0 ? (
               <div className="grid gap-5 md:grid-cols-3" style={{ gridAutoRows: "420px" }}>
                 {items.map((item) => (
@@ -134,29 +96,19 @@ export default function PortfolioPage({ content }) {
           </section>
         </FadeInSection>
 
-        {/* ── CTA Band ── */}
-        <FadeInSection delay={0.16}>
-          <section className="relative mx-auto mt-24 max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Radial gold glow */}
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <div className="h-64 w-[600px] rounded-full bg-accent/10 blur-[120px]" />
-            </div>
-            <div className="relative py-16 text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
-                Craftsmanship
-              </p>
-              <h2 className="mt-4 text-3xl font-bold text-text sm:text-4xl">
-                Designed to elevate. Built to last.
-              </h2>
-              <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-text/60">
-                We blend refined design with expert construction to create
-                spaces that stand the test of time — in beauty, function, and
-                quality.
-              </p>
-              <div className="mt-8 flex justify-center">
-                <Button href="/contact">Start Your Project</Button>
-              </div>
-            </div>
+        {/* ── Editorial text block below grid ── */}
+        <FadeInSection delay={0.1}>
+          <section className="mx-auto max-w-7xl px-4 pb-4 pt-16 sm:px-6 lg:px-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+              {content.eyebrow || "Portfolio"}
+            </p>
+            <h1 className="mt-3 font-classic text-3xl font-extrabold uppercase tracking-tight text-text sm:text-4xl">
+              Our{" "}
+              <span className="text-accent">Portfolio.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-text/65">
+              {pageDescription}
+            </p>
           </section>
         </FadeInSection>
 
