@@ -7,24 +7,24 @@ const GOOGLE_BUSINESS_URL =
 
 const reviews = [
   {
-    initials: "S.M.",
-    name: "Sarah Mitchell",
-    date: "March 2025",
-    text: "Brilliance Studio transformed our entire home. The attention to detail and quality of work is unmatched. Every single finish was perfect.",
+    initials: "M.A.",
+    name: "Mohammad Arab",
+    date: "4 months ago",
+    text: "I had an excellent experience with Brilliance Studio. Shayan was professional, reliable, and very easy to work with from start to finish. The quality of the work was outstanding—clean finishes, great attention to detail, and everything was completed on time. You can tell he really cares about his work and his clients. Highly recommend Brilliance Studio to anyone looking for quality construction and renovation services.",
     rating: 5,
   },
   {
-    initials: "J.K.",
-    name: "James Kowalski",
-    date: "January 2025",
-    text: "From the first consultation to the final walkthrough, the team was professional, punctual, and truly talented. Our kitchen is stunning.",
+    initials: "A.B.",
+    name: "Ahoo Barati",
+    date: "6 months ago",
+    text: "Brilliance Construction did such a great job on my project. The team was on time, respectful, and really paid attention to detail. Super happy with the final result!",
     rating: 5,
   },
   {
-    initials: "A.R.",
-    name: "Amir Rahimi",
-    date: "February 2025",
-    text: "The most luxurious renovation experience. They understood our vision and elevated it beyond what we imagined. Highly recommend.",
+    initials: "A.K.",
+    name: "Armita Kharmandar",
+    date: "3 months ago",
+    text: "Greatest renovation team ever. So friendly, on time and organized. They pay attention to every details and keep the project budget friendly. I loved how trustworthy they are.",
     rating: 5,
   },
 ];
