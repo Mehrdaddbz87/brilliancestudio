@@ -5,9 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { Button } from "@/components/button";
 
-// Replace this URL with a real project photo when available
-const HERO_IMAGE_URL =
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&auto=format&fit=crop&q=85";
+const HERO_IMAGE_URL = "/hero-luxury-home-exterior.png";
 
 /**
  * Renders the landing-page hero with staged motion and a floating tilted project photo.
