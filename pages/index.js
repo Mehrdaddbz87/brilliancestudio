@@ -258,7 +258,7 @@ export default function HomePage({ portfolioProjects }) {
                           key={ref.title}
                           href={ref.slug ? `/portfolio/${ref.slug}` : "/portfolio"}
                           className="group relative overflow-hidden rounded-[1.75rem] border border-accent/25 transition duration-500 hover:border-accent/65 hover:shadow-[0_22px_70px_rgba(185,154,69,0.12)]"
-                          style={{ minHeight: "calc(50% - 0.5rem)" }}
+                          style={{ minHeight: "max(280px, calc(50% - 0.5rem))" }}
                         >
                           {ref.image?.url ? (
                             <img
