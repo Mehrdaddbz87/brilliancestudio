@@ -62,15 +62,20 @@ export function Button(props: ButtonProps) {
   const {
     onClick,
     type = "button",
+    className: _className,
+    children: _children,
+    variant: _variant,
     ...buttonProps
   } = props as NativeButtonProps;
+
+  const isFullWidth = className?.includes("w-full");
 
   return (
     <motion.div
       whileHover={hoverAnimation}
       whileTap={tapAnimation}
       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-      className="inline-flex"
+      className={isFullWidth ? "flex w-full" : "inline-flex"}
     >
       <button
         type={type}
