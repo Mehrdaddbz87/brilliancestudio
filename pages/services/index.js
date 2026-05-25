@@ -108,43 +108,9 @@ export default function ServicesPage({ content }) {
       </Head>
       <main className="overflow-x-clip pb-24">
 
-        {/* ── Page Header ── */}
-        <FadeInSection>
-          <section className="mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 lg:px-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
-              {content.eyebrow || "Our Services"}
-            </p>
-            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
-              Crafted with precision.
-            </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-text/60">
-              {content.description ||
-                "Every service we offer is designed, coordinated, and delivered to the highest standard."}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              {content.primaryAction?.label && content.primaryAction?.href ? (
-                <Button href={content.primaryAction.href}>
-                  {content.primaryAction.label}
-                </Button>
-              ) : (
-                <Button href="/contact">Start Your Project</Button>
-              )}
-              {content.secondaryAction?.label && content.secondaryAction?.href ? (
-                <Button href={content.secondaryAction.href} variant="ghost">
-                  {content.secondaryAction.label}
-                </Button>
-              ) : (
-                <Button href="/portfolio" variant="ghost">
-                  View Portfolio
-                </Button>
-              )}
-            </div>
-          </section>
-        </FadeInSection>
-
         {/* ── Services Editorial Grid ── */}
-        <FadeInSection delay={0.08}>
-          <section className="mx-auto max-w-7xl space-y-5 px-4 sm:px-6 lg:px-8">
+        <FadeInSection>
+          <section className="mx-auto max-w-7xl space-y-5 px-4 pt-20 sm:px-6 lg:px-8">
 
             {/* Row 1 — featured full-width */}
             {featured && (
@@ -182,6 +148,25 @@ export default function ServicesPage({ content }) {
               </div>
             )}
 
+          </section>
+        </FadeInSection>
+
+        {/* ── CTA Block below grid ── */}
+        <FadeInSection delay={0.1}>
+          <section className="mx-auto max-w-7xl px-4 pb-4 pt-16 sm:px-6 lg:px-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+              {content.eyebrow || "Services"}
+            </p>
+            <h2 className="mt-3 font-classic text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+              Crafted with precision.
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-text/60">
+              {content.description ||
+                "High-end renovation and design services delivered with craftsmanship, precision, and efficient coordination."}
+            </p>
+            <div className="mt-8">
+              <Button href="/contact">Send Inquiry</Button>
+            </div>
           </section>
         </FadeInSection>
 
