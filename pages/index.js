@@ -61,7 +61,16 @@ export default function HomePage({ portfolioProjects }) {
         <meta property="og:title" content="Brilliance Studio | Premium Home Renovation & Design in Canada" key="og:title" />
         <meta property="og:description" content="Premium renovation and design studio in Canada. Custom homes, kitchen and bathroom remodels, additions, structural work, and basement finishing crafted with precision and refined materials." key="og:description" />
       </Head>
-    <main className="overflow-x-clip bg-background px-4 py-10 sm:px-6 lg:px-8">
+    <main
+      className="overflow-x-clip bg-background px-4 py-10 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)), url('/homepage-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center top",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <Hero />
 
       <FadeInSection delay={0.05}>
