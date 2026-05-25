@@ -103,7 +103,7 @@ export default function HomePage({ portfolioProjects }) {
                     {/* Real wireframe house image - positioned right half */}
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute bottom-0 right-0 h-full w-[68%] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-90"
+                      className="pointer-events-none absolute bottom-0 right-0 h-full w-[45%] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-90 sm:w-[55%] lg:w-[68%]"
                       style={{
                         backgroundImage: "url('/images/house-wireframe-gold.png')",
                         backgroundSize: "cover",
@@ -114,7 +114,7 @@ export default function HomePage({ portfolioProjects }) {
                       }}
                     />
 
-                    <div className="relative max-w-[29rem]">
+                    <div className="relative w-[52%] sm:w-[48%] lg:w-[43%]">
                       <div className="relative mb-10 inline-flex h-20 w-20 items-center justify-center rounded-full border border-accent/80 bg-black/35 text-accent shadow-[0_0_50px_rgba(185,154,69,0.25)]">
                         <span
                           aria-hidden="true"
@@ -125,11 +125,11 @@ export default function HomePage({ portfolioProjects }) {
                       <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                         {featuredService.label}
                       </p>
-                      <h3 className="mt-5 max-w-md break-words font-classic text-2xl uppercase leading-tight tracking-[0.02em] text-text sm:text-4xl sm:leading-[0.95] lg:text-5xl">
+                      <h3 className="mt-5 break-words font-classic text-xl uppercase leading-tight tracking-[0.02em] text-text sm:text-3xl sm:leading-[0.95] lg:text-4xl">
                         {featuredService.title}
                       </h3>
                       <div className="mt-6 h-px w-28 bg-gradient-to-r from-accent/80 to-transparent" />
-                      <p className="mt-6 max-w-sm text-lg leading-8 text-text/78">
+                      <p className="mt-6 text-sm leading-7 text-text/78 sm:text-base sm:leading-8 lg:text-lg">
                         {featuredService.description}
                       </p>
                       <a
