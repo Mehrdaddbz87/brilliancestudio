@@ -13,6 +13,7 @@ function KitchenBathIcon({ className, strokeWidth, ...props }) {
 
 import { Button } from "@/components/button";
 import { FadeInSection } from "@/components/fade-in-section";
+import { GoogleReviews } from "@/components/google-reviews";
 import { Hero } from "@/components/hero";
 import { getPageContent } from "@/lib/content";
 
@@ -282,6 +283,7 @@ export default function HomePage({ portfolioProjects }) {
           ) : null}
         </section>
       </FadeInSection>
+      <GoogleReviews />
     </main>
     </>
   );
