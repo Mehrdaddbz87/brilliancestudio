@@ -24,14 +24,6 @@ export function Hero() {
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Ghost watermark */}
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap font-classic text-[8.5vw] font-black uppercase leading-none tracking-[0.06em] text-white/[0.045] sm:text-[5.5rem] sm:tracking-[0.18em] md:text-[8.5rem]"
-          >
-            BRILLIANCE
-          </span>
-
           {/* Eyebrow badge */}
           <motion.span
             className="relative inline-flex max-w-full break-words rounded-full border border-accent/40 bg-accent/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-accent sm:tracking-[0.3em]"
