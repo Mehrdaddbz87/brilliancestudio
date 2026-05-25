@@ -63,10 +63,6 @@ const serviceLinks = [
   { label: "Basement Finishing", href: "/services/basement-finishing" },
 ];
 
-const legalLinks = [
-  { label: "Terms", href: "/terms" },
-  { label: "Imprint", href: "/impressum" },
-];
 
 /**
  * Renders the global footer with navigation, services, contact info, legal links, and copyright.
@@ -171,29 +167,6 @@ export function Footer() {
           </ul>
         </nav>
 
-        {/* Legal column */}
-        <div>
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
-            Legal
-          </p>
-          <ul className="mt-5 space-y-3">
-            {legalLinks.map((link) => (
-              <li key={link.label}>
-                <motion.div
-                  whileHover={linkHover}
-                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Link
-                    href={link.href}
-                    className="text-sm text-text/60 transition hover:text-accent"
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
 
       {/* Copyright bar */}
