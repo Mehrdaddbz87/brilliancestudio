@@ -50,11 +50,7 @@ export function Hero() {
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
           >
-            Luxury Renovation
-            <br />
-            and Design,
-            <br />
-            Crafted with{" "}
+            Luxury Renovation and Design, Crafted with{" "}
             <span className="text-accent">Precision.</span>
           </motion.h1>
 
