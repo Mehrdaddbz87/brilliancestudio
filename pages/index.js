@@ -1,5 +1,15 @@
 import Head from "next/head";
-import { Hammer, Home, Layers3, UtensilsCrossed } from "lucide-react";
+import { ChefHat, Hammer, Home, Layers3, ShowerHead } from "lucide-react";
+
+function KitchenBathIcon({ className, strokeWidth, ...props }) {
+  return (
+    <span className="flex items-center gap-1" aria-hidden="true" {...props}>
+      <ChefHat className="h-[1.1rem] w-[1.1rem]" strokeWidth={strokeWidth} />
+      <span className="h-5 w-px shrink-0 bg-accent/50" />
+      <ShowerHead className="h-[1.1rem] w-[1.1rem]" strokeWidth={strokeWidth} />
+    </span>
+  );
+}
 
 import { Button } from "@/components/button";
 import { FadeInSection } from "@/components/fade-in-section";
@@ -17,7 +27,7 @@ const services = [
   },
   {
     label: "Remodel",
-    icon: UtensilsCrossed,
+    icon: KitchenBathIcon,
     title: "Kitchen & Bathroom Remodeling",
     description:
       "High-end remodels that balance layout efficiency, durable materials, and refined visual clarity for spaces that feel both luxurious and practical.",
