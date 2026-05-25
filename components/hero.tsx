@@ -50,10 +50,9 @@ export function Hero() {
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
           >
-            Luxury Renovation{" "}
-            <em className="font-light not-italic italic opacity-80">
-              and&nbsp;Design,
-            </em>
+            Luxury Renovation
+            <br />
+            and Design,
             <br />
             Crafted with{" "}
             <span className="text-accent">Precision.</span>
