@@ -64,7 +64,7 @@ export default function HomePage({ portfolioProjects }) {
     <main
       className="overflow-x-clip bg-background px-4 py-10 sm:px-6 lg:px-8"
       style={{
-        backgroundImage: "linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.20)), url('/homepage-bg.png')",
+        backgroundImage: "url('/homepage-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center top",
         backgroundRepeat: "no-repeat",
