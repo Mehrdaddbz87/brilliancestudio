@@ -100,10 +100,26 @@ export default function HomePage({ portfolioProjects }) {
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent)] opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100"
                     />
-                    {/* Real wireframe house image - positioned right half */}
+                    {/* Mobile SVG: bottom half, fades upward */}
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute bottom-0 right-0 h-full w-[45%] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-90 sm:w-[55%] lg:w-[68%]"
+                      className="pointer-events-none absolute bottom-0 right-0 h-[55%] w-[80%] transition duration-700 group-hover:opacity-90 sm:hidden"
+                      style={{
+                        backgroundImage: "url('/images/house-wireframe-gold.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center center",
+                        opacity: 0.65,
+                        maskImage: "linear-gradient(to bottom, transparent 0%, black 40%), linear-gradient(to right, transparent 0%, black 35%)",
+                        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 40%), linear-gradient(to right, transparent 0%, black 35%)",
+                        maskComposite: "intersect",
+                        WebkitMaskComposite: "source-in",
+                      }}
+                    />
+
+                    {/* Desktop SVG: full height, fades from left */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute bottom-0 right-0 hidden h-full w-[55%] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-90 sm:block lg:w-[68%]"
                       style={{
                         backgroundImage: "url('/images/house-wireframe-gold.png')",
                         backgroundSize: "cover",
@@ -114,7 +130,7 @@ export default function HomePage({ portfolioProjects }) {
                       }}
                     />
 
-                    <div className="relative w-[52%] sm:w-[48%] lg:w-[43%]">
+                    <div className="relative w-full pb-[50%] sm:w-[48%] sm:pb-0 lg:w-[43%]">
                       <div className="relative mb-10 inline-flex h-20 w-20 items-center justify-center rounded-full border border-accent/80 bg-black/35 text-accent shadow-[0_0_50px_rgba(185,154,69,0.25)]">
                         <span
                           aria-hidden="true"
