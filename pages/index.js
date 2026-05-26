@@ -64,7 +64,7 @@ export default function HomePage({ portfolioProjects }) {
     <main
       className="overflow-x-clip bg-background px-4 py-10 sm:px-6 lg:px-8"
       style={{
-        backgroundImage: "url('/homepage-bg.png')",
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42)), url('/homepage-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center top",
         backgroundRepeat: "no-repeat",
@@ -95,7 +95,7 @@ export default function HomePage({ portfolioProjects }) {
 
               return (
                 <>
-                  <article className="group relative min-h-[28rem] overflow-hidden rounded-[2rem] border border-accent/65 bg-[radial-gradient(circle_at_8%_12%,rgba(185,154,69,0.24),transparent_22%),linear-gradient(135deg,rgba(255,255,255,0.045),rgba(255,255,255,0.012))] p-8 shadow-[0_0_105px_rgba(185,154,69,0.14)] transition duration-500 hover:-translate-y-1 hover:border-accent/90 hover:bg-white/[0.05] sm:p-10 lg:min-h-[31rem]">
+                  <article className="group relative min-h-[28rem] overflow-hidden rounded-[2rem] border border-accent/65 bg-[radial-gradient(circle_at_8%_12%,rgba(185,154,69,0.18),transparent_22%),linear-gradient(135deg,rgba(0,0,0,0.75),rgba(0,0,0,0.65))] p-8 shadow-[0_0_105px_rgba(185,154,69,0.14)] backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:border-accent/90 sm:p-10 lg:min-h-[31rem]">
                     <div
                       aria-hidden="true"
                       className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent)] opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100"
@@ -166,7 +166,7 @@ export default function HomePage({ portfolioProjects }) {
                         <a
                           key={service.title}
                           href={service.href}
-                          className="group relative min-h-[9.65rem] overflow-hidden rounded-[1.75rem] border border-accent/30 bg-[linear-gradient(135deg,rgba(255,255,255,0.045),rgba(255,255,255,0.012))] p-6 shadow-[0_0_50px_rgba(185,154,69,0.06)] transition duration-500 hover:-translate-y-1 hover:border-accent/70 hover:bg-white/[0.055] hover:shadow-[0_22px_70px_rgba(185,154,69,0.16)] sm:p-7"
+                          className="group relative min-h-[9.65rem] overflow-hidden rounded-[1.75rem] border border-accent/30 bg-black/70 p-6 shadow-[0_0_50px_rgba(185,154,69,0.06)] backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:border-accent/70 hover:shadow-[0_22px_70px_rgba(185,154,69,0.16)] sm:p-7"
                         >
                           <div
                             aria-hidden="true"

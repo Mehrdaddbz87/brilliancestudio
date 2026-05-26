@@ -83,7 +83,7 @@ export function GoogleReviews() {
           {reviews.map((review) => (
             <div
               key={review.name}
-              className="flex flex-col justify-between rounded-[1.25rem] border border-accent/20 bg-white/[0.03] p-7"
+              className="flex flex-col justify-between rounded-[1.25rem] border border-accent/20 bg-black/70 p-7 backdrop-blur-sm"
             >
               <div>
                 <div className="flex items-center justify-between">

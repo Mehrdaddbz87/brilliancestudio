@@ -15,7 +15,7 @@ export function Hero() {
 
   return (
     <section className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-      <div className="grid w-full items-center gap-12 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] px-6 py-14 shadow-[0_0_100px_rgba(185,154,69,0.08)] sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12 xl:px-16">
+      <div className="grid w-full items-center gap-12 overflow-hidden rounded-[2rem] border border-white/10 bg-black/60 px-6 py-14 shadow-[0_0_100px_rgba(185,154,69,0.08)] backdrop-blur-sm sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12 xl:px-16">
 
         {/* ── Left: headline + body + CTA ── */}
         <motion.div
