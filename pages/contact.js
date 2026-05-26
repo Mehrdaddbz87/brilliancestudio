@@ -22,7 +22,7 @@ function Field({ label, type = "text", placeholder, name, value, onChange, requi
         aria-invalid={error ? "true" : undefined}
         aria-describedby={error && errorId ? errorId : undefined}
         className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${
-          error ? "border-red-300/70" : "border-white/10"
+          error ? "border-rose-400/40" : "border-white/10"
         }`}
         required={required}
       />
@@ -97,7 +97,7 @@ function ServiceSelectField({ label, name, value, onChange, options, error = fal
           onClick={() => setOpen((o) => !o)}
           onKeyDown={handleKeyDown}
           className={`flex w-full items-center justify-between rounded-2xl border bg-white/[0.04] px-4 py-3 text-base outline-none transition-all duration-200 hover:border-accent/40 focus:border-accent focus:ring-2 focus:ring-accent/40 ${
-            error ? "border-red-300/70" : "border-white/10"
+            error ? "border-rose-400/40" : "border-white/10"
           } ${selected ? "text-text" : "text-text/40"}`}
         >
           <span className="truncate">{selected ? selected.label : "Select a service"}</span>
@@ -148,13 +148,13 @@ export default function ContactPage() {
 
   function validateContactForm() {
     const errors = {};
-    if (!contactData.name.trim()) errors.name = "Name is required.";
-    if (!contactData.email.trim()) errors.email = "Email is required.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactData.email)) errors.email = "Please enter a valid email address.";
-    if (!contactData.service.trim()) errors.service = "Please choose a service.";
-    if (contactData.service === "other" && !contactData.customService.trim()) errors.customService = "Please specify your service.";
-    if (!contactData.message.trim()) errors.message = "Message is required.";
-    else if (contactData.message.trim().length < 10) errors.message = "Message must be at least 10 characters long.";
+    if (!contactData.name.trim()) errors.name = "Please enter your full name";
+    if (!contactData.email.trim()) errors.email = "A valid email address is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactData.email)) errors.email = "A valid email address is required";
+    if (!contactData.service.trim()) errors.service = "Please select a service to continue";
+    if (contactData.service === "other" && !contactData.customService.trim()) errors.customService = "Please describe the service you need";
+    if (!contactData.message.trim()) errors.message = "Tell us a bit about your project first";
+    else if (contactData.message.trim().length < 10) errors.message = "Tell us a bit about your project first";
     setContactErrors(errors);
     return Object.keys(errors).length === 0;
   }
@@ -163,7 +163,7 @@ export default function ContactPage() {
     event.preventDefault();
     if (contactSubmitLockRef.current) return;
     if (!validateContactForm()) {
-      setContactStatus({ type: "error", message: "Please correct the highlighted fields and try again." });
+      setContactStatus({ type: "error", message: "Please review the fields above before sending." });
       return;
     }
     contactSubmitLockRef.current = true;
@@ -283,23 +283,23 @@ export default function ContactPage() {
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <Field label="Name" name="name" placeholder="Your full name" value={contactData.name} onChange={updateContactField} error={Boolean(contactErrors.name)} errorId="error-name" />
-                      {contactErrors.name ? <p id="error-name" className="mt-2 text-sm text-red-300" role="alert">{contactErrors.name}</p> : null}
+                      {contactErrors.name ? <p id="error-name" className="mt-2 text-sm text-rose-400/80" role="alert">{contactErrors.name}</p> : null}
                     </div>
                     <div>
                       <Field label="Email" type="email" name="email" placeholder="name@example.com" value={contactData.email} onChange={updateContactField} error={Boolean(contactErrors.email)} errorId="error-email" />
-                      {contactErrors.email ? <p id="error-email" className="mt-2 text-sm text-red-300" role="alert">{contactErrors.email}</p> : null}
+                      {contactErrors.email ? <p id="error-email" className="mt-2 text-sm text-rose-400/80" role="alert">{contactErrors.email}</p> : null}
                     </div>
                   </div>
 
                   <div>
                     <ServiceSelectField label="Choose Service" name="service" value={contactData.service} onChange={updateContactField} options={serviceOptions} error={Boolean(contactErrors.service)} errorId="error-service" />
-                    {contactErrors.service ? <p id="error-service" className="mt-2 text-sm text-red-300" role="alert">{contactErrors.service}</p> : null}
+                    {contactErrors.service ? <p id="error-service" className="mt-2 text-sm text-rose-400/80" role="alert">{contactErrors.service}</p> : null}
                   </div>
 
                   {isOtherServiceSelected ? (
                     <div>
                       <Field label="Please Specify" name="customService" placeholder="Tell us which service you need" value={contactData.customService} onChange={updateContactField} error={Boolean(contactErrors.customService)} errorId="error-customService" />
-                      {contactErrors.customService ? <p id="error-customService" className="mt-2 text-sm text-red-300" role="alert">{contactErrors.customService}</p> : null}
+                      {contactErrors.customService ? <p id="error-customService" className="mt-2 text-sm text-rose-400/80" role="alert">{contactErrors.customService}</p> : null}
                     </div>
                   ) : null}
 
@@ -309,13 +309,13 @@ export default function ContactPage() {
                       placeholder="Tell us about your goals, timeline, and what kind of transformation you are planning."
                       aria-invalid={contactErrors.message ? "true" : undefined}
                       aria-describedby={contactErrors.message ? "error-message" : undefined}
-                      className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${contactErrors.message ? "border-red-300/70" : "border-white/10"}`}
+                      className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${contactErrors.message ? "border-rose-400/40" : "border-white/10"}`}
                       required />
-                    {contactErrors.message ? <p id="error-message" className="mt-2 text-sm text-red-300" role="alert">{contactErrors.message}</p> : null}
+                    {contactErrors.message ? <p id="error-message" className="mt-2 text-sm text-rose-400/80" role="alert">{contactErrors.message}</p> : null}
                   </label>
 
                   {contactStatus.message && contactStatus.type === "error" ? (
-                    <p className="text-sm text-red-300" role="alert">{contactStatus.message}</p>
+                    <p className="text-center text-sm text-rose-400/80" role="alert">{contactStatus.message}</p>
                   ) : null}
 
                   <div className="pt-1">
