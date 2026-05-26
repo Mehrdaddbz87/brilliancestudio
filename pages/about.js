@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 import { Button } from "@/components/button";
 import { FadeInSection } from "@/components/fade-in-section";
@@ -45,9 +46,6 @@ export default function AboutPage() {
               A Canadian renovation and design studio built on precision,
               craftsmanship, and a quiet commitment to quality.
             </p>
-            <div className="mt-8">
-              <Button href="/contact">Start Your Project</Button>
-            </div>
           </section>
         </FadeInSection>
 
@@ -146,6 +144,41 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
+          </section>
+        </FadeInSection>
+
+        {/* ── Subtle divider ── */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="h-px w-full bg-white/[0.07]" />
+        </div>
+
+        {/* ── CTA ── */}
+        <FadeInSection delay={0.12}>
+          <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <div className="h-48 w-[500px] rounded-full bg-accent/10 blur-[100px]" />
+            </div>
+            <div className="relative py-20 text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+                Next Step
+              </p>
+              <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+                Ready to discuss your project?
+              </h2>
+              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/55">
+                Contact us to discuss scope, timeline, and the right direction
+                for your renovation goals in Canada.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+                <Button href="/contact">Start Your Project</Button>
+                <Link
+                  href="/services"
+                  className="text-sm font-semibold uppercase tracking-[0.2em] text-white/50 transition hover:text-accent"
+                >
+                  &larr; All Services
+                </Link>
+              </div>
+            </div>
           </section>
         </FadeInSection>
 
