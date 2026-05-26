@@ -39,7 +39,7 @@ export function ServiceDetailPage({ service }) {
                 <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
                   {service.subtitle || service.description}
                 </p>
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-8 hidden flex-wrap gap-4 lg:flex">
                   <Button href="/contact">Start Your Project</Button>
                   <Button href="/services" variant="ghost">All Services</Button>
                 </div>
