@@ -137,7 +137,7 @@ export default function AboutPage() {
                     <span className="block text-xs font-bold uppercase tracking-[0.25em] text-accent">
                       {value.title}
                     </span>
-                    <span className="mt-1.5 block text-sm leading-relaxed text-white/60">
+                    <span className="mt-1.5 block font-raleway text-sm font-light leading-relaxed tracking-wide text-white/60">
                       {value.description}
                     </span>
                   </span>

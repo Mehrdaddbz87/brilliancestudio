@@ -17,7 +17,7 @@ function TextSection({ section, ctaHref, ctaLabel }) {
       <h2 className="mt-3 break-words font-raleway text-2xl font-semibold leading-snug tracking-[0.08em] text-text sm:text-3xl">
         {section.heading}
       </h2>
-      <p className="mt-5 text-base leading-relaxed text-text/60">
+      <p className="mt-5 font-raleway text-base font-light leading-relaxed tracking-wide text-text/60">
         {section.body}
       </p>
       {ctaHref ? (
@@ -76,7 +76,7 @@ function FeatureListSection({ section }) {
             <span className="mt-0.5 shrink-0 text-base font-semibold leading-none text-accent select-none">
               &mdash;
             </span>
-            <span className="text-base leading-relaxed text-text/75">
+            <span className="font-raleway text-base font-light leading-relaxed tracking-wide text-text/75">
               {item}
             </span>
           </li>
@@ -157,7 +157,7 @@ function GallerySection({ section }) {
               <p className="mt-3 font-raleway text-xl font-semibold uppercase tracking-[0.1em] text-text">
                 {item.title}
               </p>
-              <p className="mt-3 text-base leading-7 text-text/72">
+              <p className="mt-3 font-raleway text-base font-light leading-7 tracking-wide text-text/72">
                 {item.description || item.summary}
               </p>
             </div>
