@@ -62,7 +62,7 @@ function ServiceCard({ service, item, size = "md" }) {
           <p className="mb-2 text-[0.6rem] font-semibold uppercase tracking-[0.32em] text-accent">
             {category}
           </p>
-          <h3 className="text-sm font-bold uppercase tracking-wide text-white leading-tight sm:text-base lg:text-lg">
+          <h3 className="font-raleway text-sm font-semibold uppercase tracking-[0.08em] text-white leading-tight sm:text-base lg:text-lg">
             {service.title}
           </h3>
           <p className="mt-1.5 text-sm leading-relaxed text-white/60 line-clamp-2">
@@ -157,7 +157,7 @@ export default function ServicesPage({ content }) {
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
               {content.eyebrow || "Services"}
             </p>
-            <h2 className="mt-3 font-classic text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+            <h2 className="mt-3 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-text sm:text-4xl">
               Crafted with precision.
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-text/60">

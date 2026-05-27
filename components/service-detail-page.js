@@ -33,7 +33,7 @@ export function ServiceDetailPage({ service }) {
                 <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                   {service.eyebrow || "Services"}
                 </p>
-                <h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+                <h1 className="mt-3 font-raleway text-4xl font-semibold uppercase leading-tight tracking-[0.1em] text-white sm:text-5xl">
                   {service.title}.
                 </h1>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
@@ -88,7 +88,7 @@ export function ServiceDetailPage({ service }) {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                 Service Overview
               </p>
-              <h2 className="mt-3 text-2xl font-semibold leading-snug text-white sm:text-3xl">
+              <h2 className="mt-3 font-raleway text-2xl font-semibold leading-snug tracking-[0.08em] text-white sm:text-3xl">
                 What to expect from this service.
               </h2>
               <div className="mt-6 space-y-5">
@@ -106,7 +106,7 @@ export function ServiceDetailPage({ service }) {
                 <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                   Key Outcomes
                 </p>
-                <h2 className="mt-3 text-2xl font-semibold leading-snug text-white">
+                <h2 className="mt-3 font-raleway text-2xl font-semibold leading-snug tracking-[0.08em] text-white">
                   What this service delivers.
                 </h2>
                 <ul className="mt-8 divide-y divide-white/[0.07]">
@@ -145,7 +145,7 @@ export function ServiceDetailPage({ service }) {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                 Next Step
               </p>
-              <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-4 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-white sm:text-4xl">
                 Ready to discuss your project?
               </h2>
               <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/55">

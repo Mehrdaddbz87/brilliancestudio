@@ -39,10 +39,10 @@ export default function AboutPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
               About Us
             </p>
-            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mt-3 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-white sm:text-4xl lg:text-5xl">
               We design. We build. We transform.
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/55">
+            <p className="mt-4 max-w-xl font-raleway text-base font-light leading-relaxed tracking-wide text-white/55">
               A Canadian renovation and design studio built on precision,
               craftsmanship, and a quiet commitment to quality.
             </p>
@@ -61,20 +61,20 @@ export default function AboutPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                 Our Story
               </p>
-              <h2 className="mt-4 text-2xl font-semibold leading-snug text-white sm:text-3xl">
+              <h2 className="mt-4 font-raleway text-2xl font-semibold leading-snug tracking-[0.08em] text-white sm:text-3xl">
                 Brilliance Studio creates spaces that feel elevated, efficient,
                 and built to last.
               </h2>
             </div>
             <div className="space-y-5 pt-1">
-              <p className="text-base leading-relaxed text-white/60">
+              <p className="font-raleway text-base font-light leading-relaxed tracking-wide text-white/60">
                 Brilliance Studio creates modern renovation and design
                 experiences for clients who want spaces to feel elevated,
                 efficient, and built with long-term value in mind. We combine
                 design sensitivity with practical execution so the finished
                 result looks refined and works beautifully in everyday life.
               </p>
-              <p className="text-base leading-relaxed text-white/60">
+              <p className="font-raleway text-base font-light leading-relaxed tracking-wide text-white/60">
                 From planning and visual direction to material-led decision
                 making, we shape interiors and renovations with a restrained
                 luxury mindset suited to contemporary Canadian living.
@@ -120,7 +120,7 @@ export default function AboutPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                 Core Values
               </p>
-              <h2 className="mt-4 text-2xl font-semibold leading-snug text-white sm:text-3xl">
+              <h2 className="mt-4 font-raleway text-2xl font-semibold leading-snug tracking-[0.08em] text-white sm:text-3xl">
                 Built on clear standards.
               </h2>
             </div>
@@ -162,10 +162,10 @@ export default function AboutPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                 Next Step
               </p>
-              <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-4 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-white sm:text-4xl">
                 Ready to discuss your project?
               </h2>
-              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/55">
+              <p className="mx-auto mt-4 max-w-md font-raleway text-base font-light leading-relaxed tracking-wide text-white/55">
                 Contact us to discuss scope, timeline, and the right direction
                 for your renovation goals in Canada.
               </p>

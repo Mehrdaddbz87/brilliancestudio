@@ -72,7 +72,7 @@ export function GoogleReviews() {
           {/* Google rating summary */}
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <GoogleIcon />
-            <span className="font-classic text-3xl font-bold text-accent">5.0</span>
+            <span className="font-raleway text-3xl font-semibold text-accent">5.0</span>
             <Stars />
             <span className="text-sm text-text/50">Based on Google Reviews</span>
           </div>

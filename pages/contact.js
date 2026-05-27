@@ -207,10 +207,10 @@ export default function ContactPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
               Contact Us
             </p>
-            <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+            <h1 className="mt-3 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-text sm:text-4xl">
               Let us shape your next renovation.
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-text/55">
+            <p className="mt-4 max-w-xl font-raleway text-base font-light leading-relaxed tracking-wide text-text/55">
               Tell us about your project and we&apos;ll be in touch within one business day.
             </p>
           </section>
@@ -230,10 +230,10 @@ export default function ContactPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                 Get in Touch
               </p>
-              <h2 className="mt-4 text-2xl font-semibold leading-snug text-text">
+              <h2 className="mt-4 font-raleway text-2xl font-semibold leading-snug tracking-[0.08em] text-text">
                 We&apos;d love to hear about your project.
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-text/55">
+              <p className="mt-4 font-raleway text-sm font-light leading-relaxed tracking-wide text-text/55">
                 Whether you&apos;re planning a whole-home renovation or a refined update,
                 our team is here to bring your vision to life with precision and care.
               </p>
@@ -273,8 +273,8 @@ export default function ContactPage() {
                       <path d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h2 className="mt-6 text-2xl font-semibold text-text">Your message has been sent.</h2>
-                  <p className="mt-4 max-w-sm text-base leading-relaxed text-text/60">
+                  <h2 className="mt-6 font-raleway text-2xl font-semibold tracking-[0.08em] text-text">Your message has been sent.</h2>
+                  <p className="mt-4 max-w-sm font-raleway text-base font-light leading-relaxed tracking-wide text-text/60">
                     Thank you for reaching out. We have received your inquiry and will be in touch shortly.
                   </p>
                 </div>

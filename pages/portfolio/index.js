@@ -46,7 +46,7 @@ function PortfolioCard({ item }) {
               {item.category}
             </p>
           )}
-          <h3 className="text-xl font-bold uppercase tracking-wide text-white leading-tight">
+          <h3 className="font-raleway text-xl font-semibold uppercase tracking-[0.08em] text-white leading-tight">
             {item.title}
           </h3>
           {item.summary && (
@@ -103,7 +103,7 @@ export default function PortfolioPage({ content }) {
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
               {content.eyebrow || "Portfolio"}
             </p>
-            <h1 className="mt-3 font-classic text-3xl font-extrabold uppercase tracking-tight text-text sm:text-4xl">
+            <h1 className="mt-3 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-text sm:text-4xl">
               Our{" "}
               <span className="text-accent">Portfolio.</span>
             </h1>
