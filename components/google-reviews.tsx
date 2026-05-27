@@ -90,7 +90,7 @@ export function GoogleReviews() {
                   <Stars count={review.rating} />
                   <GoogleIcon />
                 </div>
-                <p className="mt-5 text-base leading-7 text-text/80">
+                <p className="mt-5 font-raleway text-base font-light italic leading-7 tracking-wide text-text/80">
                   &ldquo;{review.text}&rdquo;
                 </p>
               </div>
