@@ -80,7 +80,7 @@ export default function HomePage({ portfolioProjects }) {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Services
               </p>
-              <h2 className="mt-4 break-words font-fantasy text-2xl uppercase tracking-[0.08em] sm:text-3xl">
+              <h2 className="mt-4 break-words font-raleway text-2xl font-semibold uppercase tracking-[0.1em] sm:text-3xl">
                 What we build with precision.
               </h2>
             </div>
@@ -145,7 +145,7 @@ export default function HomePage({ portfolioProjects }) {
                         {featuredService.title}
                       </h3>
                       <div className="mt-6 h-px w-28 bg-gradient-to-r from-accent/80 to-transparent" />
-                      <p className="mt-6 text-sm leading-7 text-text/78 sm:text-base sm:leading-8 lg:text-lg">
+                      <p className="mt-6 font-raleway text-sm font-light leading-7 tracking-wide text-text/78 sm:text-base sm:leading-8 lg:text-lg">
                         {featuredService.description}
                       </p>
                       <a
@@ -183,7 +183,7 @@ export default function HomePage({ portfolioProjects }) {
                               <h3 className="mt-3 break-words font-raleway text-lg font-semibold uppercase leading-tight tracking-[0.1em] text-text sm:text-2xl lg:text-3xl lg:leading-[0.95]">
                                 {service.title}
                               </h3>
-                              <p className="mt-3 line-clamp-2 text-base leading-7 text-text/72">
+                              <p className="mt-3 line-clamp-2 font-raleway text-base font-light leading-7 tracking-wide text-text/72">
                                 {service.description}
                               </p>
                             </div>
@@ -213,7 +213,7 @@ export default function HomePage({ portfolioProjects }) {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Portfolio
               </p>
-              <h2 className="mt-3 break-words font-classic text-3xl font-black uppercase leading-[0.95] tracking-[0.03em] sm:text-4xl">
+              <h2 className="mt-3 break-words font-raleway text-3xl font-semibold uppercase leading-tight tracking-[0.1em] sm:text-4xl">
                 Our{" "}
                 <em className="font-light not-italic italic text-accent">
                   Portfolio.
@@ -252,11 +252,11 @@ export default function HomePage({ portfolioProjects }) {
                         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                           {featured.category}
                         </p>
-                        <h3 className="mt-3 break-words font-classic text-xl font-black uppercase leading-tight tracking-[0.03em] text-white sm:text-3xl sm:leading-[0.95] lg:text-4xl">
+                        <h3 className="mt-3 break-words font-raleway text-xl font-semibold uppercase leading-tight tracking-[0.08em] text-white sm:text-3xl sm:leading-[0.95] lg:text-4xl">
                           {featured.title}
                         </h3>
                         {featured.summary ? (
-                          <p className="mt-3 line-clamp-2 max-w-lg text-base leading-7 text-white/68">
+                          <p className="mt-3 line-clamp-2 max-w-lg font-raleway text-base font-light leading-7 tracking-wide text-white/68">
                             {featured.summary}
                           </p>
                         ) : null}
@@ -290,7 +290,7 @@ export default function HomePage({ portfolioProjects }) {
                             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
                               {ref.category}
                             </p>
-                            <h3 className="mt-2 break-words font-classic text-base font-black uppercase leading-tight tracking-[0.03em] text-white sm:text-xl sm:leading-[0.95]">
+                            <h3 className="mt-2 break-words font-raleway text-base font-semibold uppercase leading-tight tracking-[0.08em] text-white sm:text-xl sm:leading-[0.95]">
                               {ref.title}
                             </h3>
                             <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-accent transition duration-300 group-hover:gap-3">
