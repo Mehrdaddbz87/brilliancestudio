@@ -35,7 +35,7 @@ export function Logo({
       aria-label="Go to homepage"
       onClick={onClick}
       className={cn(
-        "group inline-flex items-center rounded-2xl px-1 py-1 transition duration-300 focus:outline-none focus:ring-2 focus:ring-accent/70 focus:ring-offset-2 focus:ring-offset-background",
+        "group inline-flex items-center rounded-2xl px-1 py-1 transition duration-300 outline-none focus:outline-none",
         className,
       )}
     >
