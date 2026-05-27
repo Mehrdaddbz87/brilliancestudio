@@ -55,7 +55,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.p
-            className="relative mt-7 max-w-lg text-base leading-8 text-text/72 sm:text-lg"
+            className="relative mt-7 max-w-lg font-raleway text-base font-light leading-8 tracking-wide text-text/72 sm:text-lg"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
