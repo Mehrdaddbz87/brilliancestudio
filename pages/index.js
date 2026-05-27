@@ -130,7 +130,7 @@ export default function HomePage({ portfolioProjects }) {
                       }}
                     />
 
-                    <div className="relative w-full pb-[50%] sm:w-[48%] sm:pb-0 lg:w-[43%]">
+                    <div className="relative w-full pb-[50%] sm:w-[48%] sm:pb-0 lg:w-[46%]">
                       <div className="relative mb-10 inline-flex h-20 w-20 items-center justify-center rounded-full border border-accent/80 bg-black/35 text-accent shadow-[0_0_50px_rgba(185,154,69,0.25)]">
                         <span
                           aria-hidden="true"
@@ -141,7 +141,7 @@ export default function HomePage({ portfolioProjects }) {
                       <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
                         {featuredService.label}
                       </p>
-                      <h3 className="mt-5 break-words font-raleway text-xl font-semibold uppercase leading-tight tracking-[0.1em] text-text sm:text-3xl sm:leading-[0.95] lg:text-4xl">
+                      <h3 className="mt-5 break-words font-raleway text-xl font-semibold uppercase leading-tight tracking-[0.1em] text-text sm:text-3xl sm:leading-[0.95] lg:text-4xl lg:tracking-[0.06em]">
                         {featuredService.title}
                       </h3>
                       <div className="mt-6 h-px w-28 bg-gradient-to-r from-accent/80 to-transparent" />
