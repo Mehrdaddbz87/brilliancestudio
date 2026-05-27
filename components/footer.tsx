@@ -82,26 +82,26 @@ export function Footer() {
           <p className="text-sm font-bold uppercase tracking-[0.22em] text-accent">
             Brilliance Studio
           </p>
-          <p className="mt-3 text-sm leading-6 text-text/55">
+          <p className="mt-3 font-raleway text-base font-light leading-7 tracking-wide text-text/55">
             Premium renovation and design,<br />crafted with precision.
           </p>
           <div className="mt-6 space-y-3">
             <a
               href="mailto:info@brilliancestudio.ca"
-              className="flex min-w-0 items-center gap-2.5 text-sm text-text/55 transition hover:text-accent"
+              className="flex min-w-0 items-center gap-2.5 font-raleway text-base font-light tracking-wide text-text/55 transition hover:text-accent"
             >
-              <MailIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+              <MailIcon aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={1.5} />
               <span className="break-all">info@brilliancestudio.ca</span>
             </a>
             <a
               href="tel:4165588186"
-              className="flex min-w-0 items-center gap-2.5 font-sans text-sm text-text/55 transition hover:text-accent"
+              className="flex min-w-0 items-center gap-2.5 font-raleway text-base font-light tracking-wide text-text/55 transition hover:text-accent"
             >
-              <PhoneIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+              <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={1.5} />
               <span>416 558 8186</span>
             </a>
-            <p className="flex items-center gap-2.5 text-sm text-text/55">
-              <MapPinIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+            <p className="flex items-center gap-2.5 font-raleway text-base font-light tracking-wide text-text/55">
+              <MapPinIcon aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={1.5} />
               Canada
             </p>
           </div>
@@ -133,7 +133,7 @@ export function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="text-sm text-text/60 transition hover:text-accent"
+                    className="font-raleway text-base font-light tracking-wide text-text/60 transition hover:text-accent"
                   >
                     {link.label}
                   </Link>
@@ -157,7 +157,7 @@ export function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="text-sm text-text/60 transition hover:text-accent"
+                    className="font-raleway text-base font-light tracking-wide text-text/60 transition hover:text-accent"
                   >
                     <span className="break-words">{link.label}</span>
                   </Link>
