@@ -45,7 +45,7 @@ export function Hero() {
 
           {/* Headline */}
           <motion.h1
-            className="relative mt-7 break-words font-classic text-3xl font-black uppercase leading-[0.95] tracking-[0.03em] text-text sm:text-4xl md:text-5xl"
+            className="relative mt-7 break-words font-raleway text-3xl font-semibold uppercase leading-tight tracking-[0.12em] text-text sm:text-4xl md:text-5xl"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
             animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
