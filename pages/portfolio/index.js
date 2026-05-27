@@ -50,7 +50,7 @@ function PortfolioCard({ item }) {
             {item.title}
           </h3>
           {item.summary && (
-            <p className="mt-2 text-sm leading-relaxed text-white/65 line-clamp-2">
+            <p className="mt-2 font-raleway text-sm font-light leading-relaxed tracking-wide text-white/65 line-clamp-2">
               {item.summary}
             </p>
           )}
@@ -107,7 +107,7 @@ export default function PortfolioPage({ content }) {
               Our{" "}
               <span className="text-accent">Portfolio.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-text/65">
+            <p className="mt-5 max-w-xl font-raleway text-base font-light leading-relaxed tracking-wide text-text/65">
               {pageDescription}
             </p>
             <div className="mt-8">

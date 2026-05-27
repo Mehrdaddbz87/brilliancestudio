@@ -65,7 +65,7 @@ function ServiceCard({ service, item, size = "md" }) {
           <h3 className="font-raleway text-sm font-semibold uppercase tracking-[0.08em] text-white leading-tight sm:text-base lg:text-lg">
             {service.title}
           </h3>
-          <p className="mt-1.5 text-sm leading-relaxed text-white/60 line-clamp-2">
+          <p className="mt-1.5 font-raleway text-sm font-light leading-relaxed tracking-wide text-white/60 line-clamp-2">
             {description}
           </p>
           <span className="mt-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-accent transition-all duration-300 group-hover:tracking-[0.3em]">
@@ -160,7 +160,7 @@ export default function ServicesPage({ content }) {
             <h2 className="mt-3 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-text sm:text-4xl">
               Crafted with precision.
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-text/60">
+            <p className="mt-4 max-w-xl font-raleway text-base font-light leading-relaxed tracking-wide text-text/60">
               {content.description ||
                 "High-end renovation and design services delivered with craftsmanship, precision, and efficient coordination."}
             </p>

@@ -36,7 +36,7 @@ export function ServiceDetailPage({ service }) {
                 <h1 className="mt-3 font-raleway text-4xl font-semibold uppercase leading-tight tracking-[0.1em] text-white sm:text-5xl">
                   {service.title}.
                 </h1>
-                <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
+                <p className="mt-5 max-w-md font-raleway text-base font-light leading-relaxed tracking-wide text-white/55">
                   {service.subtitle || service.description}
                 </p>
                 <div className="mt-8 hidden flex-wrap gap-4 lg:flex">
@@ -93,7 +93,7 @@ export function ServiceDetailPage({ service }) {
               </h2>
               <div className="mt-6 space-y-5">
                 {descriptions.map((paragraph, i) => (
-                  <p key={i} className="text-base leading-relaxed text-white/60">
+                  <p key={i} className="font-raleway text-base font-light leading-relaxed tracking-wide text-white/60">
                     {paragraph}
                   </p>
                 ))}
@@ -118,7 +118,7 @@ export function ServiceDetailPage({ service }) {
                       >
                         &mdash;
                       </span>
-                      <span className="min-w-0 break-words text-sm leading-relaxed text-white/65">
+                      <span className="min-w-0 break-words font-raleway text-sm font-light leading-relaxed tracking-wide text-white/65">
                         {benefit}
                       </span>
                     </li>
@@ -148,7 +148,7 @@ export function ServiceDetailPage({ service }) {
               <h2 className="mt-4 font-raleway text-3xl font-semibold uppercase tracking-[0.1em] text-white sm:text-4xl">
                 Ready to discuss your project?
               </h2>
-              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/55">
+              <p className="mx-auto mt-4 max-w-md font-raleway text-base font-light leading-relaxed tracking-wide text-white/55">
                 Contact us to discuss scope, timeline, and the right direction
                 for your renovation goals in Canada.
               </p>

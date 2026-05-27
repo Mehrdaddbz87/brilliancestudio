@@ -77,7 +77,7 @@ export function PortfolioDetailPage({ item }) {
 
             {/* Summary */}
             {summary ? (
-              <p className="mt-6 max-w-lg text-lg leading-8 text-text/72">
+              <p className="mt-6 max-w-lg font-raleway text-lg font-light leading-8 tracking-wide text-text/72">
                 {summary}
               </p>
             ) : null}
@@ -101,7 +101,7 @@ export function PortfolioDetailPage({ item }) {
               </p>
               <div className="mt-3 h-px w-16 bg-gradient-to-r from-accent/60 to-transparent" />
               {summary ? (
-                <p className="mt-5 break-words text-base leading-7 text-text/75">
+                <p className="mt-5 break-words font-raleway text-base font-light leading-7 tracking-wide text-text/75">
                   {summary}
                 </p>
               ) : (
@@ -124,7 +124,7 @@ export function PortfolioDetailPage({ item }) {
               <h2 className="mt-4 break-words font-classic text-3xl font-black uppercase leading-[0.92] tracking-[0.03em] text-text sm:text-4xl">
                 Let&apos;s discuss your vision.
               </h2>
-              <p className="mt-4 max-w-lg text-base leading-7 text-text/70">
+              <p className="mt-4 max-w-lg font-raleway text-base font-light leading-7 tracking-wide text-text/70">
                 Tell us about your renovation goals and we will shape a plan around your space, timeline, and budget.
               </p>
             </div>
