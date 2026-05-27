@@ -90,11 +90,11 @@ function ServiceMenuLink({
         strokeWidth={1.5}
       />
       <span className="min-w-0 flex-1">
-        <span className="block text-sm font-semibold text-text/90 transition-colors duration-200 group-hover:text-accent">
+        <span className="block font-raleway text-sm font-semibold tracking-wide text-text/90 transition-colors duration-200 group-hover:text-accent">
           {label}
         </span>
         {description ? (
-          <span className="mt-0.5 block text-xs leading-relaxed text-text/45 transition-colors duration-200 group-hover:text-text/60">
+          <span className="mt-0.5 block font-raleway text-xs font-light leading-relaxed tracking-wide text-text/45 transition-colors duration-200 group-hover:text-text/60">
             {description}
           </span>
         ) : null}
