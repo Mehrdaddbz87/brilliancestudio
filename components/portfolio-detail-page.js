@@ -71,7 +71,7 @@ export function PortfolioDetailPage({ item }) {
             <div className="mt-3 h-px w-24 bg-gradient-to-r from-accent/80 to-transparent" />
 
             {/* Headline */}
-            <h1 className="mt-6 break-words font-classic text-4xl font-black uppercase leading-[0.92] tracking-[0.03em] text-text sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 break-words font-raleway text-4xl font-semibold uppercase leading-tight tracking-[0.1em] text-text sm:text-5xl lg:text-6xl">
               {title}
             </h1>
 
@@ -121,7 +121,7 @@ export function PortfolioDetailPage({ item }) {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                 Interested in a similar project?
               </p>
-              <h2 className="mt-4 break-words font-classic text-3xl font-black uppercase leading-[0.92] tracking-[0.03em] text-text sm:text-4xl">
+              <h2 className="mt-4 break-words font-raleway text-3xl font-semibold uppercase leading-tight tracking-[0.1em] text-text sm:text-4xl">
                 Let&apos;s discuss your vision.
               </h2>
               <p className="mt-4 max-w-lg font-raleway text-base font-light leading-7 tracking-wide text-text/70">
