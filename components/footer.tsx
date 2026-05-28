@@ -105,18 +105,33 @@ export function Footer() {
               Canada
             </p>
           </div>
-          {/* Instagram circle button */}
-          <motion.a
-            href="https://www.instagram.com/brilliancestudio.ca/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Follow us on Instagram"
-            className="mt-5 inline-flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 text-accent/70 transition-all duration-200 hover:border-accent hover:text-accent"
-            whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <InstagramIcon aria-hidden="true" className="h-4 w-4" strokeWidth={1.5} />
-          </motion.a>
+          {/* Social icons */}
+          <div className="mt-5 flex items-center gap-3">
+            <motion.a
+              href="https://www.instagram.com/brilliancestudio.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Instagram"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 text-accent/70 transition-all duration-200 hover:border-accent hover:text-accent"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <InstagramIcon aria-hidden="true" className="h-4 w-4" strokeWidth={1.5} />
+            </motion.a>
+            <motion.a
+              href="https://www.facebook.com/share/18aPrZRs6h/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Facebook"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-accent/40 text-accent/70 transition-all duration-200 hover:border-accent hover:text-accent"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </motion.a>
+          </div>
         </div>
 
         {/* Navigation column */}
