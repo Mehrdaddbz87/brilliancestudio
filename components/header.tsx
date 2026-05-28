@@ -380,7 +380,7 @@ export function Header() {
                         aria-expanded={isServicesAccordionOpen}
                         aria-controls="mobile-services-menu"
                         className={cn(
-                          "flex min-h-11 w-full items-center justify-between rounded-[1.5rem] px-4 py-3 text-left text-sm font-semibold uppercase tracking-[0.22em] transition",
+                          "flex min-h-11 w-full items-center justify-between rounded-[1.5rem] px-4 py-3 text-left font-raleway text-sm font-semibold uppercase tracking-wide transition",
                           servicesRouteActive || isServicesAccordionOpen
                             ? "text-accent"
                             : "text-text/85 hover:text-accent",
@@ -445,7 +445,7 @@ export function Header() {
                       href={item.href}
                       aria-current={isActiveLink(item.href) ? "page" : undefined}
                       className={cn(
-                        "inline-flex min-h-11 items-center rounded-2xl border px-4 py-3 text-sm font-semibold uppercase tracking-[0.22em] transition",
+                        "inline-flex min-h-11 items-center rounded-2xl border px-4 py-3 font-raleway text-sm font-semibold uppercase tracking-wide transition",
                         isActiveLink(item.href)
                           ? "border-accent/35 bg-accent/10 text-accent"
                           : "border-transparent text-text/85 hover:border-accent/30 hover:bg-accent/10 hover:text-accent",
