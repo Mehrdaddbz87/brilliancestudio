@@ -150,7 +150,7 @@ export function Footer() {
             </a>
             <p className="flex items-center gap-2.5 font-raleway text-base font-light tracking-wide text-text/55">
               <MapPinIcon aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-              Canada
+              Toronto, Canada
             </p>
           </div>
           {/* Social icons */}
