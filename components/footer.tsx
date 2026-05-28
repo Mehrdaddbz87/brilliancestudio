@@ -205,6 +205,25 @@ export function Footer() {
           </ul>
         </nav>
 
+        {/* Hours + Consultation column */}
+        <div>
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-accent/80">
+            Hours
+          </p>
+          <div className="mt-5 space-y-2">
+            <p className="font-raleway text-base font-light tracking-wide text-text/60">
+              Mon – Fri, 9am – 6pm
+            </p>
+            <p className="font-raleway text-base font-light tracking-wide text-text/60">
+              Sat, by appointment
+            </p>
+          </div>
+          <div className="mt-6 h-px w-12 bg-accent/20" />
+          <p className="mt-4 font-raleway text-sm font-light italic tracking-wide text-text/40">
+            Free initial consultation.<br />No commitment.
+          </p>
+        </div>
+
       </div>
 
       {/* Copyright bar */}
