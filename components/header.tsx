@@ -72,7 +72,7 @@ function ServiceMenuLink({
           className="h-4 w-4 shrink-0 text-white/40 transition-colors duration-200 group-hover:text-accent"
           strokeWidth={1.5}
         />
-        <span className="min-w-0 break-words">{label}</span>
+        <span className="min-w-0 font-raleway text-sm font-semibold tracking-wide">{label}</span>
       </Link>
     );
   }
