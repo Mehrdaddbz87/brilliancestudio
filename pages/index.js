@@ -130,7 +130,7 @@ export default function HomePage({ portfolioProjects }) {
                       }}
                     />
 
-                    <div className="relative w-full pb-[50%] sm:w-[48%] sm:pb-0 lg:w-[46%]">
+                    <div className="relative w-full pb-[calc(50%+3rem)] sm:w-[48%] sm:pb-0 lg:w-[46%]">
                       <div className="relative mb-10 inline-flex h-20 w-20 items-center justify-center rounded-full border border-accent/80 bg-black/35 text-accent shadow-[0_0_50px_rgba(185,154,69,0.25)]">
                         <span
                           aria-hidden="true"
@@ -148,14 +148,14 @@ export default function HomePage({ portfolioProjects }) {
                       <p className="mt-6 font-raleway text-sm font-light leading-7 tracking-wide text-text/78 sm:text-base sm:leading-8 lg:text-lg">
                         {featuredService.description}
                       </p>
-                      <a
-                        href={featuredService.href}
-                        className="mt-10 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent transition hover:gap-5 hover:text-text"
-                      >
-                        Explore service
-                        <span aria-hidden="true">→</span>
-                      </a>
                     </div>
+                    <a
+                      href={featuredService.href}
+                      className="absolute bottom-8 left-8 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-accent transition hover:gap-5 hover:text-text sm:bottom-10 sm:left-10"
+                    >
+                      Explore service
+                      <span aria-hidden="true">→</span>
+                    </a>
                   </article>
 
                   <div className="grid gap-4">
