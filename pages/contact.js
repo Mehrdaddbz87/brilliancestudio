@@ -21,7 +21,7 @@ function Field({ label, type = "text", placeholder, name, value, onChange, requi
         placeholder={placeholder}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={error && errorId ? errorId : undefined}
-        className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${
+        className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 font-raleway text-base font-light tracking-wide text-text outline-none transition placeholder:font-raleway placeholder:font-light placeholder:tracking-wide placeholder:text-text/35 focus:border-accent focus:bg-white/[0.06] ${
           error ? "border-rose-400/40" : "border-white/10"
         }`}
         required={required}
@@ -96,11 +96,11 @@ function ServiceSelectField({ label, name, value, onChange, options, error = fal
           aria-describedby={error && errorId ? errorId : undefined}
           onClick={() => setOpen((o) => !o)}
           onKeyDown={handleKeyDown}
-          className={`flex w-full items-center justify-between rounded-2xl border bg-white/[0.04] px-4 py-3 text-base outline-none transition-all duration-200 hover:border-accent/40 focus:border-accent focus:ring-2 focus:ring-accent/40 ${
+          className={`flex w-full items-center justify-between rounded-2xl border bg-white/[0.04] px-4 py-3 font-raleway text-base font-light tracking-wide outline-none transition-all duration-200 hover:border-accent/40 focus:border-accent focus:ring-2 focus:ring-accent/40 ${
             error ? "border-rose-400/40" : "border-white/10"
           } ${selected ? "text-text" : "text-text/40"}`}
         >
-          <span className="truncate">{selected ? selected.label : "Select a service"}</span>
+          <span className="truncate font-raleway font-light tracking-wide text-text/35">{selected ? <span className="text-text">{selected.label}</span> : "Select a service"}</span>
           <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className={`ml-3 h-4 w-4 shrink-0 text-accent transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
             <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -114,7 +114,7 @@ function ServiceSelectField({ label, name, value, onChange, options, error = fal
               return (
                 <li key={option.value} id={`${name}-option-${index}`} role="option" aria-selected={isSelected}
                   onClick={() => selectOption(option)} onMouseEnter={() => setFocusedIndex(index)}
-                  className={`flex cursor-pointer items-center justify-between px-4 py-3 text-base transition-colors duration-150 first:rounded-t-2xl last:rounded-b-2xl ${
+                  className={`flex cursor-pointer items-center justify-between px-4 py-3 font-raleway text-base font-light tracking-wide transition-colors duration-150 first:rounded-t-2xl last:rounded-b-2xl ${
                     isFocused ? "bg-accent/10 text-accent" : isSelected ? "bg-white/[0.04] text-accent" : "text-text/80 hover:bg-white/[0.04] hover:text-text"
                   }`}>
                   <span>{option.label}</span>
@@ -309,7 +309,7 @@ export default function ContactPage() {
                       placeholder="Tell us about your goals, timeline, and what kind of transformation you are planning."
                       aria-invalid={contactErrors.message ? "true" : undefined}
                       aria-describedby={contactErrors.message ? "error-message" : undefined}
-                      className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 text-base text-text outline-none transition focus:border-accent focus:bg-white/[0.06] ${contactErrors.message ? "border-rose-400/40" : "border-white/10"}`}
+                      className={`w-full rounded-2xl border bg-white/[0.04] px-4 py-3 font-raleway text-base font-light tracking-wide text-text outline-none transition placeholder:font-raleway placeholder:font-light placeholder:tracking-wide placeholder:text-text/35 focus:border-accent focus:bg-white/[0.06] ${contactErrors.message ? "border-rose-400/40" : "border-white/10"}`}
                       required />
                     {contactErrors.message ? <p id="error-message" className="mt-2 text-sm text-rose-400/80" role="alert">{contactErrors.message}</p> : null}
                   </label>
