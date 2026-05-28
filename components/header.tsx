@@ -69,7 +69,7 @@ function ServiceMenuLink({
       >
         <Icon
           aria-hidden="true"
-          className="h-4 w-4 shrink-0 text-white/40 transition-colors duration-200 group-hover:text-accent"
+          className="h-4 w-4 shrink-0 text-accent/60 transition-colors duration-200 group-hover:text-accent"
           strokeWidth={1.5}
         />
         <span className="min-w-0 font-raleway text-sm font-semibold tracking-wide">{label}</span>
