@@ -249,7 +249,7 @@ export default function ContactPage() {
                   <svg className="h-4 w-4 shrink-0 text-accent/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 21c-4-4-7-7.5-7-11a7 7 0 0 1 14 0c0 3.5-3 7-7 11z" /><circle cx="12" cy="10" r="2.5" />
                   </svg>
-                  Canada
+                  Toronto, Canada
                 </p>
                 <p className="flex items-center gap-3 text-sm text-text/60">
                   <svg className="h-4 w-4 shrink-0 text-accent/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
