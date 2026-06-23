@@ -90,7 +90,7 @@ function SocialIcons({ shouldReduceMotion }: { shouldReduceMotion: boolean }) {
       </motion.a>
 
       <motion.a
-        href="https://www.facebook.com/share/18aPrZRs6h/"
+        href="https://www.facebook.com/share/1EHVeErfyf/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Follow us on Facebook"
